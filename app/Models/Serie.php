@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Serie extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'serie'
+    ];
+
+    public function alunos() {
+        return $this->hasMany('App\Models\Aluno');
+    }
 }

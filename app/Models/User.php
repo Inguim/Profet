@@ -20,8 +20,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'tipo',
+        'admin'
     ];
-
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -40,4 +41,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function projetos() {
+        return $this->belongsToMany('App\Models\Projeto');
+    }
+
+    public function noticias() {
+        return $this->hasMany('App\Models\Noticia');
+    }
+
+    public function aluno() {
+        return $this->hasOne('App\Models\Aluno');
+    }
+
+    public function professor() {
+        return $this->hasOne('App\Models\Professor');
+    }
 }

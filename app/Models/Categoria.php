@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Categoria extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nome',
+        'menu_id'
+    ];
+
+    public function menu() {
+        return $this->belongsTo('App\Models\Menu');
+    }
+
+    public function professors() {
+        return $this->belongsToMany('App\Models\Categoria');
+    }
+
+    public function projetos() {
+        return $this->hasMany('App\Models\Projeto');
+    }
 }
