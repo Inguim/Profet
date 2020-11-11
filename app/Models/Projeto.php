@@ -22,8 +22,11 @@ class Projeto extends Model
     ];
 
     public function users() {
-        return $this->belongsToMany('App\Models\User');
+        return $this->belongsToMany('App\Models\User', 'usuario_projs');
     }
+    // public function users() {
+    //     return $this->belongsToMany('App\Models\User', 'usuario_projs', 'projeto_id', 'user_id');
+    // }
 
     public function userProjs() {
         return $this->hasMany('App\Models\UsuarioProj');
@@ -34,6 +37,6 @@ class Projeto extends Model
     }
 
     public function categoria() {
-        return $this.belongsTo('App\Models\Categoria');
+        return $this->belongsTo('App\Models\Categoria');
     }
 }
