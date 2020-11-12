@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Menu;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
-class MenuController extends Controller
+class CategoriaController extends Controller
 {
     public function __construct()
     {
@@ -18,8 +18,11 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus = Menu::with(['categorias'])->get();
-        return view('', compact('menus'));
+        $categoria = Categoria::with(['projetos'])
+            ->orderBy('menu_id', 'ASC')
+            ->get();
+
+        return view('', compact('categoria'));
     }
 
     /**
@@ -41,14 +44,16 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "nome" => "required|max:255",
+            'nome' => 'required',
+            'menu_id' => 'required|numeric',
         ]);
 
-        $menu = new Menu([
-            "nome" => $request->get('nome'),
+        $categoria = new Categoria([
+            'nome' => $request->get('nome'),
+            'menu_id' => $request->get('menu_id'),
         ]);
 
-        $menu->save();
+        $categoria->save();
 
         return view('');
     }
@@ -61,7 +66,12 @@ class MenuController extends Controller
      */
     public function show($id)
     {
-        //
+        $categoria = Categoria::where('id', '=', $id)
+            ->with(['professors'])
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        return view('', compact('categoria'));
     }
 
     /**
@@ -85,14 +95,18 @@ class MenuController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            "nome" => "required|max:255",
+            'nome' => 'required',
+            'menu_id' => 'required|numeric',
         ]);
 
-        $menu = Menu::findOrFail($id);
-        $menu->nome = $request->get('nome');
-        $menu->save();
+        $categoria = Categoria::findOrFail($id);
 
-        return redirect('');
+        $categoria->nome = $request->get('nome');
+        $categoria->menu_id = $request->get('menu_id');
+
+        $categoria->save();
+
+        return view('');
     }
 
     /**
@@ -103,8 +117,8 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        $menu = Menu::findOrFail($id);
-        $menu->delete();
+        $categoria = Categoria::findOrFail($id);
+        $categoria->delete();
 
         return redirect('');
     }

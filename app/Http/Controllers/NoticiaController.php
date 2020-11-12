@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Menu;
+use App\Models\Noticia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class MenuController extends Controller
+class NoticiaController extends Controller
 {
     public function __construct()
     {
@@ -18,8 +19,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus = Menu::with(['categorias'])->get();
-        return view('', compact('menus'));
+        $noticias = Noticia::all();
+        return view('', compact('noticias'));
     }
 
     /**
@@ -41,16 +42,18 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "nome" => "required|max:255",
+            "nome" => "required|max:50",
+            "link" => "required|max:255",
         ]);
 
-        $menu = new Menu([
+        $noticia = new Noticia([
             "nome" => $request->get('nome'),
+            "link" => $request->get('link'),
+            "user_id" => Auth::id(),
         ]);
 
-        $menu->save();
-
-        return view('');
+        $noticia->save();
+        return redirect('');
     }
 
     /**
@@ -61,7 +64,8 @@ class MenuController extends Controller
      */
     public function show($id)
     {
-        //
+        $noticia = Noticia::findOrFaill($id);
+        return view('', compact('noticia'));
     }
 
     /**
@@ -85,12 +89,15 @@ class MenuController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            "nome" => "required|max:255",
+            "nome" => "required|max:50",
+            "link" => "required|max:255",
         ]);
 
-        $menu = Menu::findOrFail($id);
-        $menu->nome = $request->get('nome');
-        $menu->save();
+        $noticia = Noticia::findOrFail($id);
+        $noticia->nome = $request->get('nome');
+        $noticia->link = $request->get('link');
+        $noticia->user_id = Auth::id();
+        $noticia->save();
 
         return redirect('');
     }
@@ -103,9 +110,9 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        $menu = Menu::findOrFail($id);
-        $menu->delete();
+        $noticia = Noticia::findOrFail($id);
+        $noticia->delete();
 
-        return redirect('');
+        return view('');
     }
 }

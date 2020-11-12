@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Menu;
+use App\Models\Curso;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class MenuController extends Controller
+class CursoController extends Controller
 {
     public function __construct()
     {
@@ -18,8 +19,9 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus = Menu::with(['categorias'])->get();
-        return view('', compact('menus'));
+        $cursos = Curso::with(['alunos'])->orderBy('curso_id', 'ASC')->get();
+
+        return view('', compact('cursos'));
     }
 
     /**
@@ -41,14 +43,14 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "nome" => "required|max:255",
+            'curso' => 'required',
         ]);
 
-        $menu = new Menu([
-            "nome" => $request->get('nome'),
+        $curso = new Curso([
+            'curso' => $request->get('curso'),
         ]);
 
-        $menu->save();
+        $curso->save();
 
         return view('');
     }
@@ -61,7 +63,12 @@ class MenuController extends Controller
      */
     public function show($id)
     {
-        //
+        $curso = Curso::where('curso_id', '=', $id)
+            ->with(['alunos'])
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        return view('', compact('curso'));
     }
 
     /**
@@ -85,14 +92,15 @@ class MenuController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            "nome" => "required|max:255",
+            'curso' => 'required',
         ]);
 
-        $menu = Menu::findOrFail($id);
-        $menu->nome = $request->get('nome');
-        $menu->save();
+        $curso = Curso::findOrFail($id);
+        $curso->curso = $request->get('curso');
 
-        return redirect('');
+        $curso->save();
+
+        return view('');
     }
 
     /**
@@ -103,8 +111,8 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        $menu = Menu::findOrFail($id);
-        $menu->delete();
+        $curso = Curso::findOrFail($id);
+        $curso->delete();
 
         return redirect('');
     }

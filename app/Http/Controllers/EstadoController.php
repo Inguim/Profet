@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Menu;
+use App\Models\Estado;
 use Illuminate\Http\Request;
 
-class MenuController extends Controller
+class EstadoController extends Controller
 {
     public function __construct()
     {
@@ -18,8 +18,11 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus = Menu::with(['categorias'])->get();
-        return view('', compact('menus'));
+        $estados = Estado::with(['projetos'])
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        return view('', compact('estados'));
     }
 
     /**
@@ -40,17 +43,7 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "nome" => "required|max:255",
-        ]);
-
-        $menu = new Menu([
-            "nome" => $request->get('nome'),
-        ]);
-
-        $menu->save();
-
-        return view('');
+        //
     }
 
     /**
@@ -61,7 +54,11 @@ class MenuController extends Controller
      */
     public function show($id)
     {
-        //
+        $estados = Estado::where('estado_id', '=', $id)
+            ->with(['projetos'])
+            ->get();
+
+        return view('', compact('estado'));
     }
 
     /**
@@ -85,14 +82,15 @@ class MenuController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            "nome" => "required|max:255",
+            'estado' => 'required|max:45',
         ]);
 
-        $menu = Menu::findOrFail($id);
-        $menu->nome = $request->get('nome');
-        $menu->save();
+        $estado = Estado::findOrFail($id);
 
-        return redirect('');
+        $estado->estado = $request->get('estado');
+        $estado->save();
+
+        return view('');
     }
 
     /**
@@ -103,9 +101,9 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        $menu = Menu::findOrFail($id);
-        $menu->delete();
+        $estado = Estado::findOrFail($id);
+        $estado->delete();
 
-        return redirect('');
+        return view('');
     }
 }

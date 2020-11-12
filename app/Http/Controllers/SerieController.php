@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Menu;
+use App\Models\Serie;
 use Illuminate\Http\Request;
 
-class MenuController extends Controller
+class SerieController extends Controller
 {
     public function __construct()
     {
@@ -18,8 +18,9 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus = Menu::with(['categorias'])->get();
-        return view('', compact('menus'));
+        $series = Serie::with(['alunos'])->orderBy('serie_id', 'ASC')->get();
+
+        return view('', compact('series'));
     }
 
     /**
@@ -41,14 +42,14 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "nome" => "required|max:255",
+            'serie' => 'required|numeric',
         ]);
 
-        $menu = new Menu([
-            "nome" => $request->get('nome'),
+        $serie = new Serie([
+            'serie' => $request->get('serie'),
         ]);
 
-        $menu->save();
+        $serie->save();
 
         return view('');
     }
@@ -61,7 +62,12 @@ class MenuController extends Controller
      */
     public function show($id)
     {
-        //
+        $serie = Serie::where('serie_id', '=', $id)
+            ->with(['alunos'])
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        return view('', compact('serie'));
     }
 
     /**
@@ -85,14 +91,15 @@ class MenuController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            "nome" => "required|max:255",
+            'serie' => 'required|numeric',
         ]);
 
-        $menu = Menu::findOrFail($id);
-        $menu->nome = $request->get('nome');
-        $menu->save();
+        $serie = Serie::findOrFail($id);
+        $serie->serie = $request->get('serie');
 
-        return redirect('');
+        $serie->save();
+
+        return view('');
     }
 
     /**
@@ -103,8 +110,8 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        $menu = Menu::findOrFail($id);
-        $menu->delete();
+        $serie = Serie::findOrFail($id);
+        $serie->delete();
 
         return redirect('');
     }
