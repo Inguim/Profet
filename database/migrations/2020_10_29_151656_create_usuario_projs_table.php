@@ -17,8 +17,8 @@ class CreateUsuarioProjsTable extends Migration
             $table->id();
             $table->enum('relacao', ['coordenador', 'coorientador', 'orientador', 'bolsista', 'voluntario']);
 
-            $table->foreignId('user_id')->unsigned()->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('projeto_id')->unsigned()->constrained('projetos')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('projeto_id')->constrained('projetos')->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
         });

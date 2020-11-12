@@ -43,7 +43,7 @@ class User extends Authenticatable
     ];
 
     public function projetos() {
-        return $this->belongsToMany('App\Models\Projeto');
+        return $this->belongsToMany('App\Models\Projeto', 'usuario_projs');
     }
 
     public function noticias() {

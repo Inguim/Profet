@@ -18,7 +18,7 @@ class CreateNoticiasTable extends Migration
             $table->string('nome', 50);
             $table->string('link', 255);
 
-            $table->foreignId('user_id')->unsigned()->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
         });

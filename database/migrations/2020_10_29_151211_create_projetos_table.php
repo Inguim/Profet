@@ -23,8 +23,8 @@ class CreateProjetosTable extends Migration
             $table->text('result_disc');
             $table->text('conclusao');
 
-            $table->foreignId('categoria_id')->unsigned()->constrained('categorias')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('estado_id')->unsigned()->constrained('estados')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('categoria_id')->constrained('categorias')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('estado_id')->constrained('estados')->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -16,8 +16,8 @@ class CreateProfessorCatsTable extends Migration
         Schema::create('professor_cats', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('professor_id')->unsigned()->constrained('professors')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('categoria_id')->unsigned()->constrained('categorias')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('professor_id')->constrained('professors')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('categoria_id')->constrained('categorias')->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
         });

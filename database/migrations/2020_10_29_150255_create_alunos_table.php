@@ -16,9 +16,9 @@ class CreateAlunosTable extends Migration
         Schema::create('alunos', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('user_id')->unsigned()->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('curso_id')->unsigned()->constrained('cursos')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('serie_id')->unsigned()->constrained('series')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('curso_id')->constrained('cursos')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('serie_id')->constrained('series')->onUpdate('cascade')->onDelete('cascade');
 
 
             $table->timestamps();

@@ -18,6 +18,6 @@ class Professor extends Model
     }
 
     public function categorias() {
-        return $this->belongsToMany('App\Models\Categoria');
+        return $this->belongsToMany('App\Models\Categoria', 'professor_cats');
     }
 }

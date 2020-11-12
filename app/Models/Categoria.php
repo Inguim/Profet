@@ -19,7 +19,7 @@ class Categoria extends Model
     }
 
     public function professors() {
-        return $this->belongsToMany('App\Models\Categoria');
+        return $this->belongsToMany('App\Models\Categoria', 'professor_cats');
     }
 
     public function projetos() {
