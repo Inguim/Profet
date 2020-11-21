@@ -3,10 +3,6 @@
 <style>
 
 .footer {
-   position: fixed;
-   left: 0;
-   bottom: 0;
-   right: 0;
    width: 100%;
    height: 20px;
    background-color: #086BAB;
@@ -105,6 +101,6 @@
             </main>
         </div>
     </div>
-    <div class="footer"><p></p></div>
+    <footer><p></p<</footer>
 </body>
 </html>

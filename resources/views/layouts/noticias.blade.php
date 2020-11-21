@@ -34,7 +34,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md" style="background: #086BAB">
+        <nav class="navbar navbar-expand-md" style="background: #086BAB;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="logo3.png" style="height: 50px;">
