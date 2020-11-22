@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Professor;
 use Illuminate\Http\Request;
 
 class ProfessorController extends Controller
@@ -13,7 +14,11 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        //
+        $professors = Professor::with(['user'])
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        return view('', compact('professors'));
     }
 
     /**
@@ -45,7 +50,11 @@ class ProfessorController extends Controller
      */
     public function show($id)
     {
-        //
+        $professor = Professor::findOrFail($id)
+            ->with(['user'])
+            ->get();
+
+        return view('', compact('professor'));
     }
 
     /**

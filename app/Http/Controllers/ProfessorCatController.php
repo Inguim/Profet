@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProfessorCat;
 use Illuminate\Http\Request;
 
 class ProfessorCatController extends Controller
@@ -45,7 +46,11 @@ class ProfessorCatController extends Controller
      */
     public function show($id)
     {
-        //
+        $professorcat = ProfessorCat::where('categoria_id', '=', $id)
+            ->with(['categoria'])
+            ->get()
+
+        return view('', compact('professorcat'));
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aluno;
 use Illuminate\Http\Request;
 
 class AlunoController extends Controller
@@ -13,7 +14,11 @@ class AlunoController extends Controller
      */
     public function index()
     {
-        //
+        $alunos = Aluno::with(['user'])
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        return view('', compact('alunos'));
     }
 
     /**
@@ -45,7 +50,11 @@ class AlunoController extends Controller
      */
     public function show($id)
     {
-        //
+        $aluno = Aluno::findOrFail($id)
+            ->with(['user'])
+            ->get();
+
+        return view('', compact('aluno'));
     }
 
     /**
@@ -68,7 +77,18 @@ class AlunoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'serie' => 'required|numeric',
+            'curso' => 'required|numeric',
+        ]);
+
+        $aluno = Aluno::findOrFail($id);
+        $aluno->serie_id = $request->get('serie');
+        $aluno->curso_id = $request->get('curso');
+
+        $aluno->save();
+
+        return view('');
     }
 
     /**

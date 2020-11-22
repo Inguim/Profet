@@ -13,4 +13,8 @@ class ProfessorCat extends Model
         'professor_id',
         'categoria_id'
     ];
+
+    public function categoria() {
+        return $this->belongsTo('App\Models\Categoria');
+    }
 }

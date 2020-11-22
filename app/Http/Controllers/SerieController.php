@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 class SerieController extends Controller
 {
     public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // {
+    //     $this->middleware('auth');
+    // }
     /**
      * Display a listing of the resource.
      *
