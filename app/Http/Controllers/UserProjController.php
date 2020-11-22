@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UsuarioProj;
 use Illuminate\Http\Request;
 
 class UserProjController extends Controller
@@ -13,7 +14,12 @@ class UserProjController extends Controller
      */
     public function index()
     {
-        //
+        $projetos = UsuarioProj::all()
+            ->with('projetos')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        return view('', compact('projetos'));
     }
 
     /**
@@ -45,7 +51,11 @@ class UserProjController extends Controller
      */
     public function show($id)
     {
-        //
+        $projetos = UsuarioProj::where('user_id', '=', $id)
+            ->with(['projetos'])
+            ->get();
+
+        return view('', compact('projetos'));
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,9 +13,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $users = User::with([$request->get('tipo')])
+            ->where('tipo', '=', $request->get('tipo'))
+            ->get();
+
+        return view('', compact('users'));
     }
 
     /**
@@ -43,9 +49,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $user = User::select('name', 'email', 'tipo')
+            ->where('name', '=', $request->get('name'))
+            ->get();
+
+        return view('', compact('user'));
     }
 
     /**
@@ -68,7 +78,23 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|emai|unique:users|max:255',
+        ]);
+
+        try {
+            $user = User::findOrFail($id);
+
+            $user->name = $request->get('name');
+            $user->email = $request->get('email');
+
+            $user->save();
+
+            return view('');
+        } catch ( Exception $e ) {
+            return view('');
+        }
     }
 
     /**

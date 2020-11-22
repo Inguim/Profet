@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Aluno;
+use App\Models\Professor;
+use App\Models\ProfessorCat;
+use Exception;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -53,6 +57,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'tipo' => ['required', 'string'],
+            'admin' => ['required', 'boolean'],
         ]);
     }
 
@@ -64,10 +70,34 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        try {
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'tipo' => $data['tipo'],
+                'admin' => $data['admin'],
+            ]);
+
+            if($data['tipo'] == 'aluno') {
+                Aluno::create([
+                    'user_id' => $user->id,
+                    'curso_id' => $data['curso_id'],
+                    'serie_id' => $data['serie_id'],
+                ]);
+            } else {
+                $professor = new Professor([
+                    'user_id' => $user->id,
+                ]);
+
+                ProfessorCat::create([
+                    'professor_id' => $professor->id,
+                    'categoria_id' => $data['categoria_id'],
+                ]);
+            }
+            return view('');
+        } catch (Exception $e) {
+            return view('');
+        }
     }
 }
