@@ -36,7 +36,7 @@
                 </a>
                 <a class="nav-link" href="#">Inicio</a><br>
                 <div class="nav-item dropdown">
-                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" 
+                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false" v-pre>Categorias</a>
                     <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Ciências Agrárias</a>
@@ -101,6 +101,6 @@
             </main>
         </div>
     </div>
-    <footer><p></p<</footer>
+    <footer><p></p></footer>
 </body>
 </html>
