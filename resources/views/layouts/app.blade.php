@@ -32,7 +32,7 @@
         <nav class="navbar navbar-expand-md" style="background: #086BAB;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="logo3.png" style="height: 50px;">
+                    <img src="/logo3.png" style="height: 50px;">
                 </a>
                 <a class="nav-link" href="#">Inicio</a><br>
                 <div class="nav-item dropdown">

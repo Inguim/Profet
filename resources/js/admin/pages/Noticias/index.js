@@ -1,12 +1,14 @@
 import React from 'react';
+import { Container } from './styles.js';
+
 
 const Noticias = () => {
 
 
  return (
-     <div>
-         <h1>Teste2</h1>
-     </div>
+     <Container>
+
+     </Container>
  )
 };
 
