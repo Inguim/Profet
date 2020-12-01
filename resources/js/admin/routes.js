@@ -6,7 +6,7 @@ const Routes = () => {
   const route = process.env.MIX_APP_ROUTE;
   return (
     <Switch>
-      <Route path={`${route}/noticias`} component={Noticias} />
+      <Route path={`${route}/administrativa/noticias`} component={Noticias} />
     </Switch>
   );
 };

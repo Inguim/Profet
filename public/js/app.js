@@ -73964,7 +73964,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Noticias = function Noticias() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Teste"));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Teste2"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Noticias);
@@ -73991,7 +73991,7 @@ __webpack_require__.r(__webpack_exports__);
 var Routes = function Routes() {
   var route = "";
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-    path: "".concat(route, "/noticias"),
+    path: "".concat(route, "/administrativa/noticias"),
     component: _pages_Noticias__WEBPACK_IMPORTED_MODULE_2__["default"]
   }));
 };

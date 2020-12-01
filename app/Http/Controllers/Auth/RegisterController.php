@@ -10,6 +10,7 @@ use App\Models\Professor;
 use App\Models\ProfessorCat;
 use Exception;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -71,6 +72,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         try {
+            DB::beginTransaction();
             $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
@@ -95,8 +97,10 @@ class RegisterController extends Controller
                     'categoria_id' => $data['categoria_id'],
                 ]);
             }
+            DB::commit();
             return view('');
         } catch (Exception $e) {
+            DB::rollBack();
             return view('');
         }
     }
