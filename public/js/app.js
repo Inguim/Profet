@@ -77444,8 +77444,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
+  react_toastify__WEBPACK_IMPORTED_MODULE_2__["toast"].info("Não recomenda-se a utilização de dispositivos movéis nessa área");
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_toastify__WEBPACK_IMPORTED_MODULE_2__["ToastContainer"], {
-    autoClose: 2000
+    autoClose: 3000
   }));
 };
 

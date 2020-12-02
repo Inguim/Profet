@@ -1,17 +1,21 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
 import Routes from "./routes";
 
 const App = () => {
-  return (
-    <BrowserRouter>
-      <Routes />
-      <ToastContainer autoClose={2000} />
-    </BrowserRouter>
-  );
+    toast.info(
+        "Não recomenda-se a utilização de dispositivos movéis nessa área"
+    );
+
+    return (
+        <BrowserRouter>
+            <Routes />
+            <ToastContainer autoClose={3000} />
+        </BrowserRouter>
+    );
 };
 
 export default App;
