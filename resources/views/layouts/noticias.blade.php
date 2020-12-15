@@ -39,9 +39,9 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="logo3.png" style="height: 50px;">
                 </a>
-                <a class="nav-link" href="#">Inicio</a><br>
+                <a class="nav-link" style="color: #ffffff" href="#">Inicio</a><br>
                 <div class="nav-item dropdown">
-                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" 
+                     <a id="navbarDropdown" class="nav-link dropdown-toggle" style="color: #ffffff" href="#" role="button" data-toggle="dropdown" 
                         aria-haspopup="true" aria-expanded="false" v-pre>Categorias</a>
                     <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Ciências Agrárias</a>
@@ -55,7 +55,7 @@
                         <a class="dropdown-item" href="#">Multidisciplinar</a>
                     </div>
                 </div>
-                <a class="nav-link" href="#">Ajuda</a><br>
+                <a class="nav-link" style="color: #ffffff" href="#">Ajuda</a><br>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -71,16 +71,16 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" style="color: #ffffff" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registre-se') }}</a>
+                                    <a class="nav-link" style="color: #ffffff" href="{{ route('register') }}">{{ __('Registre-se') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" style="color: #ffffff" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
