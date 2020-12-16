@@ -22,3 +22,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/administrativa/{path?}', [AdminController::class, 'index'])->where('path', '.*')->middleware(['auth']);;
+Route::get('/novoprojeto', function() { return view('novoprojeto');})->name('novoprojeto');;
+Route::get('/perfil', function() { return view('perfil');})->name('perfil');;

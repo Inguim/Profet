@@ -2,12 +2,7 @@
 
 @section('content')
 
-<style>
-    .section {
-        width: 400px;
-    }
-</style>
-<section class="col-10 mt-2 mb-2 bg-light shadow" data-spy="scroll" data-target=".navbar" data-offset="50">
+<section class="col-10 bg-light shadow" data-spy="scroll" data-target=".navbar" data-offset="50">
     <nav class="navbar navbar-expand-md bg-light navbar-light justify-content-center" id="nvsect">
         <ul class="navbar-nav">
             <li class="nav-item">
