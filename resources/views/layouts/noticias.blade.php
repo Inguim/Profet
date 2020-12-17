@@ -43,15 +43,15 @@
                      <a id="navbarDropdown" class="nav-link dropdown-toggle" style="color: #ffffff" href="#" role="button" data-toggle="dropdown" 
                         aria-haspopup="true" aria-expanded="false" v-pre>Categorias</a>
                     <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Ciências Agrárias</a>
-                        <a class="dropdown-item" href="#">Ciências Biológicas</a>
-                        <a class="dropdown-item" href="#">Ciências da Saúde</a>
-                        <a class="dropdown-item" href="#">Ciências Exatas e da Terra</a>
-                        <a class="dropdown-item" href="#">Ciências Humanas</a>
-                        <a class="dropdown-item" href="#">Ciências Sociais Aplicadas</a>
-                        <a class="dropdown-item" href="#">Engenharias</a>
-                        <a class="dropdown-item" href="#">Linguística, Letras e Artes</a>
-                        <a class="dropdown-item" href="#">Multidisciplinar</a>
+                        <a class="dropdown-item" href="{{ route('agrarias') }}">Ciências Agrárias</a>
+                        <a class="dropdown-item" href="{{ route('biologicas') }}">Ciências Biológicas</a>
+                        <a class="dropdown-item" href="{{ route('saude') }}">Ciências da Saúde</a>
+                        <a class="dropdown-item" href="{{ route('exatas') }}">Ciências Exatas e da Terra</a>
+                        <a class="dropdown-item" href="{{ route('humanas') }}">Ciências Humanas</a>
+                        <a class="dropdown-item" href="{{ route('sociais') }}">Ciências Sociais Aplicadas</a>
+                        <a class="dropdown-item" href="{{ route('engenharias') }}">Engenharias</a>
+                        <a class="dropdown-item" href="{{ route('letras') }}">Linguística, Letras e Artes</a>
+                        <a class="dropdown-item" href="{{ route('multi') }}">Multidisciplinar</a>
                     </div>
                 </div>
                 <a class="nav-link" style="color: #ffffff" href="{{ route('ajuda') }}">Ajuda</a><br>
@@ -104,7 +104,7 @@
             </div>
         </nav>
         <div class="row">
-            <article class="col-2 bg-light" >
+            <article class="col-2" >
                 <div class="pt-2" id="noticias" style="margin-left: 5px">
                     <h4 class=" text-center text-dark" style="margin-top:10px">Notícias</h4>
                     <div id="noticias">
