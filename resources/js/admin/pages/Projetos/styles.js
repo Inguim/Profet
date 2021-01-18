@@ -31,13 +31,12 @@ export const Lista = styled.div`
     }
 
     div {
-        margin-bottom: 5px;
+        margin-bottom: 10px;
 
         p {
             color: #424242;
-            display: inline-block;
-            margin-right: 15px;
-            margin-bottom: 0;
+            display: block;
+            margin: 0;
         }
 
         div {
@@ -50,6 +49,7 @@ export const Lista = styled.div`
                 border: none;
                 color: #086BAB;
                 transition: filter 0.2s;
+                padding-left: 0;
 
                 :hover {
                     filter: brightness(90%);
@@ -59,7 +59,7 @@ export const Lista = styled.div`
         }
     }
 
-    @media(max-width: 820px) {
+    @media(max-width: 768px) {
         border-bottom: 1px solid black;
         font-size: 0.8rem;
 
@@ -77,11 +77,10 @@ export const Lista = styled.div`
             }
 
             div {
-                float: left;
                 border-bottom: none;
 
                 button {
-                    margin-right: 5px;
+                    margin-right: 10px;
                     font-size: 0.75rem;
                     padding: 0;
                 }

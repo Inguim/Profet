@@ -19,6 +19,16 @@ const Membros = () => {
                         <button type="button" >Remover</button>
                     </div>
                 </div>
+                <div>
+                    <p>Igor Azevedo</p>
+                    <p>igor@gmail.com</p>
+                    <p>Informática</p>
+                    <p>3° Série</p>
+                    <div>
+                        <button type="button" >Aprovar</button>
+                        <button type="button" >Remover</button>
+                    </div>
+                </div>
             </Lista>
             <Lista>
                 <h1>Professor:</h1>
