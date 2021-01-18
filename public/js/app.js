@@ -77478,6 +77478,89 @@ if (document.getElementById("admin-area")) {
 
 /***/ }),
 
+/***/ "./resources/js/admin/pages/Membros/index.js":
+/*!***************************************************!*\
+  !*** ./resources/js/admin/pages/Membros/index.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles.js */ "./resources/js/admin/pages/Membros/styles.js");
+
+
+
+var Membros = function Membros() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__["Container"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__["Lista"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Aluno:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Igor Azevedo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "igor@gmail.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Inform\xE1tica"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "3\xB0 S\xE9rie"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "button"
+  }, "Aprovar"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "button"
+  }, "Remover")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__["Lista"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Professor:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "L\xE1zaro"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "lazaro@gmail.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Professor de Aplica\xE7\xF5es Web"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "button"
+  }, "Aprovar"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "button"
+  }, "Remover")))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Membros);
+
+/***/ }),
+
+/***/ "./resources/js/admin/pages/Membros/styles.js":
+/*!****************************************************!*\
+  !*** ./resources/js/admin/pages/Membros/styles.js ***!
+  \****************************************************/
+/*! exports provided: Container, Lista, Button */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Container", function() { return Container; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Lista", function() { return Lista; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Button", function() { return Button; });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["\n    max-width: 127px;\n    border: 0;\n    background: #59C15D;\n    color: #fff;\n    border-radius: 8px;\n    font-weight: bold;\n    font-size: 1.2rem;\n    padding: 5px;\n    transition: filter 0.2s;\n\n    :hover {\n        filter: brightness(90%);\n    }\n\n    @media(max-width: 768px) {\n        font-size: 1.1rem;\n    }\n"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n    background: #FFFFFF;\n    display: flex;\n    flex-direction: column;\n    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);\n    border-radius: 4px;\n    width: 80%;\n    max-width: 100%;\n    padding: 10px;\n    margin-bottom: 40px;\n    font-size: 1.1rem;\n\n    h1 {\n        font-size: 2rem;\n        font-weight: bold\n    }\n\n    div {\n        margin-bottom: 5px;\n\n        p {\n            color: #424242;\n            display: inline-block;\n            margin-right: 15px;\n        }\n\n        div {\n            margin-bottom: 0;\n            float: right;\n\n            button {\n                display: inline-block;\n                background: transparent;\n                border: none;\n                color: #086BAB;\n                transition: filter 0.2s;\n\n                :hover {\n                    filter: brightness(90%);\n                    text-decoration: underline;\n                }\n            }\n        }\n    }\n\n    @media(max-width: 768px) {\n        border-bottom: 1px solid black;\n        font-size: 0.8rem;\n\n        h1 {\n            font-size: 1.5rem;\n        }\n\n        div {\n            border-bottom: 1px solid black;\n            margin-bottom: 10px;\n\n            p {\n                display: block;\n                margin-bottom: 0;\n            }\n\n            div {\n                float: left;\n                border-bottom: none;\n\n                button {\n                    margin-right: 5px;\n                    font-size: 0.75rem;\n                    padding: 0;\n                }\n            }\n        }\n    }\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n    width: 100%;\n    max-width: 100vw;\n    min-height: 100vh;\n    margin-top: 50px;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    text-rendering: optimizelegibility;\n    -webkit-font-smoothing: antialiased !important;\n    font-size: 62.5%;\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].section(_templateObject());
+var Lista = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2());
+var Button = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject3());
+
+/***/ }),
+
 /***/ "./resources/js/admin/pages/Noticias/index.js":
 /*!****************************************************!*\
   !*** ./resources/js/admin/pages/Noticias/index.js ***!
@@ -77810,6 +77893,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _pages_Noticias__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/Noticias */ "./resources/js/admin/pages/Noticias/index.js");
+/* harmony import */ var _pages_Membros__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Membros */ "./resources/js/admin/pages/Membros/index.js");
+
 
 
 
@@ -77817,8 +77902,13 @@ __webpack_require__.r(__webpack_exports__);
 var Routes = function Routes() {
   var route = "";
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
     path: "".concat(route, "/administrativa/noticias"),
     component: _pages_Noticias__WEBPACK_IMPORTED_MODULE_2__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: "".concat(route, "/administrativa/membros"),
+    component: _pages_Membros__WEBPACK_IMPORTED_MODULE_3__["default"]
   }));
 };
 
