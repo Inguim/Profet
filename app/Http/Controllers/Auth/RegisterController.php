@@ -59,7 +59,6 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'tipo' => ['required', 'string'],
-            'admin' => ['required', 'boolean'],
         ]);
     }
 
@@ -71,37 +70,31 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        try {
-            DB::beginTransaction();
-            $user = User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-                'tipo' => $data['tipo'],
-                'admin' => $data['admin'],
+
+        DB::beginTransaction();
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'tipo' => $data['tipo']
+        ]);
+        if ($data['tipo'] == 'aluno') {
+            Aluno::create([
+                'user_id' => $user->id,
+                'curso_id' => $data['curso_id'],
+                'serie_id' => $data['serie_id'],
+            ]);
+        } else if ($data['tipo'] == 'professor') {
+            $professor = Professor::create([
+                'user_id' => $user->id,
             ]);
 
-            if($data['tipo'] == 'aluno') {
-                Aluno::create([
-                    'user_id' => $user->id,
-                    'curso_id' => $data['curso_id'],
-                    'serie_id' => $data['serie_id'],
-                ]);
-            } else {
-                $professor = new Professor([
-                    'user_id' => $user->id,
-                ]);
-
-                ProfessorCat::create([
-                    'professor_id' => $professor->id,
-                    'categoria_id' => $data['categoria_id'],
-                ]);
-            }
-            DB::commit();
-            return view('');
-        } catch (Exception $e) {
-            DB::rollBack();
-            return view('');
+            ProfessorCat::create([
+                'professor_id' => $professor->id,
+                'categoria_id' => $data['categoria_id'],
+            ]);
         }
+        DB::commit();
+        return $user;
     }
 }

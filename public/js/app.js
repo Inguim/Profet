@@ -77965,6 +77965,83 @@ var Lista = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templ
 
 /***/ }),
 
+/***/ "./resources/js/admin/pages/VisualizarProjeto/index.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/admin/pages/VisualizarProjeto/index.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles.js */ "./resources/js/admin/pages/VisualizarProjeto/styles.js");
+
+
+
+var VisualizarProjeto = function VisualizarProjeto() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__["Container"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__["Projeto"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "INLINE: entre ERAS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "button"
+  }, "Gerar arquivo PDF")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__["Section"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Orientador: Marcelo Corr\xEAa Mussel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\xC1rea de Atua\xE7\xE3o: Ci\xEAncias Exatas e da Terra"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Autores: Bruna Castilho, Wasleny Pimenta"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Data de ades\xE3o: 00/00/00"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Estado Atual: Prototipa\xE7\xE3o")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__["Section"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Resumo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\xC9 um jogo de viagem no tempo que tenta usar este conceito, para explicar materias escolares de forma didatica por\xE9m em um jogo.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__["Section"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Introdu\xE7\xE3o"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "O interesse em desenvolver um projeto na \xE1rea de inform\xE1tica com o intuito de colocar em pr\xE1tica os conceitos e ferramentas a prendidas em sala de aula e de averiguar se de fato queremos seguir a \xE1rea, al\xE9m do est\xEDmulo de professores da \xE1rea, fez com que a ideia do jogo surgisse. O projeto consiste em desenvolver um jogo de escolhas que abordam diversos temas diferentes: como machismo, consumismo radical, racismo e preconceito.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__["Section"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Objetivos"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Criar um jogo descontra\xEDdo e que ao mesmo tempo que \xE9 divertido tamb\xE9m \xE9 educativo; tornando mais f\xE1cil a fixa\xE7\xE3o de mat\xE9rias como Hist\xF3ria, Sociologia e Filosofia")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__["Section"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Resultados e Discuss\xF5es"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "O jogo passar\xE1 em v\xE1rias \xE9pocas diferentes, dependendo das escolhas do jogador, j\xE1 que na \xE9poca futurista do jogo, existem duas m\xE1quinas, uma chamada Chronos e a outra chamada Gaia, que possibilitam a viagem no tempo. Por\xE9m, os usu\xE1rios das m\xE1quinas n\xE3o podem passar muito tempo no mesmo lugar, j\xE1 que podem acabar interferindo no que j\xE1 aconteceu, podendo causar problemas catastr\xF3ficos. A hist\xF3ria do jogo gira em torno do fato de que a uma das m\xE1quinas falha enquanto v\xE1rios pesquisadores estavam em \u201Cservi\xE7o\u201D, ou seja, em \xE9pocas diferentes \xE0 que pertencem e ficam presos nessas \xE9pocas. O jogador ter\xE1 que resgatar esses pesquisadores antes que algo muito ruim aconte\xE7a.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__["Section"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Conclus\xE3o"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Pretendemos concluir o enredo do jogo, al\xE9m de caracterizar os demais personagens e colocar em pr\xE1tica o desenvolvimento do jogo atrav\xE9s da programa\xE7\xE3o."))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (VisualizarProjeto);
+
+/***/ }),
+
+/***/ "./resources/js/admin/pages/VisualizarProjeto/styles.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/admin/pages/VisualizarProjeto/styles.js ***!
+  \**************************************************************/
+/*! exports provided: Container, Projeto, Section */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Container", function() { return Container; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Projeto", function() { return Projeto; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Section", function() { return Section; });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["\n    margin-bottom: 15px;\n\n    h2 {\n        font-size: 1.2rem;\n        font-weight: bold;\n        margin-bottom: 2px;\n    }\n\n    p {\n        font-size: 1rem;\n        color: #424242;\n        margin-bottom: 0;\n    }\n\n    @media (max-width: 768px) {\n        h2 {\n            font-size: 1.1rem;\n        }\n    }\n\n    @media (max-width: 600px) {\n        h2 {\n            font-size: 1rem;\n        }\n\n        p {\n            font-size: 0.8rem;\n        }\n    }\n"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n    background: #ffffff;\n    display: flex;\n    flex-direction: column;\n    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);\n    border-radius: 4px;\n    width: 80%;\n    max-width: 100%;\n    padding: 10px;\n    margin-bottom: 40px;\n    font-size: 1.1rem;\n\n    h1 {\n        font-size: 2rem;\n        font-weight: bold;\n        text-transform: uppercase;\n    }\n\n    button {\n        float: right;\n        background: transparent;\n        border: none;\n        color: #086bab;\n        font-size: 1.2rem;\n        transition: filter 0.2s;\n\n        :hover {\n            filter: brightness(90%);\n            text-decoration: underline;\n        }\n    }\n\n    header {\n        display: flex;\n        flex-direction: row;\n        justify-content: space-between;\n        margin-bottom: 15px;\n    }\n\n    @media (max-width: 768px) {\n        h1 {\n            font-size: 1.5rem;\n        }\n\n        button {\n            font-size: 1.1rem;\n        }\n    }\n\n    @media (max-width: 600px) {\n        h1 {\n            font-size: 1.2rem;\n        }\n\n        button {\n            font-size: 0.9rem;\n        }\n\n        header {\n            flex-direction: column;\n            justify-content: center;\n\n            h1 {\n                text-align: center;\n            }\n\n            button {\n                float: none;\n            }\n        }\n    }\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n    width: 100%;\n    max-width: 100vw;\n    min-height: 100vh;\n    margin-top: 50px;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    text-rendering: optimizelegibility;\n    -webkit-font-smoothing: antialiased !important;\n    font-size: 62.5%;\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].section(_templateObject());
+var Projeto = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2());
+var Section = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].section(_templateObject3());
+
+/***/ }),
+
 /***/ "./resources/js/admin/routes.js":
 /*!**************************************!*\
   !*** ./resources/js/admin/routes.js ***!
@@ -77980,6 +78057,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Noticias__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/Noticias */ "./resources/js/admin/pages/Noticias/index.js");
 /* harmony import */ var _pages_Membros__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Membros */ "./resources/js/admin/pages/Membros/index.js");
 /* harmony import */ var _pages_Projetos__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Projetos */ "./resources/js/admin/pages/Projetos/index.js");
+/* harmony import */ var _pages_VisualizarProjeto__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/VisualizarProjeto */ "./resources/js/admin/pages/VisualizarProjeto/index.js");
+
 
 
 
@@ -78000,6 +78079,10 @@ var Routes = function Routes() {
     exact: true,
     path: "".concat(route, "/administrativa/projetos"),
     component: _pages_Projetos__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: "".concat(route, "/administrativa/projetos/:id"),
+    component: _pages_VisualizarProjeto__WEBPACK_IMPORTED_MODULE_5__["default"]
   }));
 };
 
