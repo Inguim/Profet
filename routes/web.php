@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,12 +22,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/administrativa/{path?}', [AdminController::class, 'index'])->where('path', '.*')->middleware(['auth']);;
-Route::get('/novoprojeto', function() { return view('projeto/novoprojeto');})->name('novoprojeto');;
-Route::get('/perfil', function() { return view('perfil');})->name('perfil');;
-Route::get('/ajuda', function() { return view('ajuda');})->name('ajuda');;
-Route::get('/categoria', function() { return view('categoria');});
-Route::get('/CienciasAgrarias', function() { return view('categorias/agrarias');})->name('agrarias');;
+Route::get('/administrativa/{path?}', [AdminController::class, 'index'])->where('path', '.*')->middleware(['auth']);
+Route::get('/novoprojeto', function() { return view('projeto/novoprojeto');})->name('novoprojeto');
+Route::get('/perfil', function() { return view('perfil');})->name('perfil');
+Route::get('/ajuda', function() { return view('ajuda');})->name('ajuda');
+Route::resource('categoria', CategoriaController::class);
 
 
 

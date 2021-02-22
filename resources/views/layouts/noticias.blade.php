@@ -64,6 +64,6 @@
                  @yield('content')
         </div>
     </div>
-    <div class="footer"><p></p></div>
+    <div class="footer"></div>
 </body>
 </html>

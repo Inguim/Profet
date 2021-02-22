@@ -66,12 +66,9 @@ class CategoriaController extends Controller
      */
     public function show($id)
     {
-        $categoria = Categoria::where('id', '=', $id)
-            ->with(['professors'])
-            ->orderBy('created_at', 'DESC')
-            ->get();
+        $categoria = Categoria::findOrFail($id);
 
-        return view('', compact('categoria'));
+        return view('categorias.categoria', compact('categoria'));
     }
 
     /**

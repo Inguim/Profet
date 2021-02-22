@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="background: #086BAB;">
 
     <a class="navbar-brand" href="{{ url('/') }}">
-        <img src="logo3.png" style="height: 50px;">
+        <img src="/logo3.png" style="height: 50px;">
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -22,7 +22,7 @@
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ $menu->nome }}</a>
                         <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                             @foreach($menu->categorias as $categoria)
-                            <a class="dropdown-item">{{ $categoria->nome }}</a>
+                            <a class="dropdown-item" href="{{ route('categoria.show', $categoria->id) }}">{{ $categoria->nome }}</a>
                             @endforeach
                         </div>
                     </div>
