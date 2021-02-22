@@ -8,30 +8,27 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    @inject('resources','App\Services\ResourcesService')
         <!-- Left Side Of Navbar -->
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('/') }}">Inicio</a>
-            </li>
-            <li class="nav-item">
-                <div class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Categorias</a>
-                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('agrarias') }}">Ciências Agrárias</a>
-                        <a class="dropdown-item" >Ciências Biológicas</a>
-                        <a class="dropdown-item" >Ciências da Saúde</a>
-                        <a class="dropdown-item" >Ciências Exatas e da Terra</a>
-                        <a class="dropdown-item" >Ciências Humanas</a>
-                        <a class="dropdown-item" >Ciências Sociais Aplicadas</a>
-                        <a class="dropdown-item" >Engenharias</a>
-                        <a class="dropdown-item" >Linguística, Letras e Artes</a>
-                        <a class="dropdown-item" >Multidisciplinar</a>
+            @foreach($resources->menus() as $menu)
+                @if($menu->categorias->count() == 0)
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/') }}">{{ $menu->nome }}</a>
+                </li>
+                @else
+                <li class="nav-item">
+                    <div class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ $menu->nome }}</a>
+                        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                            @foreach($menu->categorias as $categoria)
+                            <a class="dropdown-item">{{ $categoria->nome }}</a>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('ajuda') }}">Ajuda</a>
-            </li>
+                </li>
+                @endif
+            @endforeach
         </ul>
 
         <!-- Right Side Of Navbar -->
