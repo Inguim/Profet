@@ -61,6 +61,7 @@
     }
 </style>
 <nav class="nav_tabs">
+    @inject('resources','App\Services\ResourcesService')
     <ul>
         <li>
             <input type="radio" id="aluno" class="rd_tab" name="tabs" checked>
@@ -87,23 +88,19 @@
                                 <div class="col-md-6">
                                     <select id="curso" name="curso_id" class="form-control">
                                         <option></option>
-                                        <option value="1">Edificações</option>
-                                        <option value="2">Informática</option>
-                                        <option value="3">Mecatrônica</option>
+                                        @foreach($resources->cursos() as $curso)
+                                        <option value="{{ $curso->id }}">{{ $curso->curso }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right">{{ __('Série') }}</label>
                                 <div class="col-md-6">
-                                    <label class="col-md-2 col-form-label text-md-right" for="serie1">{{ __('1°') }}</label>
-                                    <input class="col-md-1" type="radio" name="serie_id" value="1">
-
-                                    <label class="col-md-2 col-form-label text-md-right" for="serie2">{{ __('2°') }}</label>
-                                    <input class="col-md-1" type="radio" name="serie_id" value="2">
-
-                                    <label class="col-md-2 col-form-label text-md-right" for="serie3">{{ __('3°') }}</label>
-                                    <input class="col-md-1" type="radio" name="serie_id" value="3">
+                                    @foreach($resources->series() as $serie)
+                                    <label class="col-md-2 col-form-label text-md-right" for="serie1">{{ $serie->serie }}°</label>
+                                    <input class="col-md-1" type="radio" name="serie_id" value="{{ $serie->id }}">
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -171,9 +168,9 @@
                                 <div class="col-md-6">
                                     <select id="categoria_id" name="categoria_id" class="form-control">
                                         <option></option>
-                                        <option value="1">Ciências Agrárias</option>
-                                        <option value="2">Ciências Biológicas</option>
-                                        <option value="3">Ciências da Saúde</option>
+                                        @foreach($resources->categorias() as $categoria)
+                                        <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
