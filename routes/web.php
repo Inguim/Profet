@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,11 +24,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/administrativa/{path?}', [AdminController::class, 'index'])->where('path', '.*')->middleware(['auth']);
+Route::get('/administrativa/{path?}', [AdminController::class, 'index'])->where('path', '.*')->middleware(['auth'])->name('admin');
 Route::get('/novoprojeto', function() { return view('projeto/novoprojeto');})->name('novoprojeto');
 Route::get('/perfil', function() { return view('perfil');})->name('perfil');
 Route::get('/ajuda', function() { return view('ajuda');})->name('ajuda');
 Route::resource('categoria', CategoriaController::class);
+
+Route::group(['middleware' => 'auth:web'], function() {
+    Route::resource('usuario', PerfilController::class);
+});
+
+
 
 
 
