@@ -1,17 +1,5 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<style>
-    .footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        height: 20px;
-        background-color: #086BAB;
-
-    }
-</style>
 
 <head>
     <meta charset="utf-8">
@@ -31,6 +19,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+
+    </style>
 </head>
 
 <body>
@@ -41,7 +33,6 @@
             @yield('content')
         </main>
     </div>
-    <div class="footer"></div>
 </body>
 
 </html>

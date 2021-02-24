@@ -8,6 +8,10 @@
         padding: 0;
     }
 
+    article {
+        background-color: #fff;
+    }
+
     .nav_tabs {
         width: 600px;
         height: 500px;
@@ -165,14 +169,16 @@
                             </div>
                             <div class="form-group row">
                                 <label for="categoria_id" class="col-md-4 col-form-label text-md-right">{{ __('Área de Atuação') }}</label>
-                                <div class="col-md-6">
-                                    <select id="categoria_id" name="categoria_id" class="form-control">
-                                        <option></option>
-                                        @foreach($resources->categorias() as $categoria)
-                                        <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
-                                        @endforeach
-                                    </select>
+
+                                <div class="col-md-6" style="padding-top: 7px;">
+                                @foreach($resources->categorias() as $categoria)
+                                    <div class="d-flex align-items-center">
+                                        <input class="col-1" type="checkbox" name="categoria_id[]" id="{{ $categoria->nome }}" value="{{ $categoria->id }}">
+                                        <label class="col-11" for="{{ $categoria->nome }}" style="margin-bottom: 0;">{{ $categoria->nome }}</label>
+                                    </div>
+                                    @endforeach
                                 </div>
+
                             </div>
                             <div class="form-group row">
                                 <label for="emaim-professor" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>

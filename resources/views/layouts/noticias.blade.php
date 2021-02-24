@@ -36,7 +36,7 @@
         @component("components.navbar")
         @endcomponent
         @inject('resources','App\Services\ResourcesService')
-        <div class="row">
+        <div class="row" style="margin-right: 0;">
             <article class="col-2" >
                 <div class="pt-2" id="noticias" style="margin-left: 5px">
                     <h4 class=" text-center text-dark" style="margin-top:10px">Notícias</h4>

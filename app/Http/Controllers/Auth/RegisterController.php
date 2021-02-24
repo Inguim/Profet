@@ -89,10 +89,14 @@ class RegisterController extends Controller
                 'user_id' => $user->id,
             ]);
 
-            ProfessorCat::create([
-                'professor_id' => $professor->id,
-                'categoria_id' => $data['categoria_id'],
-            ]);
+            $list = $data['categoria_id'];
+
+            foreach($list as $categoria_id) {
+                ProfessorCat::create([
+                    'professor_id' => $professor->id,
+                    'categoria_id' => $categoria_id,
+                ]);
+            }
         }
         DB::commit();
         return $user;
