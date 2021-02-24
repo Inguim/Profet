@@ -32,6 +32,6 @@ class ResourcesService
 
     public function noticias()
     {
-        return Noticia::take(5)->get();
+        return Noticia::latest()->take(5)->get();
     }
 }
