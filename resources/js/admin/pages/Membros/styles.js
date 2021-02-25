@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.section`
     width: 100%;
@@ -13,8 +13,8 @@ export const Container = styled.section`
     font-size: 62.5%;
 `;
 
-export const Lista = styled.div`
-    background: #FFFFFF;
+export const ListaAluno = styled.div`
+    background: #ffffff;
     display: flex;
     flex-direction: column;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
@@ -27,7 +27,7 @@ export const Lista = styled.div`
 
     h1 {
         font-size: 2rem;
-        font-weight: bold
+        font-weight: bold;
     }
 
     div {
@@ -48,7 +48,7 @@ export const Lista = styled.div`
                 display: inline-block;
                 background: transparent;
                 border: none;
-                color: #086BAB;
+                color: #086bab;
                 transition: filter 0.2s;
 
                 :hover {
@@ -59,7 +59,7 @@ export const Lista = styled.div`
         }
     }
 
-    @media(max-width: 820px) {
+    @media (max-width: 820px) {
         border-bottom: 1px solid black;
         font-size: 0.8rem;
 
@@ -90,3 +90,93 @@ export const Lista = styled.div`
     }
 `;
 
+export const ListaProfessor = styled.div`
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    width: 80%;
+    max-width: 100%;
+    padding: 10px;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+
+    section {
+        display: flex;
+        flex-direction: column;
+        padding: 5px 0;
+    }
+
+    section + section {
+        border-top: 1px solid black;
+    }
+
+    h1 {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    div {
+
+        p {
+            color: #424242;
+            display: inline-block;
+            margin-right: 15px;
+            margin-bottom: 0;
+        }
+
+        div {
+            margin-bottom: 0;
+            float: right;
+
+            button {
+                display: inline-block;
+                background: transparent;
+                border: none;
+                color: #086bab;
+                transition: filter 0.2s;
+
+                :hover {
+                    filter: brightness(90%);
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 820px) {
+        border-bottom: 1px solid black;
+        font-size: 0.8rem;
+
+        .prof-header {
+            display: flex;
+            flex-direction: column;
+            flex-flow: column-reverse;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        div {
+            margin-bottom: 10px;
+
+            p {
+                display: block;
+                margin-bottom: 0;
+            }
+
+            div {
+                float: left;
+                border-bottom: none;
+
+                button {
+                    margin-right: 5px;
+                    font-size: 0.75rem;
+                    padding: 0;
+                }
+            }
+        }
+    }
+`;
