@@ -28,9 +28,6 @@ Route::get('/novoprojeto', function () {
     return view('projeto/novoprojeto');
 })->name('novoprojeto');
 
-Route::get('/perfil', function () {
-    return view('perfil');
-})->name('perfil');
 
 Route::get('/ajuda', function () {
     return view('ajuda');

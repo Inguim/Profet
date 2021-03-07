@@ -138,13 +138,13 @@
                     <div class="row">
                         <div class="profile-head">
                             <div>
-                                <h5>{{ Auth::user()->name }}</h5>
-                                <h6 style="text-transform: uppercase;">{{ Auth::user()->tipo }}</h6>
+                                <h5>{{ $user->name }}</h5>
+                                <h6 style="text-transform: uppercase;">{{ $user->tipo }}</h6>
                             </div>
                         </div>
                         <div class="row ml-auto">
                             <button type="button" class="profile-edit-btn" name="btnAddMore">Editar</button>
-                            @if(!Auth::user()->admin)
+                            @if($user->admin)
                             <a class="profile-edit-btn" href="{{ route('admin') }}">Administrativa</a>
                             @endif
                             <button class="profile-edit-btn" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -172,23 +172,23 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <label>Nome</label>
-                                        <p>{{ Auth::user()->name }}</p>
+                                        <p>{{ $user->name }}</p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
                                         <label>Email</label>
-                                        <p>{{ Auth::user()->email }} </p>
+                                        <p>{{ $user->email }} </p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                        @if(Auth::user()->tipo == 'aluno')
+                                        @if($user->tipo == 'aluno')
                                         <label>Curso</label>
-                                        <p>{{ Auth::user()->aluno->serie->serie }}° {{ Auth::user()->aluno->curso->curso }}</p>
+                                        <p>{{ $user->aluno->serie->serie }}° {{ $user->aluno->curso->curso }}</p>
                                         @else
                                         <label>Categoria</label>
-                                        @foreach(Auth::user()->professor->categorias as $categoria)
+                                        @foreach($user->professor->categorias as $categoria)
                                         <p>{{ $categoria->nome }}</p>
                                         @endforeach
                                         @endif
@@ -198,8 +198,8 @@
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                 <div class="row">
                                     <div class="col-12">
-                                        @if(Auth::user()->projetos->count() > 0)
-                                        @foreach(Auth::user()->projetos as $projeto)
+                                        @if($user->projetos->count() > 0)
+                                        @foreach($user->projetos as $projeto)
                                         <div class="card-1">
                                             <a class="card-link" href="#">{{ $projeto->nome }}</a>
                                         </div>
