@@ -41,4 +41,4 @@ Route::group(['middleware' => 'auth:web'], function () {
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/administrativa/{path?}', [AdminController::class, 'index'])->where('path', '.*')->middleware(['auth'])->name('admin');
+Route::get('/administrativa/{path?}', [AdminController::class, 'index'])->where('path', '.*')->middleware(['admin'])->name('admin');
