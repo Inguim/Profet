@@ -28,9 +28,6 @@ Route::get('/novoprojeto', function () {
     return view('projeto/novoprojeto');
 })->name('novoprojeto');
 
-Route::get('/perfil', function () {
-    return view('perfil');
-})->name('perfil');
 
 Route::get('/ajuda', function () {
     return view('ajuda');
@@ -44,4 +41,4 @@ Route::group(['middleware' => 'auth:web'], function () {
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/administrativa/{path?}', [AdminController::class, 'index'])->where('path', '.*')->middleware(['auth'])->name('admin');
+Route::get('/administrativa/{path?}', [AdminController::class, 'index'])->where('path', '.*')->middleware(['admin'])->name('admin');
