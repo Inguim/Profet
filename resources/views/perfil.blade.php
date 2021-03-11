@@ -122,6 +122,14 @@
 </style>
 
 <section class="form-horizontal">
+    @if($user->status === 'analise')
+    <div class="alert alert-warning  alert-dismissible fade show" role="alert">
+      Sua conta está em processo de aprovação, podendo ser excluida a qualquer momento
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    @endif
     <div class="container emp-profile">
         <div>
             <div class="row">

@@ -1,22 +1,61 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Container, ListaAluno, ListaProfessor } from "./styles.js";
 
 import api from "../../../services/api";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const Membros = () => {
     const [professor, setProfessor] = useState([]);
     const [aluno, setAluno] = useState([]);
 
     async function loadUsers() {
-        const response = await api.get('membros');
+        try {
+            const response = await api.get('membros');
 
-        const { alunos, professores } = response.data.data;
+            const { alunos, professores } = response.data.data;
 
-        console.log(response.data.data.professores)
-        setProfessor(professores);
-        setAluno(alunos);
+            console.log(response.data.data);
+            setProfessor(professores);
+            setAluno(alunos);
+        } catch (error) {
+            toast.error(error.message);
+        }
     }
+
+    const handleUpdateStatus = useCallback(id => {
+        async function updateStatus() {
+            try {
+                const response = await api.put(`membros/${id}`);
+                if(!response.data.data.erro) {
+                    toast.success(response.data.data.message)
+                } else {
+                    toast.error(response.data.data.message)
+                }
+                loadUsers();
+            } catch (error) {
+                toast.error(error.message);
+            }
+        }
+        updateStatus();
+    });
+
+    const handleDeleteUser = useCallback(id => {
+        async function deleteUser() {
+            try {
+                const response = await api.delete(`membros/${id}`);
+                if(!response.data.data.erro) {
+                    toast.success(response.data.data.message)
+                } else {
+                    toast.error(response.data.data.message)
+                }
+                loadUsers();
+            } catch (error) {
+                toast.error(error.message);
+            }
+        }
+        deleteUser();
+    });
+
 
     useEffect(() => {
         loadUsers();
@@ -30,12 +69,12 @@ const Membros = () => {
                 {
                     aluno.map(item => (
                         <div key={item.id}>
-                            <p>{item.user.name}</p>
-                            <p>{item.curso.curso}</p>
-                            <p>{item.serie.serie}° Série</p>
+                            <p>{item.name}</p>
+                            <p>{item.curso}</p>
+                            <p>{item.serie}° Série</p>
                             <div>
-                                <button type="button" >Aprovar</button>
-                                <button type="button" >Remover</button>
+                                <button type="button" onClick={() => handleUpdateStatus(item.id)}>Aprovar</button>
+                                <button type="button" onClick={() => handleDeleteUser(item.id)}>Remover</button>
                             </div>
                         </div>
                     ))
@@ -47,20 +86,20 @@ const Membros = () => {
                     professor.map(item => (
                         <section key={item.id}>
                             <div style={{ marginBottom: '5px' }} className="prof-header">
-                                <p><span style={{ color: 'black', fontWeight: 'bold' }}>{item.user.name}:</span> {item.user.email}</p>
+                                <p><span style={{ color: 'black', fontWeight: 'bold' }}>{item.name}:</span> {item.email}</p>
                                 <div>
-                                    <button type="button" >Aprovar</button>
-                                    <button type="button" >Remover</button>
+                                    <button type="button" onClick={() => handleUpdateStatus(item.id)}>Aprovar</button>
+                                    <button type="button" onClick={() => handleDeleteUser(item.id)}>Remover</button>
                                 </div>
                             </div>
-                            <p style={{ color: 'black', marginBottom: '0px' }}>Categorias:</p>
+                            {/* <p style={{ color: 'black', marginBottom: '0px' }}>Categorias:</p>
                             <div  className="categorias">
                                 {
                                     item.categorias.map(cat => (
                                         <p key={cat.id}>{cat.nome}</p>
                                     ))
                                 }
-                            </div>
+                            </div> */}
                         </section>
                     ))
                 }

@@ -24,5 +24,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:api', 'admin'], function () {
     Route::apiResource('noticias', NoticiaController::class)->only(['index','destroy','store', 'update']);
-    Route::apiResource('membros', MembroController::class)->only(['index','destroy','store', 'update']);
+    Route::apiResource('membros', MembroController::class)->only(['index','destroy', 'update']);
 });
