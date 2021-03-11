@@ -15,13 +15,16 @@ class MenuSeeder extends Seeder
     public function run()
     {
         Menu::create([
-            'nome' => 'Início'
+            'nome' => 'Início',
+            'url' => '/'
         ]);
         Menu::create([
-            'nome' => 'Categorias'
+            'nome' => 'Categorias',
+            'url' => ''
         ]);
         Menu::create([
-            'nome' => 'Ajuda'
+            'nome' => 'Ajuda',
+            'url' => 'ajuda'
         ]);
     }
 }

@@ -14,7 +14,7 @@
             @foreach($resources->menus() as $menu)
                 @if($menu->categorias->count() == 0)
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('ajuda') }}">{{ $menu->nome }}</a>
+                    <a class="nav-link" href="{{ url($menu->url) }}">{{ $menu->nome }}</a>
                 </li>
                 @else
                 <li class="nav-item">
