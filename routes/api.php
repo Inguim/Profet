@@ -4,7 +4,7 @@ use App\Http\Controllers\API\MembroController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\NoticiaController;
-
+use App\Http\Controllers\API\UserSearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +22,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::group(['middleware' => 'auth:api', 'admin'], function () {
-    Route::apiResource('noticias', NoticiaController::class)->only(['index','destroy','store', 'update']);
-    Route::apiResource('membros', MembroController::class)->only(['index','destroy', 'update']);
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::group(['middleware' => 'admin'], function () {
+        Route::apiResource('noticias', NoticiaController::class)->only(['index','destroy','store', 'update']);
+        Route::apiResource('membros', MembroController::class)->only(['index','destroy', 'update']);
+    });
+
+    Route::get('/professor/:{nome}', [UserSearchController::class, 'show']);
 });

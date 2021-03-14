@@ -30,7 +30,7 @@ class ProjetoController extends Controller
      */
     public function create()
     {
-        //
+        return view('projeto.novoprojeto');
     }
 
     /**
@@ -124,15 +124,15 @@ class ProjetoController extends Controller
         try {
             $projeto = Projeto::findOrFail($id);
 
-            $projeto->nome = $request->get('nome'),
-            $projeto->resumo =  $request->get('resumo'),
-            $projeto->introducao = $request->get('introducao'),
-            $projeto->objetivo = $request->get('objetivo'),
-            $projeto->metodologia = $request->get('metodologia'),
-            $projeto->result_disc = $request->get('result_disc'),
-            $projeto->conclusao = $request->get('conclusao'),
-            $projeto->categoria_id = $request->get('categoria_id'),
-            $projeto->estado_id = $request->get('estado_id'),
+            $projeto->nome = $request->get('nome');
+            $projeto->resumo =  $request->get('resumo');
+            $projeto->introducao = $request->get('introducao');
+            $projeto->objetivo = $request->get('objetivo');
+            $projeto->metodologia = $request->get('metodologia');
+            $projeto->result_disc = $request->get('result_disc');
+            $projeto->conclusao = $request->get('conclusao');
+            $projeto->categoria_id = $request->get('categoria_id');
+            $projeto->estado_id = $request->get('estado_id');
 
             $projeto->save();
 

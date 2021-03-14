@@ -4,8 +4,13 @@ import { Container, Nav, Left, Right, Button } from "./styles.js";
 
 import { IoIosLogOut } from 'react-icons/io';
 import { FaBars } from 'react-icons/fa';
+import { toast } from "react-toastify";
 
 const Header = () => {
+    toast.info(
+        "Não recomenda-se a utilização de dispositivos movéis nessa área"
+    );
+
     const menu = [
         { nome: 'Noticias', link: 'noticias' },
         { nome: 'Membros', link: 'membros'  },
