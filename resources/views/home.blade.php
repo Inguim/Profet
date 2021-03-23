@@ -3,6 +3,14 @@
 @section('content')
 
 <section class="col-10 bg-light shadow" data-spy="scroll" data-target=".navbar" data-offset="50">
+    @if(session()->get('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ session()->get('success') }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    @endif
     <nav class="navbar navbar-expand-md bg-light navbar-light justify-content-center" id="nvsect">
         <ul class="navbar-nav">
             <li class="nav-item">

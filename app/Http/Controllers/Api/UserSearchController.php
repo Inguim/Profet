@@ -8,18 +8,9 @@ use App\Models\User;
 
 class UserSearchController extends Controller
 {
-    public function show($nome)
+    public function show($search)
     {
-        $user = User::join('professors', 'professors.id', '=', 'users.id')
-            ->where([
-                ['users.tipo', 'professor'],
-                ['users.name', 'LIKE', '%'.$nome.'%']
-            ])
-            ->select([
-                'users.name',
-                'users.id'
-            ])
-            ->get();
+        $user = User::with(['professor'])->where('name', 'LIKE', "%{$search}%")->where('tipo', 'professor')->get(['id', 'name']);
 
         return new DataResource($user);
     }

@@ -4,6 +4,7 @@ use App\Http\Controllers\API\MembroController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\NoticiaController;
+use App\Http\Controllers\API\FormProjetoController;
 use App\Http\Controllers\API\UserSearchController;
 
 /*
@@ -28,5 +29,6 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::apiResource('membros', MembroController::class)->only(['index','destroy', 'update']);
     });
 
-    Route::get('/professor/:{nome}', [UserSearchController::class, 'show']);
+    Route::get('/search/{nome}', [UserSearchController::class, 'show']);
+    Route::resource('projetos', FormProjetoController::class)->only(['index', 'store']);
 });

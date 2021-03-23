@@ -14,7 +14,6 @@ const Membros = () => {
 
             const { alunos, professores } = response.data.data;
 
-            console.log(response.data.data);
             setProfessor(professores);
             setAluno(alunos);
         } catch (error) {

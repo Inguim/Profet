@@ -23,7 +23,7 @@ class EstadoSeeder extends Seeder
         ]);
 
         Estado::create([
-            'estado' => 'A procura de participante'
+            'estado' => 'A procura de orientador'
         ]);
     }
 }

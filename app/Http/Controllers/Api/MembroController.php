@@ -31,14 +31,7 @@ class MembroController extends Controller
             )
             ->get();
 
-        $professor = Professor::join('users', 'users.id', '=', 'professors.user_id')
-            ->where('users.status', 'analise')
-            ->select(
-                'users.id',
-                'users.name',
-                'users.email',
-            )
-            ->get();
+        $professor = User::with(['professor.categorias:nome'])->where('status', 'analise')->get(['id', 'name', 'email']);
 
         $users = [
             'alunos' => $alunos,
