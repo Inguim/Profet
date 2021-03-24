@@ -22,8 +22,8 @@ class FormProjetoController extends Controller
     public function index()
     {
         $dados = [
-            'categorias' => Categoria::get(['id', 'nome'])->all(),
-            'estados' => Estado::get(['id', 'estado'])->all()
+            'categorias' => Categoria::orderBy('id', 'asc')->get(['id', 'nome'])->all(),
+            'estados' => Estado::orderBy('id', 'asc')->get(['id', 'estado'])->all()
         ];
 
         return new DataResource($dados);
