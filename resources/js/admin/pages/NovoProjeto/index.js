@@ -17,7 +17,8 @@ const NovoProjeto = () => {
 
 
     async function searchMembro(search) {
-        const response = await api.get(`/search/${search}`);
+        const tipo = document.getElementById('tipo').value;
+        const response = await api.get(`/search/${search}/${tipo}`);
 
         // if(response.data.data.length === 1 && (resultados.length === 0 || resultados.indexOf(response.data.data[0]) === -1)) {
         //     setResultados([...resultados, response.data.data[0]]);
@@ -76,6 +77,13 @@ const NovoProjeto = () => {
         <Container>
             <Search>
                 <h1>Pesquisar participantes:</h1>
+                <section>
+                    <label htmlFor="tipo">Pesquisar por:</label>
+                    <select id="tipo">
+                        <option value="aluno">Aluno</option>
+                        <option value="professor">Professor</option>
+                    </select>
+                </section>
                 <label htmlFor="nome">Nome:</label>
                 <div>
                     <input type="search" value={search} onChange={e => setSearch(e.target.value)} />

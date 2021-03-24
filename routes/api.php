@@ -29,6 +29,6 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::apiResource('membros', MembroController::class)->only(['index','destroy', 'update']);
     });
 
-    Route::get('/search/{nome}', [UserSearchController::class, 'show']);
+    Route::get('/search/{nome}/{tipo}', [UserSearchController::class, 'show']);
     Route::resource('projetos', FormProjetoController::class)->only(['index', 'store']);
 });

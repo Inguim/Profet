@@ -29,7 +29,7 @@ export const Search = styled.div`
         font-weight: bold
     }
 
-    div, label {
+    div {
         margin-bottom: 1rem;
     }
 
@@ -50,6 +50,19 @@ export const Search = styled.div`
         border-radius: 8px 0 0 8px;
         height: 40px;
         font-size: 1rem;
+    }
+
+    section {
+        section, label {
+            display: block
+        }
+
+        select {
+            border: none;
+            font-size: 1rem;
+            border: 1px solid black;
+            margin-bottom: 1rem;
+        }
     }
 
     @media(max-width: 768px) {
