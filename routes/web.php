@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ProjetoController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -42,6 +43,6 @@ Route::group(['middleware' => 'auth:web'], function () {
     Route::get('/projeto/novo', [ProjetoController::class, 'create'])->name('novoprojeto');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::resource('categoria', CategoriaController::class);
 
