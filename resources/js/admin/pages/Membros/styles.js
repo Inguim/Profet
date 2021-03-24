@@ -117,6 +117,12 @@ export const ListaProfessor = styled.div`
         font-weight: bold;
     }
 
+    .categorias {
+        p {
+            display: block;
+        }
+    }
+
     div {
 
         p {

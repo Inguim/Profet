@@ -91,14 +91,14 @@ const Membros = () => {
                                     <button type="button" onClick={() => handleDeleteUser(item.id)}>Remover</button>
                                 </div>
                             </div>
-                            {/* <p style={{ color: 'black', marginBottom: '0px' }}>Categorias:</p>
+                            <p style={{ color: 'black', marginBottom: '0px' }}>Categorias:</p>
                             <div  className="categorias">
                                 {
-                                    item.categorias.map(cat => (
+                                    item.professor.categorias.map(cat => (
                                         <p key={cat.id}>{cat.nome}</p>
                                     ))
                                 }
-                            </div> */}
+                            </div>
                         </section>
                     ))
                 }
