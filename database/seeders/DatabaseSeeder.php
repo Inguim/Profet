@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             CategoriaSeeder::class,
             EstadoSeeder::class,
             SerieSeeder::class,
-            CursoSeeder::class
+            CursoSeeder::class,
+            UserSeeder::class
         ]);
     }
 }
