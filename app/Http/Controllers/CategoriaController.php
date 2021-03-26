@@ -64,9 +64,9 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $categoria = Categoria::findOrFail($id);
+        $categoria = Categoria::where("slug", $slug)->get();
 
         return view('categorias.categoria', compact('categoria'));
     }

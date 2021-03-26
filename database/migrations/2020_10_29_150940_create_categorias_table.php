@@ -16,6 +16,7 @@ class CreateCategoriasTable extends Migration
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
             $table->string('nome')->unique();
+            $table->string('slug')->unique();
             $table->mediumText('descricao');
 
             $table->foreignId('menu_id')->unsigned()->constrained('menus')->onUpdate('cascade')->onDelete('cascade');

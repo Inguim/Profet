@@ -21,8 +21,8 @@
         </ul>
     </nav>
     <div id="area1" class="container-fluid text-center border-bottom border-dark">
-        <h4> O que são as {{ $categoria->nome }}? </h4>
-        <p class="text-center">{{ $categoria->descricao }}</p>
+        <h4> O que são as {{ $categoria[0]->nome }}? </h4>
+        <p class="text-center">{{ $categoria[0]->descricao }}</p>
     </div>
     <div id="area2" class="container-fluid text-center border-bottom border-dark">
         <h4 class="mb-2 text-left"> Projetos Recentes </h4>

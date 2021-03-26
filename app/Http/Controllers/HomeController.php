@@ -26,7 +26,7 @@ class HomeController extends Controller
     {
         $projetos = Projeto::with(['estado', 'categoria', 'users'])->latest()->take(5)->get();
 
-        dd($projetos);
+        // dd($projetos);
 
         return view('home');
     }

@@ -11,7 +11,8 @@ class Categoria extends Model
 
     protected $fillable = [
         'nome',
-        'menu_id'
+        'menu_id',
+        'slug'
     ];
 
     public function menu() {
