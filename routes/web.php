@@ -42,5 +42,5 @@ Route::group(['middleware' => 'auth:web'], function () {
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::resource('categoria', CategoriaController::class);
+Route::resource('categoria', CategoriaController::class)->only(['show']);
 
