@@ -30,5 +30,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     });
 
     Route::get('/search/{nome}/{tipo}', [UserSearchController::class, 'show']);
-    Route::resource('projetos', FormProjetoController::class)->only(['index', 'store']);
+    Route::resource('projetos', FormProjetoController::class)
+        ->only(['index', 'store'])
+        ->middleware(['userStatus']);
 });

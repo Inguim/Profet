@@ -29,6 +29,10 @@ Route::get('/ajuda', function () {
     return view('ajuda');
 })->name('ajuda');
 
+Route::get('/message', function () {
+    return view('message');
+})->name('message');
+
 
 Route::group(['middleware' => 'auth:web'], function () {
     Route::resource('usuario', PerfilController::class);
@@ -38,7 +42,9 @@ Route::group(['middleware' => 'auth:web'], function () {
         ->middleware(['admin'])
         ->name('admin');
 
-    Route::get('/projeto/novo', [ProjetoController::class, 'create'])->name('novoprojeto');
+    Route::get('/projeto/novo', [ProjetoController::class, 'create'])
+        ->middleware(['userStatus'])
+        ->name('novoprojeto');
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
