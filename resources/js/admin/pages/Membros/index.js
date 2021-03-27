@@ -93,11 +93,9 @@ const Membros = () => {
                             </div>
                             <p style={{ color: 'black', marginBottom: '0px' }}>Categorias:</p>
                             <div  className="categorias">
-                                {
-                                    item.professor.categorias.map(cat => (
-                                        <p key={cat.id}>{cat.nome}</p>
-                                    ))
-                                }
+                                {item.professor.categorias.map(cat => (
+                                    <p key={cat.categoria_id}>{cat.nome}</p>
+                                ))}
                             </div>
                         </section>
                     ))
