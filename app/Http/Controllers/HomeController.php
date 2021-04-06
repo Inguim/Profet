@@ -24,9 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $projetos = Projeto::latest()->take(5)->get();
-
-        // dd($projetos[0]);
+        $projetos = Projeto::where('status', 'aprovado')->latest()->take(5)->get();
 
         return view('home', compact('projetos'));
     }

@@ -47,15 +47,19 @@
             <p class="item-card-text">Área de Atuação: {{ $projeto->categoria->nome }}</p>
             <p class="item-card-text">Autores:
                 @foreach($projeto->userProjs as $users)
-                    @if($users->relacao !== "orientador" && $users->relacao !== "coorientador")
-                        {{ $users->user->name }}
+                    @if($users->relacao === "bolsista" || $users->relacao !== "voluntario")
+                        @if($loop->first)
+                            {{ $users->user->name }}
+                        @else
+                            , {{ $users->user->name }}
+                        @endif
                     @endif
                 @endforeach
             </p>
             <p class="item-card-text">Data de adesão: {{ $projeto->created_at->format('d/m/Y') }}</p>
             <p class="item-card-text">Estado Atual: {{ $projeto->estado->estado }}</p>
             <p class="item-card-text">Resumo: {{ $projeto->resumo }}</p>
-            <a href="" class="pb-1">Saiba mais</a>
+            <a href="{{ route('visualizarProjeto', $projeto->id)}}" class="pb-1">Saiba mais</a>
         </div>
         @endforeach
     </div>
