@@ -45,8 +45,11 @@ Route::group(['middleware' => 'auth:web'], function () {
     Route::get('/projeto/novo', [ProjetoController::class, 'create'])
         ->middleware(['userStatus'])
         ->name('novoprojeto');
+
+
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::resource('categoria', CategoriaController::class)->only(['show']);
+Route::get('/projeto/{id}', [ProjetoController::class, 'show'])->name('visualizarProjeto');
 

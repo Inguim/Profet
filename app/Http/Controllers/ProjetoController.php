@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Projeto;
-use App\Models\UsuarioProj;
-use Exception;
 use Illuminate\Http\Request;
 
 class ProjetoController extends Controller
@@ -16,7 +14,7 @@ class ProjetoController extends Controller
      */
     public function create()
     {
-        return view('projeto.novoprojeto');
+        return view('projeto.novo');
     }
 
 
@@ -26,9 +24,11 @@ class ProjetoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
-        //
+        $projeto = Projeto::findOrFail($id);
+
+        return view('projeto.visualizar', compact('projeto'));
     }
 
     /**
