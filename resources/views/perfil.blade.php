@@ -136,10 +136,14 @@
                 <div class="col-4">
                     <div class="profile-img">
                         <img src="{{ asset('perfilpadrao.png') }}" alt="" />
-                        <div class="file btn btn-lg btn-info">
-                            Alterar foto de perfil
-                            <input type="file" name="file" />
-                        </div>
+                        @auth
+                             @if(Auth::user()->id === $user->id)
+                            <div class="file btn btn-lg btn-info">
+                                Alterar foto de perfil
+                                <input type="file" name="file" />
+                            </div>
+                            @endif
+                        @endauth
                     </div>
                 </div>
                 <div class="col-8">
@@ -151,17 +155,21 @@
                             </div>
                         </div>
                         <div class="row ml-auto">
-                            <button type="button" class="profile-edit-btn" name="btnAddMore">Editar</button>
-                            @if($user->admin)
-                            <a class="profile-edit-btn" href="{{ route('admin') }}">Administrativa</a>
+                            @auth
+                            @if(Auth::user()->id === $user->id)
+                                <button type="button" class="profile-edit-btn" name="btnAddMore">Editar</button>
+                                @if($user->admin)
+                                <a class="profile-edit-btn" href="{{ route('admin') }}">Administrativa</a>
+                                @endif
+                                <button class="profile-edit-btn" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                    {{ __('Sair') }}
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </button>
                             @endif
-                            <button class="profile-edit-btn" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                {{ __('Sair') }}
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </button>
+                            @endauth
                         </div>
                     </div>
                     <div class="row my-2">
@@ -180,24 +188,24 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <label>Nome</label>
-                                        <p>{{ $user->name }}</p>
+                                        <p class="text-primary">{{ $user->name }}</p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
                                         <label>Email</label>
-                                        <p>{{ $user->email }} </p>
+                                        <p class="text-primary">{{ $user->email }} </p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
                                         @if($user->tipo == 'aluno')
                                         <label>Curso</label>
-                                        <p>{{ $user->aluno->serie->serie }}° {{ $user->aluno->curso->curso }}</p>
+                                        <p class="text-primary">{{ $user->aluno->serie->serie }}° {{ $user->aluno->curso->curso }}</p>
                                         @else
                                         <label>Categoria</label>
                                         @foreach($user->professor->categorias as $categoria)
-                                        <p>{{ $categoria->nome }}</p>
+                                        <a class="d-block font-weight-bold" href="{{ route('categoria.show', $categoria->slug) }}">{{ $categoria->nome }}</a>
                                         @endforeach
                                         @endif
                                     </div>
@@ -208,9 +216,28 @@
                                     <div class="col-12">
                                         @if($user->projetos->count() > 0)
                                         @foreach($user->projetos as $projeto)
-                                        <div class="card-1">
-                                            <a class="card-link" href="#">{{ $projeto->nome }}</a>
-                                        </div>
+                                            @if(Auth::user()->id === $user->id)
+                                            <div class="card-1">
+                                                <a class="card-link font-weight-bold" href="{{ route('visualizarProjeto', $projeto->id)}}">{{ $projeto->nome }}</a>
+                                                @switch($projeto->status)
+                                                    @case('aprovado')
+                                                        <p class="font-weight-normal text-muted">Estado avaliativo: <span class="text-success">{{ $projeto->status }}</span></p>
+                                                    @break
+                                                    @case('analise')
+                                                        <p class="font-weight-normal text-muted">Estado avaliativo: <span class="text-warning">{{ $projeto->status }}</span></p>
+                                                    @break
+                                                    @case('alteracao')
+                                                        <p class="font-weight-normal text-muted">Estado avaliativo: <span class="text-danger">{{ $projeto->status }}</span></p>
+                                                    @break
+                                                @endswitch
+                                            </div>
+                                            @else
+                                                @if($projeto->status === "aprovado")
+                                                 <div class="card-1">
+                                                    <a class="card-link" href="{{ route('visualizarProjeto', $projeto->id)}}">{{ $projeto->nome }}</a>
+                                                </div>
+                                                @endif
+                                            @endif
                                         @endforeach
                                         @else
                                         <div class="card-1">
