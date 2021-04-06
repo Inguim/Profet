@@ -48,7 +48,7 @@ const FormProjeto = (props) => {
 
             if(! response.data.data.erro) {
                 toast.success('Projeto inserido com sucesso!');
-                history.push('/home');
+                window.location.href="/home";
             } else {
                 toast.error(response.data.data.msg);
             }

@@ -24,10 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $projetos = Projeto::with(['estado', 'categoria', 'users'])->latest()->take(5)->get();
+        $projetos = Projeto::latest()->take(5)->get();
 
-        // dd($projetos);
+        // dd($projetos[0]);
 
-        return view('home');
+        return view('home', compact('projetos'));
     }
 }

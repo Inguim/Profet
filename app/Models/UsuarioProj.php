@@ -14,4 +14,8 @@ class UsuarioProj extends Model
         'user_id',
         'projeto_id'
     ];
+
+    public function user() {
+        return $this->belongsTo('App\Models\User', 'user_id');
+    }
 }

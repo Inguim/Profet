@@ -34,16 +34,30 @@
     </div>
     <div class="container-fluid border-bottom border-dark centro">
         <h2 class="mb-2 text-center pt-1">Novos Projetos</h2>
+        @foreach($projetos as $projeto)
         <div class="d-flex flex-column border-bottom pt-4">
-            <h5>PROFET: SISTEMA WEB PARA GESTÃO E COMPARTILHAMENTO DE INICIATIVAS INOVADORAS NO CEFET‐MG UNIDADE VARGINHA</h5>
-            <p class="item-card-text">Orientador: Lázaro Eduardo da Silvaa</p>
-            <p class="item-card-text">Área de Atuação: Ciências Exatas e da Terra</p>
-            <p class="item-card-text">Autores: Igor Azevedo Santos, Gabriella Mantovani, Wasleny Pimenta</p>
-            <p class="item-card-text">Data de adesão: 00/00/00</p>
-            <p class="item-card-text">Estado Atual: Prototipação</p>
-            <p class="item-card-text">Resumo: Propomos a criação de uma plataforma que hospede tais projetos, em desenvolvimento ou concluídos, e permite comentários em relação aos projetos, além de noticiar a busca dos professores ou alunos por orientandos e orientadores, respectivamente.</p>
+            <h5>{{$projeto->nome}}</h5>
+            <p class="item-card-text">Orientador:
+                @foreach($projeto->userProjs as $users)
+                    @if($users->relacao === "orientador")
+                        {{ $users->user->name }}
+                    @endif
+                @endforeach
+            </p>
+            <p class="item-card-text">Área de Atuação: {{ $projeto->categoria->nome }}</p>
+            <p class="item-card-text">Autores:
+                @foreach($projeto->userProjs as $users)
+                    @if($users->relacao !== "orientador" && $users->relacao !== "coorientador")
+                        {{ $users->user->name }}
+                    @endif
+                @endforeach
+            </p>
+            <p class="item-card-text">Data de adesão: {{ $projeto->created_at->format('d/m/Y') }}</p>
+            <p class="item-card-text">Estado Atual: {{ $projeto->estado->estado }}</p>
+            <p class="item-card-text">Resumo: {{ $projeto->resumo }}</p>
             <a href="" class="pb-1">Saiba mais</a>
         </div>
+        @endforeach
     </div>
     <div class="container-fluid text-center centro" style="margin-bottom: 20px">
         <h2 class="mb-2 text-center pt-1">Comece já</h2>
