@@ -14,10 +14,9 @@ const NovoProjeto = () => {
     const [ search, setSearch ] = useState('');
     const [ resultados, setResultados] = useState([]);
     const [ participantes, setParticipantes ] = useState([]);
-
+    const [ tipo, setTipo ] = useState("aluno");
 
     async function searchMembro(search) {
-        const tipo = document.getElementById('tipo').value;
         const response = await api.get(`/search/${search}/${tipo}`);
 
         // if(response.data.data.length === 1 && (resultados.length === 0 || resultados.indexOf(response.data.data[0]) === -1)) {
@@ -65,6 +64,10 @@ const NovoProjeto = () => {
         toast.info('Membro retirado.');
     }
 
+    function updateTipo(value) {
+        setTipo(value);
+        setResultados([]);
+    }
     useEffect(() => {
         const aux = search;
         if(aux.length > 3) {
@@ -79,7 +82,7 @@ const NovoProjeto = () => {
                 <h1>Pesquisar participantes:</h1>
                 <section>
                     <label htmlFor="tipo">Pesquisar por:</label>
-                    <select id="tipo">
+                    <select id="tipo" onChange={() => updateTipo(document.getElementById('tipo').value)}>
                         <option value="aluno">Aluno</option>
                         <option value="professor">Professor</option>
                     </select>
@@ -99,12 +102,22 @@ const NovoProjeto = () => {
                                 <SiVerizon color="#59C15D" />
                             </button>
                             {item.name}
-                            <select id={`${item.name + item.id}`}>
-                                <option value=''>Selecionar atuação</option>
-                                <option value='orientador'>Orientador</option>
-                                <option value='coordenador'>Coordenador</option>
-                                <option value='coorientador'>Coorientador</option>
-                            </select>
+
+                                {tipo === "professor" ?
+                                    <select id={`${item.name + item.id}`}>
+                                        <option value=''>Selecionar atuação</option>
+                                        <option value='orientador'>Orientador</option>
+                                        <option value='coordenador'>Coordenador</option>
+                                        <option value='coorientador'>Coorientador</option>
+                                    </select>
+                                :
+                                <select id={`${item.name + item.id}`}>
+                                    <option value=''>Selecionar atuação</option>
+                                    <option value='bolsista'>Bolsista</option>
+                                    <option value='voluntario'>Voluntário</option>
+                                </select>
+                                }
+
 
                         </li>
                     ))}
