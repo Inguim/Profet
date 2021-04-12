@@ -7,7 +7,6 @@ use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ProjetoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,7 +45,9 @@ Route::group(['middleware' => 'auth:web'], function () {
         ->middleware(['userStatus'])
         ->name('novoprojeto');
 
-
+    Route::get('/projeto/edit/{id}', [ProjetoController::class, 'edit'])->name('editProjeto');
+    Route::put('/projeto/update/{id}', [ProjetoController::class, 'update'])->name('updateProjeto');
+    Route::get('/projeto/destroy/{id}', [ProjetoController::class, 'destroy'])->name('deleteProjeto');
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
