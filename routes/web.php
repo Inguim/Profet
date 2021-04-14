@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ProjetoController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProjetoSearch;
 use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
@@ -53,4 +54,5 @@ Route::group(['middleware' => 'auth:web'], function () {
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::resource('categoria', CategoriaController::class)->only(['show']);
 Route::get('/projeto/{id}', [ProjetoController::class, 'show'])->name('visualizarProjeto');
+Route::get('/projeto', [ProjetoSearch::class, 'show'])->name('searchProjeto');
 
