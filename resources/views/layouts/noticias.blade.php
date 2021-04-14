@@ -49,13 +49,15 @@
         <div class="row" style="margin-right: 0;">
             <article class="col-2" >
                 <div class="pt-2" id="noticias" style="margin-left: 5px">
-                    <h4 class=" text-center text-dark" style="margin-top:10px">Notícias</h4>
+                    <h4 class="text-center text-dark" style="margin-top:10px">Notícias</h4>
                     <div id="noticias">
-                    @foreach($resources->noticias() as $noticia)
+                    @forelse($resources->noticias() as $noticia)
                         <div class="card mb-1">
                             <a class="card-link p-2" href="{{ $noticia->link }}">{{ $noticia->nome }}</a>
                         </div>
-                    @endforeach
+                    @empty
+                        <p class="text-muted text-center p-2">Sem notícias :(</p>
+                    @endforelse
                 <div>
             </article>
                  @yield('content')
