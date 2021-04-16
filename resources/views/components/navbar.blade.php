@@ -36,7 +36,7 @@
             <!-- Authentication Links -->
 
             <li class="nav-item">
-                <form class="form-inline align-self-center mt-1 mr-2 bg-light" action="{{ route('searchProjeto') }}">
+                <form class="form-inline align-self-center mt-1 mr-2" action="{{ route('searchProjeto') }}">
                     @method('GET')
                     <input class="form-control-sm border-0 rounded-0" name="search" type="text" placeholder="Estudo de células...">
                     <button class="btn btn-success btn-sm rounded-0" type="submit">

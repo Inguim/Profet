@@ -47,11 +47,11 @@
             <p class="item-card-text">Área de Atuação: {{ $projeto->categoria->nome }}</p>
             <p class="item-card-text">Autores:
                 @foreach($projeto->userProjs as $users)
-                    @if($users->relacao === "bolsista" || $users->relacao !== "voluntario")
-                        @if($loop->first)
+                    @if($users->relacao === "bolsista" || $users->relacao === "voluntario")
+                        @if($loop->last)
                             {{ $users->user->name }}
                         @else
-                            , {{ $users->user->name }}
+                            {{ $users->user->name }},
                         @endif
                     @endif
                 @endforeach
