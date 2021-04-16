@@ -5,7 +5,7 @@
 <section class="container rounded-lg shadow my-3 p-3 border border-white">
     <div class="d-flex align-items-center">
         <h2 class="font-weight-bold m-0">{{ $projeto->nome }}</h2>
-        <button class="btn btn-outline-primary ml-auto" type="button">Gerar pdf</button>
+        <a class="btn btn-outline-primary ml-auto" href="{{ route('projetoPDF', $projeto->id) }}">Gerar pdf</a>
     </div>
     <div class="my-3">
         @foreach($projeto->userProjs as $membro)
