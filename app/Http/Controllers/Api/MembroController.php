@@ -33,7 +33,7 @@ class MembroController extends Controller
 
         $professor = User::where('status', 'analise')
             ->where('tipo', 'professor')
-            ->with(['professor.categorias:categoria_id,nome'])
+            ->with(['professor.categorias:id,nome'])
             ->get(['id', 'name', 'email']);
 
         $users = [
