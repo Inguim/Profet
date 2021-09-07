@@ -1,13 +1,19 @@
 @extends('layouts.app')
-
+ 
 @section('content')
+ 
+<style>
+    .card{
+        margin-top: 100px; 
+    }
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
+                <div class="card-header" style="background: #086BAB;padding: 20px; font-size: 20px; color: #ffffff; text-align: center; border-bottom: solid 5px #ffffff">{{ __('Redefinir Senha') }}</div>
+ 
+                <div class="card-body" style="border-top: solid 5px #086BAB;">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -18,7 +24,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -34,7 +40,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
+                                    {{ __('Enviar link de redefinição de Senha') }}
                                 </button>
                             </div>
                         </div>
