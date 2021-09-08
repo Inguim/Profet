@@ -74,7 +74,7 @@ const Noticias = () => {
                 <h1>Inserir notícias:</h1>
                 <input type="hidden" name="id" value={id} required ref={register} />
                 <label htmlFor="nome">Titulo:</label>
-                <input type="text" id="nome" name="nome" required ref={register({ required: true })} />
+                <input type="text" id="nome" name="nome" maxlength="50" required ref={register({ required: true })} />
                 <label htmlFor="link">Link da notícia:</label>
                 <input type="text" id="link" name="link" required ref={register({ required: true })} />
                 <Button type="submit">Enviar</Button>
