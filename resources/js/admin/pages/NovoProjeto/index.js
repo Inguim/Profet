@@ -90,7 +90,7 @@ const NovoProjeto = () => {
                 <label htmlFor="nome">Nome:</label>
                 <div>
                     <input type="search" value={search} onChange={e => setSearch(e.target.value)} />
-                    <Button type="button" onClick={() => searchMembro(search)}>
+                    <Button type="button" class="btn btn-primary" onClick={() => searchMembro(search)}>
                         <BiSearchAlt color="white" />
                     </Button>
                 </div>
