@@ -16,7 +16,7 @@
         </style>
     </head>
     <body>
-        <h2>{{ $projeto->nome }}</h2>
+        <h2 style="text-align: center">{{ $projeto->nome }}</h2>
         @foreach($projeto->userProjs as $membro)
             @switch($membro->relacao)
                 @case("orientador")
