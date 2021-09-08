@@ -26,7 +26,6 @@
     </div>
     <div id="area2" class="container-fluid text-center border-bottom border-dark">
         <h4 class="mb-2 text-left"> Projetos Recentes </h4>
-        @foreach($projetos as $projeto)
         <div class="d-flex flex-wrap justify-content-center">
             <div class="card" id="card1">
                 <div class="card-body">
@@ -35,7 +34,6 @@
                     <a href="#" class="card-link"> Ler projeto </a>
                 </div>
             </div>
-        @endforeach
             <div class="card" id="card2">
                 <div class="card-body">
                     <h4 class="card-title"> Projeto 2</h4>
