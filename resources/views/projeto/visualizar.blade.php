@@ -4,7 +4,7 @@
 
 <section class="container rounded-lg shadow my-3 p-3 border border-white">
     <div class="d-flex align-items-center">
-        <h2 class="font-weight-bold m-0">{{ $projeto->nome }}</h2>
+        <h2 class="font-weight-bold m-0" style="text-align: center">{{ $projeto->nome }}</h2>
         <a class="btn btn-outline-primary ml-auto" href="{{ route('projetoPDF', $projeto->id) }}">Gerar pdf</a>
     </div>
     <div class="my-3">
@@ -58,23 +58,23 @@
     </div>
     <div class="mt-2">
         <h4 class="font-weight-bold mb-0">Introdução:</h4>
-        <p>{{ $projeto->introducao }}</p>
+        <p style="text-align: justify">{{ $projeto->introducao }}</p>
     </div>
     <div class="mt-2">
         <h4 class="font-weight-bold mb-0">Objetivo:</h4>
-        <p>{{ $projeto->objetivo }}</p>
+        <p style="text-align: justify">{{ $projeto->objetivo }}</p>
     </div>
     <div class="mt-2">
         <h4 class="font-weight-bold mb-0">Metodologia:</h4>
-        <p>{{ $projeto->metodologia }}</p>
+        <p style="text-align: justify">{{ $projeto->metodologia }}</p>
     </div>
     <div class="mt-2">
         <h4 class="font-weight-bold mb-0">Resultados e discussões:</h4>
-        <p>{{ $projeto->result_disc }}</p>
+        <p style="text-align: justify">{{ $projeto->result_disc }}</p>
     </div>
     <div class="mt-2">
         <h4 class="font-weight-bold mb-0">Conclusão:</h4>
-        <p>{{ $projeto->conclusao }}</p>
+        <p style="text-align: justify">{{ $projeto->conclusao }}</p>
     </div>
 </section>
 @endsection
