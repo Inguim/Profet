@@ -54,7 +54,7 @@
     </div>
     <div class="mt-2">
         <h4 class="font-weight-bold mb-0" class="font-weight-bold" >Resumo:</h4>
-        <p>{{ $projeto->resumo }}</p>
+        <p style="text-align: justify">{{ $projeto->resumo }}</p>
     </div>
     <div class="mt-2">
         <h4 class="font-weight-bold mb-0">Introdução:</h4>
