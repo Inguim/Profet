@@ -29,7 +29,8 @@
         <div class="d-flex flex-wrap justify-content-center">
             <div class="card" id="card1">
                 <div class="card-body">
-                    <h4 class="card-title"> Projeto 1</h4>
+                @foreach($projetos as $projeto)
+                    <h4 class="card-title"> {{$projeto->nome}}</h4>
                     <p class="card-text"> Esse projeto é voltado para...</p>
                     <a href="#" class="card-link"> Ler projeto </a>
                 </div>
