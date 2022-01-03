@@ -1,5 +1,7 @@
 # Profet
 > Plataforma vitrine dos projetos desenvolvidos na instituição CEFET-MG
+
+![](/public/logo3.png)
 ### Features
 - [x] Listagem de projetos
 - [ ] Listagem de projetos por categorias
@@ -37,5 +39,5 @@ As seguintes ferramentas foram usadas na construção do projeto:
 Seu funcionamento e bem simples e pode ser entendido ao abrir o site: [Profet](https://profet.cefetvga.pro.br/), mas como um breve resumo ela serve como vitrine dos projetos desenvolvidos no CEFET-MG, e estes estarão  dividos em categorias, assim como seus respectivos participantes do tipo professor. Independente do tipo do usuário pode-se ser efetuado um cadastro de projeto, porém o cadastro passa por uma análise de aprovaçáo para inserção final no sistema. O mesmo ocorre quando um usuário tenta se cadastrar no sistema, entretanto, tem cadastro ou não, a visualização do projeto e permitido a qualquer pessoa. 
 
 <p align="center">
-  💡📄💡📄💡📄💡📄💡📄💡📄💡📄💡
+ :bulb: :bulb: :bulb: :bulb: :bulb:
 </p>
