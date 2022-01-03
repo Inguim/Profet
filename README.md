@@ -1,7 +1,8 @@
 # Profet
 > Plataforma vitrine dos projetos desenvolvidos na instituição CEFET-MG
+<p align="center"><a href="https://profet.cefetvga.pro.br" target="_blank"><img src="/public/logo3.png" width="400"></a></p>
 
-![](/public/logo3.png)
+
 ### Features
 - [x] Listagem de projetos
 - [ ] Listagem de projetos por categorias
