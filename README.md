@@ -37,7 +37,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [React-Toastify](https://fkhadra.github.io/react-toastify/introduction)
 - [React-hook-form](https://react-hook-form.com/)
 ### 🏍️ Como Funciona
-Seu funcionamento e bem simples e pode ser entendido ao abrir o site: [Profet](https://profet.cefetvga.pro.br/), mas como um breve resumo ela serve como vitrine dos projetos desenvolvidos no CEFET-MG, e estes estarão  dividos em categorias, assim como seus respectivos participantes do tipo professor. Independente do tipo do usuário pode-se ser efetuado um cadastro de projeto, porém o cadastro passa por uma análise de aprovaçáo para inserção final no sistema. O mesmo ocorre quando um usuário tenta se cadastrar no sistema, entretanto, tem cadastro ou não, a visualização do projeto e permitido a qualquer pessoa. 
+Seu funcionamento e bem simples e pode ser entendido ao abrir o site: [Profet](https://profet.cefetvga.pro.br/), mas como um breve resumo: ela serve como vitrine dos projetos desenvolvidos no CEFET-MG, e estes estarão  dividos em categorias, assim como seus respectivos participantes do tipo professor. Independente do tipo do usuário, pode-se ser efetuado um cadastro de projeto, porém o cadastro passa por uma análise de aprovaçáo para inserção final no sistema. O mesmo ocorre quando um usuário tenta se cadastrar no sistema, entretanto, tendo cadastro ou não, a visualização do projeto e permitido a qualquer pessoa. 
 
 <p align="center">
  :bulb: :bulb: :bulb: :bulb: :bulb:
