@@ -25,7 +25,7 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
-        "react-hook-form": "^6.12.1",
+        "react-hook-form": "^7.25.1",
         "react-icons": "^4.2.0",
         "react-router-dom": "^5.2.0",
         "react-toastify": "^8.1.0",
