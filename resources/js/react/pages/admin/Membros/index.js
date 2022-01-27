@@ -1,59 +1,57 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Container, ListaAluno, ListaProfessor } from "./styles.js";
 
-import api from "../../../../services/api";
+import { apiUsuarios } from "../../../../services/data";
 import { toast } from "react-toastify";
 
 const Membros = () => {
   const [professor, setProfessor] = useState([]);
   const [aluno, setAluno] = useState([]);
 
-  async function loadUsers() {
-    try {
-      const response = await api.get("membros");
+  const loadUsers = useCallback(async () => {
+    await apiUsuarios
+      .index()
+      .then((response) => {
+        var { alunos, professores } = response.data.data;
 
-      const { alunos, professores } = response.data.data;
-
-      setProfessor(professores);
-      setAluno(alunos);
-    } catch (error) {
-      toast.error(error.message);
-    }
-  }
+        setProfessor(professores);
+        setAluno(alunos);
+      })
+      .catch((error) => toast.error(error.message));
+  }, [setAluno, setProfessor]);
 
   const handleUpdateStatus = useCallback((id) => {
-    async function updateStatus() {
-      try {
-        const response = await api.put(`membros/${id}`);
-        if (!response.data.data.erro) {
-          toast.success(response.data.data.message);
-        } else {
-          toast.error(response.data.data.message);
-        }
-        loadUsers();
-      } catch (error) {
-        toast.error(error.message);
-      }
-    }
-    updateStatus();
-  });
+    const updateStatus = async (id) => {
+      await apiUsuarios
+        .update(id)
+        .then((response) => {
+          if (!response.data.data.erro) {
+            toast.success(response.data.data.message);
+          } else {
+            toast.error(response.data.data.message);
+          }
+          loadUsers();
+        })
+        .catch((error) => toast.error(error.message));
+    };
+    updateStatus(id);
+  }, [loadUsers]);
 
   const handleDeleteUser = useCallback((id) => {
-    async function deleteUser() {
-      try {
-        const response = await api.delete(`membros/${id}`);
+    const deleteUser = async (id) => {
+      apiUsuarios.destroy(id).then(response => {
         if (!response.data.data.erro) {
           toast.success(response.data.data.message);
         } else {
           toast.error(response.data.data.message);
         }
         loadUsers();
-      } catch (error) {
-        toast.error(error.message);
-      }
+      }).catch(error => toast.error(error.message));
     }
-    deleteUser();
-  });
+    if(confirm('Deseja realmente recusar e excluir permanentemente a conta deste usuário?')){
+      deleteUser(id);
+    }
+  }, [loadUsers]);
 
   useEffect(() => {
     loadUsers();

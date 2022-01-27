@@ -10,7 +10,7 @@ class Usuarios {
   }
 
   destroy(id, data) {
-    return api.delete(`membros/${id}`, data);
+    return api.delete(`membros/${id}`);
   }
 }
 

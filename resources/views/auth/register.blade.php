@@ -9,8 +9,8 @@
     }
 
     .card{
-        margin-top: 50px; 
-        margin-bottom: 50px; 
+        margin-top: 50px;
+        margin-bottom: 50px;
 
     }
 
@@ -237,5 +237,5 @@
             </div>
         </div>
     </div>
-</div>               
+</div>
 @endsection
