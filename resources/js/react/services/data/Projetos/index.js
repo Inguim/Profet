@@ -2,15 +2,19 @@ import api from "../../api";
 
 class Projetos {
   index() {
-   return api.get('projetos');
+   return api.get('projeto');
+  }
+
+  show(id) {
+    return api.get(`projeto/${id}`);
   }
 
   store(data) {
-    return api.post(`projetos`, data);
+    return api.post(`projeto`, data);
   }
 
-  destroy(id, data) {
-    return api.delete(`projetos/${id}`);
+  destroy(id) {
+    return api.delete(`projeto/${id}`);
   }
 }
 
