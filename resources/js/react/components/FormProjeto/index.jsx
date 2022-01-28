@@ -13,8 +13,9 @@ import { IoMdClose } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { apiProjetos } from "../../services/data";
+import { redirectTo } from "../../utils/redirectTo";
 
-const FormProjeto = (props) => {
+const FormProjeto = ({ participantes, deleteParticipante }) => {
   const {
     register,
     handleSubmit,
@@ -46,7 +47,7 @@ const FormProjeto = (props) => {
       await apiProjetos.store(data).then(response => {
         if (!response.data.data.erro) {
           toast.success("Projeto inserido com sucesso!");
-          window.location.href = "/home";
+          redirectTo('home');
         } else {
           toast.error(response.data.data.msg);
         }
@@ -54,15 +55,15 @@ const FormProjeto = (props) => {
     } else {
       toast.warning("Seu projeto precisa de membros para ser cadastrado");
     }
-  }, []);
+  }, [users]);
 
   useEffect(() => {
     handleLoadForm();
   }, []);
 
   useEffect(() => {
-    setUsers(props.participantes);
-  }, [props.participantes]);
+    setUsers(participantes);
+  }, [participantes]);
 
   return (
     <Form method="POST" onSubmit={handleSubmit(onSubmit)}>
@@ -72,7 +73,7 @@ const FormProjeto = (props) => {
           <li key={item.membro.id}>
             <button
               type="button"
-              onClick={() => props.deleteParticipante(item.membro.id)}
+              onClick={() => deleteParticipante(item.membro.id)}
             >
               <IoMdClose color="#c15959" />
             </button>

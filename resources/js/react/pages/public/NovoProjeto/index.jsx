@@ -5,8 +5,8 @@ import { SiVerizon } from "react-icons/si";
 import { BiSearchAlt } from "react-icons/bi";
 
 import { toast } from "react-toastify";
-import FormProjeto from "../../../../components/FormProjeto/index.jsx";
-import { apiMembros } from "../../../../services/data/index.js";
+import FormProjeto from "../../../components/FormProjeto";
+import { apiMembros } from "../../../services/data";
 
 const NovoProjeto = () => {
   const [search, setSearch] = useState("");
@@ -50,20 +50,17 @@ const NovoProjeto = () => {
 
   const deleteParticipante = useCallback((id) => {
     setParticipantes(participantes.filter((item) => item.membro.id !== id));
-    toast.info("Membro retirado");
   }, [participantes, setParticipantes]);
 
-  const updateTipo = useCallback((value) => {
-    setTipo(value);
+  useEffect(() => {
     setResultados([]);
-  }, [setTipo, setResultados]);
+  }, [tipo, setResultados]);
 
   useEffect(() => {
-    const aux = search;
-    if (aux.length > 3) {
+    if (search.length > 3) {
       searchMembro(search, tipo);
     }
-  }, [search, tipo]);
+  }, [search, tipo, searchMembro]);
 
   return (
     <Container>
@@ -71,10 +68,7 @@ const NovoProjeto = () => {
         <h1>Pesquisar participantes:</h1>
         <section>
           <label htmlFor="tipo">Pesquisar por:</label>
-          <select
-            id="tipo"
-            onChange={() => updateTipo(document.getElementById("tipo").value)}
-          >
+          <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
             <option value="aluno">Aluno</option>
             <option value="professor">Professor</option>
           </select>
@@ -89,7 +83,7 @@ const NovoProjeto = () => {
           <Button
             type="button"
             className="btn btn-primary"
-            onClick={() => searchMembro(search)}
+            onClick={() => searchMembro(search, tipo)}
           >
             <BiSearchAlt color="white" />
           </Button>

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Container, ListaAluno, ListaProfessor } from "./styles.js";
 
-import { apiUsuarios } from "../../../../services/data";
+import { apiUsuarios } from "../../../services/data";
 import { toast } from "react-toastify";
 
 const Membros = () => {

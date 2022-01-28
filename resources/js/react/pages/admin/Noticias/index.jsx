@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { Container, Form, Button, Lista } from "./styles.js";
 
-import { apiNoticias } from '../../../../services/data';
+import { apiNoticias } from '../../../services/data';
 import { toast } from "react-toastify";
 
 const Noticias = () => {

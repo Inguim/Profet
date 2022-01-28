@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import { ToastContainer } from "react-toastify";
 import GlobalStyle from './styles/global';
-import Header from '../components/Header';
+import Header from './components/Header';
 
 import Routes from "./routes";
 
