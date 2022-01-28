@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\API\MembroController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\NoticiaController;
 use App\Http\Controllers\API\FormProjetoController;
 use App\Http\Controllers\API\UserSearchController;
+use App\Http\Controllers\API\MembroController;
 
 /*
 |--------------------------------------------------------------------------

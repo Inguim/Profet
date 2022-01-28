@@ -4,7 +4,6 @@ import { Container, Search, Button, Results } from "./styles.js";
 import { SiVerizon } from "react-icons/si";
 import { BiSearchAlt } from "react-icons/bi";
 
-import api from "../../../../services/api";
 import { toast } from "react-toastify";
 import FormProjeto from "../../../../components/FormProjeto/index.jsx";
 import { apiMembros } from "../../../../services/data/index.js";
