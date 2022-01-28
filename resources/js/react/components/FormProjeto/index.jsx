@@ -12,7 +12,7 @@ import { IoMdClose } from "react-icons/io";
 
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { apiProjetos } from "../../services/data";
+import { apiFormProjetos } from "../../services/data";
 import { redirectTo } from "../../utils/redirectTo";
 
 const FormProjeto = ({ participantes, deleteParticipante }) => {
@@ -31,7 +31,7 @@ const FormProjeto = ({ participantes, deleteParticipante }) => {
   };
 
   const handleLoadForm = useCallback(async () => {
-    await apiProjetos.index().then(response => {
+    await apiFormProjetos.index().then(response => {
       const { estados, categorias } = response.data.data;
       setEstadoProj(estados);
       setCategoriasProj(categorias);
@@ -44,7 +44,7 @@ const FormProjeto = ({ participantes, deleteParticipante }) => {
       data.users.push({ user_id: item.membro.id, relacao: item.relacao });
     });
     if (data.estado_id !== "3") {
-      await apiProjetos.store(data).then(response => {
+      await apiFormProjetos.store(data).then(response => {
         if (!response.data.data.erro) {
           toast.success("Projeto inserido com sucesso!");
           redirectTo('home');
