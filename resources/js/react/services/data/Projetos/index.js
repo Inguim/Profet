@@ -9,8 +9,8 @@ class Projetos {
     return api.get(`projeto/${id}`);
   }
 
-  store(data) {
-    return api.post(`projeto`, data);
+  update(id, status) {
+    return api.put(`projeto/${id}`, status);
   }
 
   destroy(id) {
