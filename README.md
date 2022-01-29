@@ -25,7 +25,7 @@
 - - [x] Listagem de solicitações participantes
 - - [x] Listagem de solicitações projetos
 - - [x] Aceitar ou recusar participante
-- - [ ] Aceitar ou recusar projetos
+- - [x] Aceitar ou recusar projetos
 - - [x] CRUD de noticias
 ### Status do desenvolvimento
 Se encontra quase pronta e pode ser testada em [Profet](https://profet.cefetvga.pro.br/)
