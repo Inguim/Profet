@@ -16,7 +16,7 @@
         </style>
     </head>
     <body>
-        <h2>{{ $projeto->nome }}</h2>
+        <h2 style="text-align: center">{{ $projeto->nome }}</h2>
         @foreach($projeto->userProjs as $membro)
             @switch($membro->relacao)
                 @case("orientador")
@@ -46,28 +46,28 @@
         <p>Data de adesão: {{ $projeto->created_at->format('d/m/Y') }}</p>
     </div>
     <div>
-        <h3>Resumo:</h3>
-        <p>{{ $projeto->resumo }}</p>
+        <h3 >Resumo:</h3>
+        <p style="text-align: justify">{{ $projeto->resumo }}</p>
     </div>
     <div>
         <h3>Introdução:</h3>
-        <p>{{ $projeto->introducao }}</p>
+        <p style="text-align: justify">{{ $projeto->introducao }}</p>
     </div>
     <div>
         <h3>Objetivo:</h3>
-        <p>{{ $projeto->objetivo }}</p>
+        <p style="text-align: justify">{{ $projeto->objetivo }}</p>
     </div>
     <div>
         <h3>Metodologia:</h3>
-        <p>{{ $projeto->metodologia }}</p>
+        <p style="text-align: justify">{{ $projeto->metodologia }}</p>
     </div>
     <div>
         <h3>Resultados e discussões:</h3>
-        <p>{{ $projeto->result_disc }}</p>
+        <p style="text-align: justify">{{ $projeto->result_disc }}</p>
     </div>
     <div>
         <h3>Conclusão:</h3>
-        <p>{{ $projeto->conclusao }}</p>
+        <p style="text-align: justify">{{ $projeto->conclusao }}</p>
     </div>
     </body>
 </html>

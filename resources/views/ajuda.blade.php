@@ -31,9 +31,9 @@
                         <div class="col-md-6">
                             <h4 style="text-align: center">EXEMPLO DE SLIDE</h4>
                             <div class="card">
-                                <img src="slide.png" alt="Avatar" style="width:100%">
+                                <img src="slide1.png" alt="Avatar" style="width:100%">
                                 <div class="container" style="display: flex; justify-content: center;">
-                                    <a href="https://drive.google.com/file/d/1lIB8CNciy_4rHM5I13Uvnjke0ziJMdpa/view?usp=sharing">
+                                    <a href="https://drive.google.com/file/d/1lmdI7K9CTqN8hDdPyeBwgcYB_-n4X-Ei/view">
                                         <button style=" margin-top: 10px; margin-bottom:10px;" type="submit" class="btn btn-primary">{{ __('Baixar') }}</button>
                                     </a>
                                 </div>
@@ -42,9 +42,9 @@
                         <div class="col-md-6">
                             <h4 style="text-align: center">EXEMPLO DE BANNER</h4>
                             <div class="card">
-                                <img src="banner.png" alt="Avatar" style="width:100%">
+                                <img src="banner1.png" alt="Avatar" style="width:100%">
                                 <div class="container" style="display: flex; justify-content: center;">
-                                    <a href="https://drive.google.com/file/d/1I3JISU01VSa8nRXZkCAbfysQcR2LmLLX/view?usp=sharing">
+                                    <a href="https://drive.google.com/file/d/1VLdOQQoXaMop7-P7EjoJHIw1BEdr0krr/view">
                                         <button style=" margin-top: 10px; margin-bottom:10px;" type="submit" class="btn btn-primary">{{ __('Baixar') }}</button>
                                     </a>
                                 </div>

@@ -58,7 +58,7 @@
             </p>
             <p class="item-card-text">Data de adesão: {{ $projeto->created_at->format('d/m/Y') }}</p>
             <p class="item-card-text">Estado Atual: {{ $projeto->estado->estado }}</p>
-            <p class="item-card-text">Resumo: {{ $projeto->resumo }}</p>
+            <p class="item-card-text" style="text-align: justify">Resumo: {{ $projeto->resumo }}</p>
             <a href="{{ route('visualizarProjeto', $projeto->id)}}" class="pb-1">Saiba mais</a>
         </div>
         @endforeach

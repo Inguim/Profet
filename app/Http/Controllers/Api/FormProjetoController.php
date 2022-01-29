@@ -73,7 +73,7 @@ class FormProjetoController extends Controller
 
             $erro = [
                 'erro' => false,
-                'msg' => "Esse nome ja está sendo utilizado, tente outro"
+                'msg' => ""
             ];
             return new DataResource($erro);
         } catch (Exception $e) {
