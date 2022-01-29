@@ -48,6 +48,28 @@ const Projetos = () => {
     }).catch(error => toast.error(error.message));
   }, []);
 
+  const handleUpdateStatus = useCallback(async (id, status) => {
+    await apiProjetos.update(id, { status: status }).then(response => {
+      if(!response.data.data.error) {
+        setProjetos(prev => prev.filter(projeto => projeto.id !== id));
+        toast.success('Status do projeto atualizado!', { toastId: id });
+      } else {
+        toast.error(response.data.data.message, { toastId: id });
+      }
+    }).catch(error => toast.error(error.message, { toastId: id }));
+  }, [apiProjetos]);
+
+  const handleDeleteProjeto = useCallback(async id => {
+    await apiProjetos.destroy(id).then(response => {
+      if(!response.data.data.error) {
+        setProjetos(prev => prev.filter(projeto => projeto.id !== id));
+        toast.success('Projeto recusado e excluido da plataforma !', { toastId: id });
+      } else {
+        toast.error(response.data.data.message, { toastId: id });
+      }
+    }).catch(error => toast.error(error.message, { toastId: id }));
+  }, [apiProjetos])
+
   const handleOpenModal = useCallback(id => {
     setOpen(true);
     setIdProject(id);
@@ -64,7 +86,9 @@ const Projetos = () => {
       </ContainerModal>
       <Lista>
         <h1>Projetos:</h1>
-        {projetos.map((projeto) => (
+        {projetos.length > 0 ? (
+          <>
+            {projetos.map((projeto) => (
           <div key={projeto.id}>
             <p style={{ fontWeight: "bold" }}>{projeto.nome}</p>
             <p>
@@ -102,12 +126,17 @@ const Projetos = () => {
             <div style={{ justifyContent: "space-between", width: "100%" }}>
               <button type="button" onClick={() => handleOpenModal(projeto.id)}>Visualizar</button>
               <div>
-                <button type="button">Aprovar</button>
-                <button type="button">Solicitar Alteração</button>
+                <button type="button" onClick={() => handleUpdateStatus(projeto.id, 'aprovado')}>Aprovar</button>
+                <button type="button" onClick={() => confirm('Deseja realmente recusar e excluir este projeto?') && handleDeleteProjeto(projeto.id)}>Recusar</button>
+                <button type="button" onClick={() => handleUpdateStatus(projeto.id, 'alteracao')}>Solicitar Alteração</button>
               </div>
             </div>
           </div>
         ))}
+          </>
+        ) : (
+          <p>Nenhuma solicitação até no momento</p>
+        )}
       </Lista>
     </Container>
   );
