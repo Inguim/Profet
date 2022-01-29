@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DataResource;
 use App\Models\Aluno;
-use App\Models\Professor;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -42,17 +41,6 @@ class MembroController extends Controller
         ];
 
         return new DataResource($users);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

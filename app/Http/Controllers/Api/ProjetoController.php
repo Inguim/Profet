@@ -16,20 +16,9 @@ class ProjetoController extends Controller
      */
     public function index()
     {
-        $projetos = Projeto::with(['userProjs.user:id,name', "estado:id,estado", "categoria:id,nome"])->where("status", "!=", "aprovado")->latest()->get(["id", "nome", "resumo", "estado_id", "categoria_id"]);
+        $projetos = Projeto::with(['userProjs.user:id,name', "estado:id,estado", "categoria:id,nome"])->where("status", "analise")->latest()->get(["id", "nome", "resumo", "estado_id", "categoria_id"]);
 
         return new DataResource($projetos);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -54,7 +43,26 @@ class ProjetoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $message = [
+          'erro' => false,
+          'message' => ''
+        ];
+
+        try {
+          $projeto = Projeto::findOrFail($id);
+
+          $projeto->status = $request->status;
+          $projeto->save();
+
+          return new DataResource($message);
+        } catch (\Throwable $th) {
+          $message = [
+            'erro' => true,
+            'message' => 'Algo deu errado ao atualizar o status'
+          ];
+
+          return new DataResource($message);
+        }
     }
 
     /**
@@ -65,6 +73,23 @@ class ProjetoController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $message = [
+        'erro' => false,
+        'message' => ''
+      ];
+
+      try {
+        $projeto = Projeto::findOrFail($id);
+        $projeto->delete();
+
+        return new DataResource($message);
+      } catch (\Throwable $th) {
+        $message = [
+          'erro' => true,
+          'message' => 'Algo deu errado ao deletar o projeto'
+        ];
+
+        return new DataResource($message);
+      }
     }
 }
