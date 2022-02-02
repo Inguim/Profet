@@ -1,18 +1,5 @@
 import styled from 'styled-components';
 
-export const Container = styled.section`
-    width: 100%;
-    max-width: 100vw;
-    min-height: 100vh;
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-rendering: optimizelegibility;
-    -webkit-font-smoothing: antialiased !important;
-    font-size: 62.5%;
-`;
-
 export const Form = styled.form`
     background: #FFFFFF;
     display: flex;
@@ -23,42 +10,6 @@ export const Form = styled.form`
     max-width: 100%;
     padding: 10px;
     margin-bottom: 40px;
-
-    h1 {
-        font-size: 2rem;
-        font-weight: bold
-    }
-
-    input, label {
-        margin-bottom: 10px;
-    }
-
-    label {
-        font-size: 1.1rem;
-    }
-
-    input {
-        background: #EAEAEA;
-        border: 2px solid #A4A0A0;
-        border-radius: 8px;
-        height: 40px;
-        font-size: 1rem;
-    }
-
-    @media(max-width: 768px) {
-        h1 {
-            font-size: 1.5rem;
-        }
-
-        label {
-            font-size: 1rem;
-        }
-
-        input {
-            height: 30px;
-            font-size: 0.9rem;
-        }
-    }
 `;
 
 export const Lista = styled.div`
@@ -72,11 +23,6 @@ export const Lista = styled.div`
     padding: 10px;
     font-size: 1.1rem;
 
-    h1 {
-        font-size: 2rem;
-        font-weight: bold
-    }
-
     div {
         margin-bottom: 5px;
 
@@ -88,29 +34,12 @@ export const Lista = styled.div`
         div {
             margin-bottom: 0;
             float: right;
-
-            button {
-                display: inline-block;
-                background: transparent;
-                border: none;
-                color: #086BAB;
-                transition: filter 0.2s;
-
-                :hover {
-                    filter: brightness(90%);
-                    text-decoration: underline;
-                }
-            }
         }
     }
 
     @media(max-width: 768px) {
         border-bottom: 1px solid black;
-        font-size: 0.8rem;
-
-        h1 {
-            font-size: 1.5rem;
-        }
+        font-size: 0.9rem;
 
         div {
             border-bottom: 1px solid black;
@@ -124,33 +53,9 @@ export const Lista = styled.div`
             div {
                 float: left;
                 border-bottom: none;
-
-                button {
-                    margin-right: 5px;
-                    font-size: 0.75rem;
-                    padding: 0;
-                }
             }
         }
     }
 `;
 
-export const Button = styled.button`
-    max-width: 127px;
-    border: 0;
-    background: #59C15D;
-    color: #fff;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    padding: 5px;
-    transition: filter 0.2s;
 
-    :hover {
-        filter: brightness(90%);
-    }
-
-    @media(max-width: 768px) {
-        font-size: 1.1rem;
-    }
-`;

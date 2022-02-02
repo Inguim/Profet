@@ -3,7 +3,10 @@ import { toast } from "react-toastify";
 import ContainerModal from "../../../components/ContainerModal/index.jsx";
 import VisualizarProjeto from "../../../components/VisualizarProjeto/index.jsx";
 import { apiProjetos } from "../../../services/data/index.js";
-import { Container, Lista } from "./styles.js";
+import { ButtonLink } from "../../../styles/Buttons/index.js";
+import { Container } from "../../../styles/Container/index.js";
+import { Title } from "../../../styles/Texts/index.js";
+import { Lista } from "./styles.js";
 
 const Projetos = () => {
   const [projetos, setProjetos] = useState([]);
@@ -85,7 +88,7 @@ const Projetos = () => {
         <VisualizarProjeto projetoId={idProject} />
       </ContainerModal>
       <Lista>
-        <h1>Projetos:</h1>
+        <Title>Projetos:</Title>
         {projetos.length > 0 ? (
           <>
             {projetos.map((projeto) => (
@@ -124,11 +127,11 @@ const Projetos = () => {
             <p>Estado atual: {projeto.estado}</p>
             <p>{projeto.resumo}</p>
             <div style={{ justifyContent: "space-between", width: "100%" }}>
-              <button type="button" onClick={() => handleOpenModal(projeto.id)}>Visualizar</button>
+              <ButtonLink type="button" onClick={() => handleOpenModal(projeto.id)}>Visualizar</ButtonLink>
               <div>
-                <button type="button" onClick={() => handleUpdateStatus(projeto.id, 'aprovado')}>Aprovar</button>
-                <button type="button" onClick={() => confirm('Deseja realmente recusar e excluir este projeto?') && handleDeleteProjeto(projeto.id)}>Recusar</button>
-                <button type="button" onClick={() => handleUpdateStatus(projeto.id, 'alteracao')}>Solicitar Alteração</button>
+                <ButtonLink type="button" onClick={() => handleUpdateStatus(projeto.id, 'aprovado')}>Aprovar</ButtonLink>
+                <ButtonLink type="button" onClick={() => confirm('Deseja realmente recusar e excluir este projeto?') && handleDeleteProjeto(projeto.id)}>Recusar</ButtonLink>
+                <ButtonLink type="button" onClick={() => handleUpdateStatus(projeto.id, 'alteracao')}>Solicitar Alteração</ButtonLink>
               </div>
             </div>
           </div>

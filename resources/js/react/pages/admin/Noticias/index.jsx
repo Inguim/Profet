@@ -1,12 +1,17 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { Container, Form, Button, Lista } from "./styles.js";
+import { Form, Lista } from "./styles.js";
 
 import { apiNoticias } from '../../../services/data';
 import { toast } from "react-toastify";
+import { Container } from "../../../styles/Container/index.js";
+import { Button, ButtonLink } from "../../../styles/Buttons/index.js";
+import { Label, Title } from "../../../styles/Texts/index.js";
+import { Input } from "../../../styles/Inputs/index.js";
+import { ErrorMessage } from "../../../styles/Messages/index.js";
 
 const Noticias = () => {
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -104,35 +109,45 @@ const Noticias = () => {
   return (
     <Container>
       <Form method="POST" onSubmit={handleSubmit(onSubmit)}>
-        <h1>Inserir notícias:</h1>
-        <input
+        <Title>Inserir notícias:</Title>
+        <Input
           type="hidden"
           {...register("id", { value: 0, required: { value: true, message: "" } })}
         />
-        <label htmlFor="nome">Titulo:</label>
-        <input
+        <Label htmlFor="nome" hasError={errors.nome}>Titulo:</Label>
+        <Input
           id="nome"
+          hasError={errors.nome}
           {...register("nome", {
             required: {
               value: true,
               message: "Informe um nome para a notícia!",
             },
           })}
+          placeholder=" "
         />
-        <label htmlFor="link">Link da notícia:</label>
-        <input
+        {errors.nome && (
+          <ErrorMessage color={"--red"}>{errors.nome.message}</ErrorMessage>
+        )}
+        <Label htmlFor="link" hasError={errors.link}>Link da notícia:</Label>
+        <Input
           id="link"
+          hasError={errors.link}
           {...register("link", {
             required: {
               value: true,
               message: "Informe um link para a notícia!",
             },
           })}
+          placeholder=" "
         />
-        <Button type="submit">Enviar</Button>
+        {errors.link && (
+          <ErrorMessage color={"--red"}>{errors.link.message}</ErrorMessage>
+        )}
+        <Button bgColor="--dark-green" type="submit">Enviar</Button>
       </Form>
       <Lista>
-        <h1>Notícias:</h1>
+        <Title>Notícias:</Title>
         {isLoading ? (
           <span>Buscando...</span>
         ) : (
@@ -141,18 +156,18 @@ const Noticias = () => {
               <div key={item.id}>
                 <p>{item.nome}</p>
                 <div>
-                  <button
+                  <ButtonLink
                     type="button"
                     onClick={() => handleUpdateNoticia(item)}
                   >
                     Editar
-                  </button>
-                  <button
+                  </ButtonLink>
+                  <ButtonLink
                     type="button"
                     onClick={() => handleDeleteNoticia(item.id)}
                   >
                     Remover
-                  </button>
+                  </ButtonLink>
                 </div>
               </div>
             ))}

@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Container, ListaAluno, ListaProfessor } from "./styles.js";
+import { ListaAluno, ListaProfessor } from "./styles.js";
 
 import { apiUsuarios } from "../../../services/data";
 import { toast } from "react-toastify";
+import { Container } from "../../../styles/Container/index.js";
+import { ButtonLink } from "../../../styles/Buttons/index.js";
 
 const Membros = () => {
   const [professor, setProfessor] = useState([]);
@@ -116,18 +118,18 @@ const Membros = () => {
                     {item.email}
                   </p>
                   <div>
-                    <button
+                    <ButtonLink
                       type="button"
                       onClick={() => handleUpdateStatus(item.id)}
                     >
                       Aprovar
-                    </button>
-                    <button
+                    </ButtonLink>
+                    <ButtonLink
                       type="button"
                       onClick={() => handleDeleteUser(item.id)}
                     >
                       Remover
-                    </button>
+                    </ButtonLink>
                   </div>
                 </div>
                 <p style={{ color: "black", marginBottom: "0px" }}>
