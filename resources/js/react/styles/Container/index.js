@@ -12,3 +12,10 @@ export const Container = styled.section`
     -webkit-font-smoothing: antialiased !important;
     font-size: 62.5%;
 `;
+
+export const ContainerLoading = styled.div`
+  display: flex;
+  color: ${({ color }) => color ? `var(${color})` : `var(--blue)`};
+  align-items: ${({ align }) => align ? align : 'center'};
+  justify-content: ${({ justify }) => justify ? justify : 'center'};
+`;
