@@ -3,9 +3,7 @@ import {
   Form,
   Participantes,
   ProjetoDados,
-  CampoGrupo,
-  Button,
-  ErrorMessage,
+  CampoGrupo
 } from "./styles";
 
 import { IoMdClose } from "react-icons/io";
@@ -14,6 +12,10 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { apiFormProjetos } from "../../services/data";
 import { redirectTo } from "../../utils/redirectTo";
+import { Label, Title } from "../../styles/Texts";
+import { Input, Select } from "../../styles/Inputs";
+import { ErrorMessage } from "../../styles/Messages";
+import { Button, ButtonSvg } from "../../styles/Buttons";
 
 const FormProjeto = ({ participantes, deleteParticipante }) => {
   const {
@@ -24,11 +26,6 @@ const FormProjeto = ({ participantes, deleteParticipante }) => {
   const [estadosProj, setEstadoProj] = useState([]);
   const [users, setUsers] = useState([]);
   const [categoriaProj, setCategoriasProj] = useState([]);
-
-  const inputFormat = {
-    border: "2px solid red",
-    backgroundColor: "rgb(255, 204, 204)",
-  };
 
   const handleLoadForm = useCallback(async () => {
     await apiFormProjetos.index().then(response => {
@@ -68,31 +65,29 @@ const FormProjeto = ({ participantes, deleteParticipante }) => {
   return (
     <Form method="POST" onSubmit={handleSubmit(onSubmit)}>
       <Participantes>
-        <h1>Participantes:</h1>
+        <Title>Participantes:</Title>
         {users.map((item) => (
           <li key={item.membro.id}>
-            <button
+            <ButtonSvg
               type="button"
+              bgColor="--dark-red"
               onClick={() => deleteParticipante(item.membro.id)}
+              style={{ svg: { shadow: 'var(--dark-red)' }}}
             >
-              <IoMdClose color="#c15959" />
-            </button>
+              <IoMdClose />
+            </ButtonSvg>
             <div>
-              <p>
-                Nome: <span>{item.membro.name}</span>
-              </p>
-              <p>
-                Atuação: <span>{item.relacao}</span>
-              </p>
+              <p>Nome: <span>{item.membro.name}</span></p>
+              <p>Atuação: <span>{item.relacao}</span></p>
             </div>
           </li>
         ))}
       </Participantes>
       <ProjetoDados>
         <CampoGrupo>
-          <label>
+          <Label hasError={errors.nome}>
             Nome do projeto:
-            <input
+            <Input
               placeholder="Tamanho máximo de 100 caracteres"
               {...register("nome", {
                 required: {
@@ -104,18 +99,18 @@ const FormProjeto = ({ participantes, deleteParticipante }) => {
                   message: "Tamanho máximo de 100 caracteres!",
                 },
               })}
-              style={errors.nome && { ...inputFormat }}
+              hasError={errors.nome}
             />
-            {errors.nome && <ErrorMessage>{errors.nome.message}</ErrorMessage>}
-          </label>
+            {errors.nome && <ErrorMessage color="--red" color="--red">{errors.nome.message}</ErrorMessage>}
+          </Label>
         </CampoGrupo>
         <CampoGrupo>
-          <label htmlFor="atuacao_escritor">Sua atuação:</label>
-          <select
+          <Label htmlFor="atuacao_escritor" hasError={errors.atuacao_escritor}>Sua atuação:</Label>
+          <Select
             {...register('atuacao_escritor', {
               required: { value: true, message: "Escolha uma opção!" },
             })}
-            style={errors.atuacao_escritor && { ...inputFormat }}
+            hasError={errors.atuacao_escritor}
           >
             <option></option>
             <option value="orientador">Orientador</option>
@@ -123,18 +118,18 @@ const FormProjeto = ({ participantes, deleteParticipante }) => {
             <option value="coorientador">Coorientador</option>
             <option value="bolsista">Bolsista</option>
             <option value="voluntario">Voluntario</option>
-          </select>
+          </Select>
           {errors.atuacao_escritor && (
-            <ErrorMessage>{errors.atuacao_escritor.message}</ErrorMessage>
+            <ErrorMessage color="--red">{errors.atuacao_escritor.message}</ErrorMessage>
           )}
         </CampoGrupo>
         <CampoGrupo>
-          <label htmlFor="estado_id">Estado de desenvolvimento atual:</label>
-          <select
+          <Label htmlFor="estado_id" hasError={errors.estado_id}>Estado de desenvolvimento atual:</Label>
+          <Select
             {...register('estado_id', {
               required: { value: true, message: "Escolha uma opção!" },
             })}
-            style={errors.estado_id && { ...inputFormat }}
+            hasError={errors.estado_id}
           >
             <option></option>
             {estadosProj.map((item) => (
@@ -142,20 +137,20 @@ const FormProjeto = ({ participantes, deleteParticipante }) => {
                 {item.estado}
               </option>
             ))}
-          </select>
+          </Select>
           {errors.estado_id && (
-            <ErrorMessage>{errors.estado_id.message}</ErrorMessage>
+            <ErrorMessage color="--red">{errors.estado_id.message}</ErrorMessage>
           )}
         </CampoGrupo>
         <CampoGrupo>
-          <label htmlFor="categoria_id">
+          <Label htmlFor="categoria_id" hasError={errors.categoria_id}>
             Em qual categoria o projeto se enquadra:
-          </label>
-          <select
+          </Label>
+          <Select
             {...register('categoria_id', {
               required: { value: true, message: "Escolha uma opção!" },
              })}
-            style={errors.categoria_id && { ...inputFormat }}
+            hasError={errors.categoria_id}
           >
             <option></option>
             {categoriaProj.map((item) => (
@@ -163,101 +158,115 @@ const FormProjeto = ({ participantes, deleteParticipante }) => {
                 {item.nome}
               </option>
             ))}
-          </select>
+          </Select>
           {errors.categoria_id && (
-            <ErrorMessage>{errors.categoria_id.message}</ErrorMessage>
+            <ErrorMessage color="--red">{errors.categoria_id.message}</ErrorMessage>
           )}
         </CampoGrupo>
         <CampoGrupo>
-          <label>
+          <Label hasError={errors.resumo}>
             Resumo:
-            <textarea
+            <Input
+              as={'textarea'}
+              isTextArea
               placeholder="Faça um breve resumo sobre o projeto"
               {...register('resumo', {
                 required: { value: true, message: "Campo obrigatório!" }
               })}
-              style={errors.resumo && { ...inputFormat }}
+              hasError={errors.resumo}
             />
             {errors.resumo && (
-              <ErrorMessage>{errors.resumo.message}</ErrorMessage>
+              <ErrorMessage color="--red">{errors.resumo.message}</ErrorMessage>
             )}
-          </label>
+          </Label>
         </CampoGrupo>
         <CampoGrupo>
-          <label>
+          <Label hasError={errors.introducao}>
             Introdução:
-            <textarea
+            <Input
+              as={'textarea'}
+              isTextArea
               {...register('introducao', {
                 required: { value: true, message: "Campo obrigatório!" }
               })}
-              style={errors.introducao && { ...inputFormat }}
+              hasError={errors.introducao}
+              placeholder="Introduza os ideias por tras do projeto"
             />
             {errors.introducao && (
-              <ErrorMessage>{errors.introducao.message}</ErrorMessage>
+              <ErrorMessage color="--red">{errors.introducao.message}</ErrorMessage>
             )}
-          </label>
+          </Label>
         </CampoGrupo>
         <CampoGrupo>
-          <label>
+          <Label hasError={errors.objetivo}>
             Objetivos:
-            <textarea
+            <Input
+              as={'textarea'}
+              isTextArea
               placeholder="Quais os objetivos o projeto pretende alcançar?"
               {...register('objetivo', {
                 required: { value: true, message: "Campo obrigatório!" }
               })}
-              style={errors.objetivo && { ...inputFormat }}
+              hasError={errors.objetivo}
             />
+          </Label>
             {errors.objetivo && (
-              <ErrorMessage>{errors.objetivo.message}</ErrorMessage>
+              <ErrorMessage color="--red">{errors.objetivo.message}</ErrorMessage>
             )}
-          </label>
         </CampoGrupo>
         <CampoGrupo>
-          <label>
+          <Label hasError={errors.metodologia}>
             Metodologia:
-            <textarea
+            <Input
+              as={'textarea'}
+              isTextArea
               placeholder="Como o projeto está sendo desenvolvido?"
               {...register('metodologia', {
                 required: { value: true, message: "Campo obrigatório!" }
               })}
-              style={errors.metodologia && { ...inputFormat }}
+              hasError={errors.metodologia}
             />
             {errors.metodologia && (
-              <ErrorMessage>{errors.metodologia.message}</ErrorMessage>
+              <ErrorMessage color="--red">{errors.metodologia.message}</ErrorMessage>
             )}
-          </label>
+          </Label>
         </CampoGrupo>
         <CampoGrupo>
-          <label>
+          <Label hasError={errors.result_disc}>
             Resultados e discussões:
-            <textarea
+            <Input
+              as={'textarea'}
+              isTextArea
               placeholder="Obteve algum resultado? Fale sobre, caso contrário explique o que ainda busca fazer"
               {...register('result_disc', {
                 required: { value: true, message: "Campo obrigatório!" }
               })}
-              style={errors.result_disc && { ...inputFormat }}
+              hasError={errors.result_disc}
             />
             {errors.result_disc && (
-              <ErrorMessage>{errors.result_disc.message}</ErrorMessage>
+              <ErrorMessage color="--red">{errors.result_disc.message}</ErrorMessage>
             )}
-          </label>
+          </Label>
         </CampoGrupo>
         <CampoGrupo>
-          <label>
+          <Label hasError={errors.conclusao}>
             Conclusão:
-            <textarea
+            <Input
+              as={'textarea'}
+              isTextArea
               {...register("conclusao", {
                 required: { value: true, message: "Campo obrigatório!" }
               })}
-              style={errors.conclusao && { ...inputFormat }}
+              hasError={errors.conclusao}
+              placeholder=" "
             />
             {errors.conclusao && (
-              <ErrorMessage>{errors.conclusao.message}</ErrorMessage>
+              <ErrorMessage color="--red">{errors.conclusao.message}</ErrorMessage>
             )}
-          </label>
+          </Label>
         </CampoGrupo>
       </ProjetoDados>
-      <Button type="submit">Cadastrar</Button>
+      <Button width={"100%"} bgColor="--dark-green" type="submit">Cadastrar</Button>
     </Form>
   );
 };

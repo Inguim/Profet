@@ -1,21 +1,27 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { Container, Search, Button, Results } from "./styles.js";
+import { Search, Results } from "./styles.js";
 
 import { SiVerizon } from "react-icons/si";
-import { BiSearchAlt } from "react-icons/bi";
 
 import { toast } from "react-toastify";
 import FormProjeto from "../../../components/FormProjeto";
 import { apiMembros } from "../../../services/data";
+import { Container } from "../../../styles/Container/index.js";
+import { Label, Title } from "../../../styles/Texts/index.js";
+import { InputSearch, Select } from "../../../styles/Inputs/index.js";
+import { InfoMessage } from "../../../styles/Messages/index.js";
+import { ButtonSvg } from "../../../styles/Buttons/index.js";
 
 const NovoProjeto = () => {
   const [search, setSearch] = useState("");
   const [resultados, setResultados] = useState([]);
   const [participantes, setParticipantes] = useState([]);
   const [tipo, setTipo] = useState("aluno");
+  const [isFirst, setIsFirst] = useState(true);
 
   const searchMembro = useCallback(
     async (search, tipo) => {
+      isFirst && setIsFirst(false);
       await apiMembros.search(search, tipo).then((response) => {
         if (response.data.data.length === 1 && resultados.length === 0) {
           setResultados([response.data.data[0]]);
@@ -28,29 +34,37 @@ const NovoProjeto = () => {
     [resultados, setResultados]
   );
 
-  const saveMembro = useCallback((membro, select) => {
-    var aux = document.getElementById(select).value;
+  const saveMembro = useCallback(
+    (membro, select) => {
+      var aux = document.getElementById(select).value;
 
-    if (aux) {
-      if (participantes.length === 0) {
-        setParticipantes([...participantes, { membro, relacao: aux }]);
-        toast.info(`Membro e sua relaçâo selecionadas para o projeto!`);
-      } else {
-        if (!participantes.find((element) => element.membro.id === membro.id)) {
+      if (aux) {
+        if (participantes.length === 0) {
           setParticipantes([...participantes, { membro, relacao: aux }]);
           toast.info(`Membro e sua relaçâo selecionadas para o projeto!`);
         } else {
-          toast.warning("Você ja selecionou esse membro");
+          if (
+            !participantes.find((element) => element.membro.id === membro.id)
+          ) {
+            setParticipantes([...participantes, { membro, relacao: aux }]);
+            toast.info(`Membro e sua relaçâo selecionadas para o projeto!`);
+          } else {
+            toast.warning("Você ja selecionou esse membro");
+          }
         }
+      } else {
+        toast.warning("Selecione uma atuação para este membro");
       }
-    } else {
-      toast.warning("Selecione uma atuação para este membro");
-    }
-  }, [participantes, setParticipantes]);
+    },
+    [participantes, setParticipantes]
+  );
 
-  const deleteParticipante = useCallback((id) => {
-    setParticipantes(participantes.filter((item) => item.membro.id !== id));
-  }, [participantes, setParticipantes]);
+  const deleteParticipante = useCallback(
+    (id) => {
+      setParticipantes(participantes.filter((item) => item.membro.id !== id));
+    },
+    [participantes, setParticipantes]
+  );
 
   useEffect(() => {
     setResultados([]);
@@ -65,57 +79,59 @@ const NovoProjeto = () => {
   return (
     <Container>
       <Search>
-        <h1>Pesquisar participantes:</h1>
+        <Title>Pesquisar participantes:</Title>
         <section>
-          <label htmlFor="tipo">Pesquisar por:</label>
-          <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
+          <Label htmlFor="tipo">Pesquisar por:</Label>
+          <Select value={tipo} onChange={(e) => setTipo(e.target.value)}>
             <option value="aluno">Aluno</option>
             <option value="professor">Professor</option>
-          </select>
+          </Select>
         </section>
-        <label htmlFor="nome">Nome:</label>
+        <Label htmlFor="nome">Nome:</Label>
         <div>
-          <input
+          <InputSearch
             type="search"
+            width={"50%"}
             value={search}
+            placeholder="🔍 Digite o nome..."
             onChange={(e) => setSearch(e.target.value)}
           />
-          <Button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => searchMembro(search, tipo)}
-          >
-            <BiSearchAlt color="white" />
-          </Button>
         </div>
         <Results>
-          <h1>Usuários encontrados:</h1>
-          {resultados.map((item) => (
-            <li key={item.id}>
-              <button
-                type="button"
-                onClick={() => saveMembro(item, `${item.name + item.id}`)}
-              >
-                <SiVerizon color="#59C15D" />
-              </button>
-              {item.name}
+          <Title>Usuários encontrados:</Title>
+          {resultados.length > 0 ? (
+            <>
+              {resultados.map((item) => (
+                <li key={item.id}>
+                  <ButtonSvg
+                    type="button"
+                    bgColor="--green"
+                    onClick={() => saveMembro(item, `${item.name + item.id}`)}
+                  >
+                    <SiVerizon color="#59C15D" />
+                  </ButtonSvg>
+                  {item.name}
 
-              {tipo === "professor" ? (
-                <select id={`${item.name + item.id}`}>
-                  <option value="">Selecionar atuação</option>
-                  <option value="orientador">Orientador</option>
-                  <option value="coordenador">Coordenador</option>
-                  <option value="coorientador">Coorientador</option>
-                </select>
-              ) : (
-                <select id={`${item.name + item.id}`}>
-                  <option value="">Selecionar atuação</option>
-                  <option value="bolsista">Bolsista</option>
-                  <option value="voluntario">Voluntário</option>
-                </select>
-              )}
-            </li>
-          ))}
+                  {tipo === "professor" ? (
+                    <Select id={`${item.name + item.id}`}>
+                      <option value="">Selecionar atuação</option>
+                      <option value="orientador">Orientador</option>
+                      <option value="coordenador">Coordenador</option>
+                      <option value="coorientador">Coorientador</option>
+                    </Select>
+                  ) : (
+                    <Select id={`${item.name + item.id}`}>
+                      <option value="">Selecionar atuação</option>
+                      <option value="bolsista">Bolsista</option>
+                      <option value="voluntario">Voluntário</option>
+                    </Select>
+                  )}
+                </li>
+              ))}
+            </>
+          ) : (
+            <>{!isFirst && <InfoMessage color={'--blue'}>Nenhum resultado encontrado</InfoMessage>}</>
+          )}
         </Results>
       </Search>
       <FormProjeto

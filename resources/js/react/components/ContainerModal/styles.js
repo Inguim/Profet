@@ -29,6 +29,9 @@ export const ModalContent = styled.div`
   border: 1px solid silver;
   border-radius: 5px;
   box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
 `;
 
 export const ButtonClose = styled.button`
