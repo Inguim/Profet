@@ -8,6 +8,7 @@ export default function LoadingCallback({
   wh,
   align,
   justify,
+  column,
   children
 }) {
 
@@ -16,11 +17,12 @@ export default function LoadingCallback({
       color={cl}
       justify={justify}
       align={align}
+      column={column}
     >
-      {children}
+      {children}{' '}
       <Loading
         {...{
-          type: tp ? tp : 'bubbles',
+          type: tp ? tp : 'balls',
           color: cl ? `var(${cl})` : `var(--blue)`,
           height: hg ? hg : '100px',
           width: wh ? wh : '100px'

@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { apiProjetos } from "../../services/data/index.js";
 import { formatDateTime } from "../../utils/format/index.js";
+import LoadingCallback from "../LoadingCallback/index.jsx";
 import { Container, Projeto, Section } from "./styles.js";
 
 const VisualizarProjeto = ({ projetoId }) => {
@@ -51,7 +52,7 @@ const VisualizarProjeto = ({ projetoId }) => {
   return (
     <Container>
       {isLoading ? (
-        "...."
+        <LoadingCallback tp={'spinningBubbles'} />
       ) : (
         <Projeto>
           <header>

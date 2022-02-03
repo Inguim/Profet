@@ -15,6 +15,7 @@ export const Container = styled.section`
 
 export const ContainerLoading = styled.div`
   display: flex;
+  flex-direction: ${({ column }) => column ? `column` : `row`};
   color: ${({ color }) => color ? `var(${color})` : `var(--blue)`};
   align-items: ${({ align }) => align ? align : 'center'};
   justify-content: ${({ justify }) => justify ? justify : 'center'};

@@ -9,6 +9,7 @@ import { Button, ButtonLink } from "../../../styles/Buttons/index.js";
 import { Label, Title } from "../../../styles/Texts/index.js";
 import { Input } from "../../../styles/Inputs/index.js";
 import { ErrorMessage } from "../../../styles/Messages/index.js";
+import LoadingCallback from "../../../components/LoadingCallback/index.jsx";
 
 const Noticias = () => {
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
@@ -22,15 +23,15 @@ const Noticias = () => {
   const loadNoticias = useCallback(async () => {
     setIsLoading(true);
     await apiNoticias
-      .index()
-      .then((response) => {
-        setData(response.data.data);
-        setIsLoading(false);
-      })
-      .catch(() => {
-        toast.error("Não foi possivel carregar as notícias!");
+    .index()
+    .then((response) => {
+      setData(response.data.data);
+      setIsLoading(false);
+    })
+    .catch(() => {
+      toast.error("Não foi possivel carregar as notícias!");
       });
-  }, [setData]);
+  }, [setData, setIsLoading]);
 
   const handleUpdateNoticia = useCallback(
     (item) => {
@@ -149,7 +150,9 @@ const Noticias = () => {
       <Lista>
         <Title>Notícias:</Title>
         {isLoading ? (
-          <span>Buscando...</span>
+          <LoadingCallback hg={'5%'} wh={'5%'} justify={'flex-start'}>
+            Buscando noticias
+          </LoadingCallback>
         ) : (
           <>
             {data.map((item) => (
