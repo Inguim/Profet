@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { ListaAluno, ListaProfessor } from "./styles.js";
+import { HeaderProfessor, ListaAluno, ListaProfessor } from "./styles.js";
 
 import { apiUsuarios } from "../../../services/data";
 import { toast } from "react-toastify";
 import { Container } from "../../../styles/Container/index.js";
 import { ButtonLink } from "../../../styles/Buttons/index.js";
 import LoadingCallback from "../../../components/LoadingCallback/index.jsx";
+import { Title } from "../../../styles/Texts/index.js";
 
 const Membros = () => {
   const [professor, setProfessor] = useState([]);
@@ -79,7 +80,7 @@ const Membros = () => {
   return (
     <Container>
       <ListaAluno>
-        <h1>Aluno:</h1>
+        <Title>Aluno:</Title>
         {isLoading ? (
           <LoadingCallback hg={'5%'} wh={'5%'} justify={'flex-start'}>Buscando alunos</LoadingCallback>
         ) : (
@@ -87,23 +88,17 @@ const Membros = () => {
             {aluno.length > 0 ? (
               <>
                 {aluno.map((item) => (
-                  <div key={item.id}>
+                  <div key={item.id+item.name}>
                     <p>{item.name}</p>
                     <p>{item.curso}</p>
                     <p>{item.serie}° Série</p>
                     <div>
-                      <button
-                        type="button"
-                        onClick={() => handleUpdateStatus(item.id)}
-                      >
+                      <ButtonLink type="button" onClick={() => handleUpdateStatus(item.id)}>
                         Aprovar
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => handleDeleteUser(item.id)}
-                      >
+                      </ButtonLink>
+                      <ButtonLink type="button" onClick={() => handleDeleteUser(item.id)}>
                         Remover
-                      </button>
+                      </ButtonLink>
                     </div>
                   </div>
                 ))}
@@ -115,7 +110,7 @@ const Membros = () => {
         )}
       </ListaAluno>
       <ListaProfessor>
-        <h1>Professor:</h1>
+        <Title>Professor:</Title>
         {isLoading ? (
           <LoadingCallback hg={'5%'} wh={'5%'} justify={'flex-start'}>Buscando professores</LoadingCallback>
         ) : (
@@ -123,38 +118,25 @@ const Membros = () => {
             {professor.length > 0 ? (
               <>
                 {professor.map((item) => (
-                  <section key={item.id}>
-                    <div
-                      style={{ marginBottom: "5px" }}
-                      className="prof-header"
-                    >
+                  <section key={item.id+item.name}>
+                    <HeaderProfessor>
                       <p>
-                        <span style={{ color: "black", fontWeight: "bold" }}>
-                          {item.name}:
-                        </span>{" "}
+                        <span>{item.name}:</span>{" "}
                         {item.email}
                       </p>
                       <div>
-                        <ButtonLink
-                          type="button"
-                          onClick={() => handleUpdateStatus(item.id)}
-                        >
+                        <ButtonLink type="button" onClick={() => handleUpdateStatus(item.id)}>
                           Aprovar
                         </ButtonLink>
-                        <ButtonLink
-                          type="button"
-                          onClick={() => handleDeleteUser(item.id)}
-                        >
+                        <ButtonLink type="button" onClick={() => handleDeleteUser(item.id)}>
                           Remover
                         </ButtonLink>
                       </div>
-                    </div>
-                    <p style={{ color: "black", marginBottom: "0px" }}>
-                      Categorias:
-                    </p>
-                    <div className="categorias">
-                      {item.professor.categorias.map((cat) => (
-                        <p key={cat.categoria_id}>{cat.nome}</p>
+                    </HeaderProfessor>
+                    <p>Categorias:</p>
+                    <div>
+                      {item.professor.categorias.map((cat, index) => (
+                        <p key={cat.categoria_id+cat.nome+index}>{cat.nome}</p>
                       ))}
                     </div>
                   </section>

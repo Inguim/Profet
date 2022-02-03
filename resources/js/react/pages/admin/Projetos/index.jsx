@@ -126,7 +126,7 @@ const Projetos = () => {
               <>
                 {projetos.map((projeto) => (
                   <div key={projeto.id}>
-                    <p style={{ fontWeight: "bold" }}>{projeto.nome}</p>
+                    <p>{projeto.nome}</p>
                     <p>
                       Participantes:{" "}
                       {projeto.participantes.length > 0 ? (
@@ -164,40 +164,18 @@ const Projetos = () => {
                     <p>Categoria: {projeto.categoria}</p>
                     <p>Estado atual: {projeto.estado}</p>
                     <p>{projeto.resumo}</p>
-                    <div
-                      style={{ justifyContent: "space-between", width: "100%" }}
-                    >
-                      <ButtonLink
-                        type="button"
-                        onClick={() => handleOpenModal(projeto.id)}
-                      >
+                    <div>
+                      <ButtonLink type="button" onClick={() => handleOpenModal(projeto.id)}>
                         Visualizar
                       </ButtonLink>
                       <div>
-                        <ButtonLink
-                          type="button"
-                          onClick={() =>
-                            handleUpdateStatus(projeto.id, "aprovado")
-                          }
-                        >
+                        <ButtonLink type="button" onClick={() => handleUpdateStatus(projeto.id, "aprovado")}>
                           Aprovar
                         </ButtonLink>
-                        <ButtonLink
-                          type="button"
-                          onClick={() =>
-                            confirm(
-                              "Deseja realmente recusar e excluir este projeto?"
-                            ) && handleDeleteProjeto(projeto.id)
-                          }
-                        >
+                        <ButtonLink type="button" onClick={() => confirm("Deseja realmente recusar e excluir este projeto?") && handleDeleteProjeto(projeto.id)}>
                           Recusar
                         </ButtonLink>
-                        <ButtonLink
-                          type="button"
-                          onClick={() =>
-                            handleUpdateStatus(projeto.id, "alteracao")
-                          }
-                        >
+                        <ButtonLink type="button" onClick={() => handleUpdateStatus(projeto.id, "alteracao")}>
                           Solicitar Alteração
                         </ButtonLink>
                       </div>

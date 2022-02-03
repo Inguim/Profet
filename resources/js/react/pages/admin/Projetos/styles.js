@@ -16,10 +16,23 @@ export const Lista = styled.div`
   div {
     margin-bottom: 10px;
 
+    p:first-child {
+      font-weight: bold;
+    }
+
     p {
       color: #424242;
       display: block;
       margin: 0;
+    }
+
+    p + div {
+      justify-content: space-between;
+      width: 100%;
+
+      ${ButtonLink}:first-child {
+        margin-left: -5px;
+      }
     }
 
     div {
@@ -41,11 +54,19 @@ export const Lista = styled.div`
         margin-bottom: 0;
       }
 
+      p + div ${ButtonLink}:first-child {
+        margin-left: 0;
+      }
+
       div {
         border-bottom: none;
 
         ${ButtonLink} {
           margin-right: 10px;
+        }
+
+        ${ButtonLink}:last-child {
+          margin-right: 0;
         }
       }
     }
