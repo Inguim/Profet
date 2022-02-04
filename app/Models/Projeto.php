@@ -38,6 +38,6 @@ class Projeto extends Model
     }
 
     public function solicitacaos() {
-      return $this->hasMany('App\Models\Solicitacao');
+      return $this->hasMany('App\Models\Solicitacao', 'projeto_id');
     }
 }

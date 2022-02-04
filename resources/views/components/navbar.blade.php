@@ -86,18 +86,31 @@
         @endif
           <i class="fas fa-bell"></i>
           @if($resources->notificacoes()->count() > 0)
-          <span class="badge badge-danger ml-2">{{ $resources->notificacoes()->count() }}</span>
+          <span class="badge badge-danger">{{ $resources->notificacoes()->count() }}</span>
           @endif
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-secondary noti-effect-overflow" aria-labelledby="navbarDropdownMenuLink-5">
           <!-- <h4 class="dropdown-header shadow-sm text-center mb-1">Notificações</h4>-->
-          <h6 class="dropdown-header text-center">Notificações</h6>
+          <h6 class="dropdown-header text-center">{{ __('Notificações') }}</h6>
           <!-- <h6 class="dropdown-header">Solicitações</h6> -->
           @if($resources->notificacoes()->count() > 0)
             @foreach($resources->notificacoes() as $item)
-            <a class="dropdown-item shadow-sm rounded tooltip-noti" href="#">
+            <a class="dropdown-item shadow-sm rounded tooltip-noti" href="{{ route('solicitacao.show', $item->id) }}">
               <div class="d-flex w-100 justify-content-between">
-                <small class="mr-3 font-weight-bold">{{ $item->status === "aguardando" ? __('Aguardando alteração') : ucwords($item->status) }}</small>
+                @switch($item->status)
+                @case('recusado')
+                <span class="badge mr-3 badge-danger text-capitalize pt-1" style="max-height: 20px;">{{ $item->status }}</span>
+                @break
+                @case('aguardando')
+                <span class="badge mr-3 badge-warning text-capitalize pt-1" style="max-height: 20px;">{{ $item->status }}</span>
+                @break
+                @case('alterado')
+                <span class="badge mr-3 badge-info text-capitalize pt-1" style="max-height: 20px;">{{ $item->status }}</span>
+                @break
+                @case('aprovado')
+                <span class="badge mr-3 badge-success text-capitalize pt-1" style="max-height: 20px;">{{ $item->status }}</span>
+                @break
+                @endswitch
                 <small class="ml-auto font-italic">{{ $item->updated_at_ago }}</small>
               </div>
               <p class="mb-1 text-truncate font-weight-light" style="max-width: 150px;">{{ $item->titulo }}</p>

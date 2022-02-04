@@ -9,6 +9,7 @@ use App\Models\Menu;
 use App\Models\Noticia;
 use App\Models\Serie;
 use App\Models\Solicitacao;
+use App\Models\UsuarioProj;
 use Illuminate\Support\Facades\Auth;
 
 class ResourcesService
@@ -41,8 +42,24 @@ class ResourcesService
     }
 
     public function notificacoes() {
-      $notificacoes = Solicitacao::latest()->where('user_id', Auth::id())->get();
+      $projetos = UsuarioProj::where('user_id', Auth::id())->with(['projeto.solicitacaos'])->get();
 
+      $list = [];
+
+      foreach ($projetos as $item) {
+        $aux = $item->projeto->solicitacaos;
+        $list = [...$list, $aux];
+      }
+      $notificacoes = [];
+
+      foreach ($list as $item) {
+        foreach ($item as $solicitacao) {
+          if(! $solicitacao->visto)
+            $notificacoes = [...$notificacoes, $solicitacao];
+        }
+      }
+
+      $notificacoes = collect($notificacoes)->sortByDesc('updated_at');
       foreach ($notificacoes as $item) {
         $item->updated_at_ago = $this->daysAgo($item->updated_at);
       }

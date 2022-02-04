@@ -18,7 +18,7 @@ class AdminVerify
     {
 
         if(! auth()->user()->admin) {
-            return abort(403, 'Você não pode acessar essa área');
+            return abort(404);
         }
 
         return $next($request);

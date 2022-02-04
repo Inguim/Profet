@@ -18,4 +18,8 @@ class UsuarioProj extends Model
     public function user() {
         return $this->belongsTo('App\Models\User', 'user_id');
     }
+
+    public function projeto() {
+      return $this->belongsTo('App\Models\Projeto', 'projeto_id');
+  }
 }
