@@ -11,6 +11,18 @@
    background-color: #086BAB;
 
 }
+
+@media(max-width: 768px){
+  .col-s-1 {
+    display: none;
+  }
+
+  .col-s-2 {
+    width: 100% !important;
+    max-width: auto !important;
+    padding-right: none !important;
+  }
+}
 </style>
 <head>
     <meta charset="utf-8">
@@ -31,6 +43,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -48,7 +61,7 @@
         @endauth
         @inject('resources','App\Services\ResourcesService')
         <div class="row" style="margin-right: 0;">
-            <article class="col-2" >
+            <article class="col-2 col-s-1" >
                 <div class="pt-2" id="noticias" style="margin-left: 5px">
                     <h4 class="text-center text-dark" style="margin-top:10px">Notícias</h4>
                     <div id="noticias">
