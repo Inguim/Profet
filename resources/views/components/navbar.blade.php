@@ -89,7 +89,7 @@
           <span class="badge badge-danger ml-2">{{ $resources->notificacoes()->count() }}</span>
           @endif
         </a>
-        <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-5">
+        <div class="dropdown-menu dropdown-menu-right dropdown-secondary noti-effect-overflow" aria-labelledby="navbarDropdownMenuLink-5">
           <!-- <h4 class="dropdown-header shadow-sm text-center mb-1">Notificações</h4>-->
           <h6 class="dropdown-header text-center">Notificações</h6>
           <!-- <h6 class="dropdown-header">Solicitações</h6> -->
@@ -101,11 +101,12 @@
                 <small class="ml-auto font-italic">{{ $item->updated_at_ago }}</small>
               </div>
               <p class="mb-1 text-truncate font-weight-light" style="max-width: 150px;">{{ $item->titulo }}</p>
-              @if(strlen($item->titulo) > 10)
+              <!-- @if(strlen($item->titulo) > 10)
               <small class="tooltiptext">{{ $item->titulo }}</small>
-              @endif
+              @endif -->
             </a>
             @endforeach
+
           @else
           <div class="d-flex w-100 justify-content-between">
             <small class="text-center">{{ __('Você não possui nenhuma notificação 😳') }}</small>

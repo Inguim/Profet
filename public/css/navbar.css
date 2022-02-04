@@ -48,3 +48,13 @@
 .tooltip-noti:hover .tooltiptext {
   visibility: visible;
 }
+
+
+.noti-effect-overflow {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.noti-effect-overflow::-webkit-scrollbar {
+  width: 0px;
+}
