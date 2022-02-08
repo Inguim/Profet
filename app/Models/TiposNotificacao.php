@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Solicitacao extends Model
+class TiposNotificacao extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    public function projeto() {
-      return $this->belongsTo('App\Models\Projeto');
+    public function notificacao() {
+      return $this->hasMany('App\Models\Notificacao');
     }
 }

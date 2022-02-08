@@ -17,10 +17,10 @@ class CreateSolicitacaosTable extends Migration
             $table->id();
             $table->string('titulo', 100);
             $table->text('descricao');
-            $table->boolean('visto')->default(false);
             $table->enum('status', ['aguardando', 'alterado', 'aprovado', 'recusado']);
+            $table->integer('deleted_id')->nullable();
 
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('creator_id')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('set null');
             $table->foreignId('projeto_id')->nullable()->constrained('projetos')->onUpdate('cascade')->onDelete('set null');
 
             $table->timestamps();
