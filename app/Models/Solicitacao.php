@@ -14,4 +14,8 @@ class Solicitacao extends Model
     public function projeto() {
       return $this->belongsTo('App\Models\Projeto');
     }
+
+    public function notificacaos() {
+      return $this->hasMany('App\Models\Notificacao');
+    }
 }

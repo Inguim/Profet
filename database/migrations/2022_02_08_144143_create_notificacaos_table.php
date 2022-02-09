@@ -18,6 +18,7 @@ class CreateNotificacaosTable extends Migration
             $table->boolean('visto')->default(false);
 
             $table->foreignId('tipo_id')->unsigned()->constrained('tipos_notificacaos')->onUpdate('cascade');
+            $table->foreignId('solicitacao_id')->unsigned()->constrained('solicitacaos')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->unsigned()->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

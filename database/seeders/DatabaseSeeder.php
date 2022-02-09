@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             EstadoSeeder::class,
             SerieSeeder::class,
             CursoSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            TiposNotificacaoSeeder::class
         ]);
     }
 }

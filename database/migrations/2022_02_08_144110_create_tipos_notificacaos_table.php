@@ -16,6 +16,8 @@ class CreateTiposNotificacaosTable extends Migration
         Schema::create('tipos_notificacaos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
+
+            $table->timestamps();
         });
     }
 

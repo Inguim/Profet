@@ -18,4 +18,8 @@ class Notificacao extends Model
     public function user() {
       return $this->belongsTo('App\Models\User');
     }
+
+    public function solicitacao() {
+      return $this->belongsTo('App\Models\Solicitacao');
+    }
 }
