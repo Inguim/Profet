@@ -13,9 +13,20 @@
     <ul class="navbar-nav mr-auto">
       @foreach($resources->menus() as $menu)
       @if($menu->categorias->count() == 0)
+      @if(strtolower($menu->nome) == 'ajuda')
+      @auth
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('novoprojeto') }}">{{ __('Novo Projeto') }}</a>
+      </li>
+      @endauth
       <li class="nav-item">
         <a class="nav-link" href="{{ url($menu->url) }}">{{ $menu->nome }}</a>
       </li>
+      @else
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url($menu->url) }}">{{ $menu->nome }}</a>
+      </li>
+      @endif
       @else
       <li class="nav-item">
         <div class="nav-item dropdown">
@@ -29,6 +40,7 @@
       </li>
       @endif
       @endforeach
+
     </ul>
 
     <!-- Right Side Of Navbar -->
@@ -56,9 +68,6 @@
       </li>
       @endif
       @else
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('novoprojeto') }}">{{ __('Novo Projeto') }}</a>
-      </li>
       <li class="nav-item dropdown">
         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
           {{ Auth::user()->name }}
