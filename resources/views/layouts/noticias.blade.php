@@ -70,7 +70,7 @@
                             <a class="card-link p-2" href="{{ $noticia->link }}">{{ $noticia->nome }}</a>
                         </div>
                     @empty
-                        <p class="text-muted text-center p-2">Sem notícias :(</p>
+                        <p class="text-muted text-center p-2">Sem notícias 🐒</p>
                     @endforelse
                 <div>
             </article>

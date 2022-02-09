@@ -40,6 +40,7 @@
   </div>
   <div class="container-fluid border-bottom border-dark centro">
     <h2 class="mb-2 text-center pt-1">Novos Projetos</h2>
+    @if($projetos->count() > 0 )
     @foreach($projetos as $projeto)
     <div class="d-flex flex-column border-bottom pt-4">
       <h5>{{$projeto->nome}}</h5>
@@ -68,6 +69,10 @@
       <a href="{{ route('visualizarProjeto', $projeto->id)}}" class="pb-1">Saiba mais</a>
     </div>
     @endforeach
+    @else
+    <p class="text-center mb-0">Ainda não há nenhum projeto na plataforma 🙈</p>
+    <p class="text-center">Seja o primeiro clickando <a href="{{ route('novoprojeto') }}">aqui</a> !!. Ou caso ainda não tenha se cadastrado na plataforma, cadastre-se por <a href="{{ route('register') }}">aqui</a></p>
+    @endif
   </div>
   <div class="container-fluid text-center centro" style="margin-bottom: 20px">
     <h2 class="mb-2 text-center pt-1">Comece já</h2>
