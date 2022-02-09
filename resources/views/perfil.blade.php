@@ -52,20 +52,13 @@
         width: 90%;
         padding: 5px 10px;
         font-weight: 600;
-        color: #000000;
         cursor: pointer;
         text-align: center;
         margin-left: 5px;
         width: auto;
         max-height: 2rem;
-        background-color: rgb(239, 239, 239);
-    }
 
-    .profile-edit-btn:hover {
-        background: #808080;
-        color: #ffffff;
     }
-
     .proile-rating {
         font-size: 12px;
         color: #818182;
@@ -146,7 +139,7 @@
                         <img src="{{ asset('perfilpadrao.png') }}" alt="" />
                         @auth
                         @if(Auth::user()->id === $user->id)
-                        <div class="file btn btn-lg btn-info">
+                        <div class="file d-none btn btn-lg btn-info">
                             Alterar foto de perfil
                             <input type="file" name="file" />
                         </div>
@@ -165,17 +158,17 @@
                         <div class="row ml-auto">
                             @auth
                             @if(Auth::user()->id === $user->id)
-                            <button type="button" class="profile-edit-btn" name="btnAddMore">Editar</button>
+                            <a type="button" class="profile-edit-btn" name="btnAddMore">{{ __('Editar') }}</a>
                             @if($user->admin)
-                            <a class="profile-edit-btn" href="{{ route('admin') }}">Administrativa</a>
+                            <a class="profile-edit-btn" href="{{ route('admin') }}">{{ __('Administrativa') }}</a>
                             @endif
-                            <button class="profile-edit-btn" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <a class="profile-edit-btn" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
                                 {{ __('Sair') }}
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
-                            </button>
+                            </a>
                             @endif
                             @endauth
                         </div>

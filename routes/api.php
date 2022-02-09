@@ -7,6 +7,7 @@ use App\Http\Controllers\API\FormProjetoController;
 use App\Http\Controllers\API\UserSearchController;
 use App\Http\Controllers\API\MembroController;
 use App\Http\Controllers\API\ProjetoController;
+use App\Http\Controllers\API\SolicitacaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::apiResource('noticias', NoticiaController::class)->only(['index','destroy','store', 'update']);
         Route::apiResource('membros', MembroController::class)->only(['index','destroy', 'update']);
         Route::apiResource('projeto', ProjetoController::class)->only(['index', 'show', 'destroy', 'update']);
+        Route::apiResource('solicitacao', SolicitacaoController::class);
     });
 
     Route::get('/search/{nome}/{tipo}', [UserSearchController::class, 'show']);

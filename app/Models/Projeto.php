@@ -36,4 +36,8 @@ class Projeto extends Model
     public function categoria() {
         return $this->belongsTo('App\Models\Categoria');
     }
+
+    public function solicitacaos() {
+      return $this->hasMany('App\Models\Solicitacao', 'projeto_id');
+    }
 }

@@ -1,0 +1,60 @@
+.bell-icon a {
+  transition: filter 0.2s;
+  z-index: +1;
+}
+
+.bell-icon a:hover {
+  filter: brightness(80%);
+  cursor: pointer;
+}
+
+.tooltip-noti {
+  position: relative;
+}
+
+.tooltip-noti:hover {
+  filter: brightness(100%) !important;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: auto;
+  min-height: 30px;
+  background-color: var(--blue);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 6px 4px 6px 4px;
+  top: 20%;
+  bottom: 20%;
+  right: 102%;
+
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 35%;
+  left: 100%;
+  transform: rotate(180deg);
+  margin-top: -5px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent var(--blue) transparent transparent;
+}
+
+.tooltip-noti:hover .tooltiptext {
+  visibility: visible;
+}
+
+
+.noti-effect-overflow {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.noti-effect-overflow::-webkit-scrollbar {
+  width: 0px;
+}

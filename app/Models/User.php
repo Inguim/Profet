@@ -58,4 +58,12 @@ class User extends Authenticatable
     public function professor() {
         return $this->hasOne('App\Models\Professor');
     }
+
+    public function notificacaos() {
+      return $this->hasMany('App\Models\Notificacao');
+    }
+
+    public function solicitacaos() {
+      return $this->hasMany('App\Models\Solicitacao', 'creator_id');
+    }
 }
