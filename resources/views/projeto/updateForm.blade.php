@@ -118,7 +118,7 @@
   </div>
 
 
-  <button type="submit" class="btn btn-primary">
+  <button type="submit" class="btn btn-success" style="background: #08ab11">
     Salvar
   </button>
   </div>

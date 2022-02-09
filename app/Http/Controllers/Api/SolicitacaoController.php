@@ -37,8 +37,8 @@ class SolicitacaoController extends Controller
       Solicitacao::create([
         'titulo' => $request->titulo,
         'descricao' => $request->descricao,
-        'user_id' => Auth::id(),
         'status' => 'aguardando',
+        'creator_id' => Auth::id(),
         'projeto_id' => $request->projeto_id
       ]);
 

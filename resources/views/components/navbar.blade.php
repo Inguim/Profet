@@ -79,55 +79,110 @@
         </div>
       </li>
       <li class="nav-item bell-icon dropdown" id="">
-        @if($resources->notificacoes()->count() > 0)
+        @if($resources->notificacoes()['novas']->count() > 0)
         <a style="color: #ffba01" class="nav-link" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        @else
-        <a style="color: rgba(255, 255, 255, 0.7)" class="nav-link" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        @endif
-          <i class="fas fa-bell"></i>
-          @if($resources->notificacoes()->count() > 0)
-          <span class="badge badge-danger">{{ $resources->notificacoes()->count() }}</span>
-          @endif
-        </a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-secondary noti-effect-overflow" aria-labelledby="navbarDropdownMenuLink-5">
-          <!-- <h4 class="dropdown-header shadow-sm text-center mb-1">Notificações</h4>-->
-          <h6 class="dropdown-header text-center">{{ __('Notificações') }}</h6>
-          <!-- <h6 class="dropdown-header">Solicitações</h6> -->
-          @if($resources->notificacoes()->count() > 0)
-            @foreach($resources->notificacoes() as $item)
-            <a class="dropdown-item shadow-sm rounded tooltip-noti" href="{{ route('solicitacao.show', $item->id) }}">
-              <div class="d-flex w-100 justify-content-between">
-                @switch($item->status)
-                @case('recusado')
-                <span class="badge mr-3 badge-danger text-capitalize pt-1" style="max-height: 20px;">{{ $item->status }}</span>
-                @break
-                @case('aguardando')
-                <span class="badge mr-3 badge-warning text-capitalize pt-1" style="max-height: 20px;">{{ $item->status }}</span>
-                @break
-                @case('alterado')
-                <span class="badge mr-3 badge-info text-capitalize pt-1" style="max-height: 20px;">{{ $item->status }}</span>
-                @break
-                @case('aprovado')
-                <span class="badge mr-3 badge-success text-capitalize pt-1" style="max-height: 20px;">{{ $item->status }}</span>
-                @break
-                @endswitch
-                <small class="ml-auto font-italic">{{ $item->updated_at_ago }}</small>
-              </div>
-              <p class="mb-1 text-truncate font-weight-light" style="max-width: 150px;">{{ $item->titulo }}</p>
-              <!-- @if(strlen($item->titulo) > 10)
+          @else
+          <a style="color: rgba(255, 255, 255, 0.7)" class="nav-link" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            @endif
+            <i class="fas fa-bell"></i>
+            @if($resources->notificacoes()['novas']->count() > 0)
+            <span class="badge badge-danger">{{ $resources->notificacoes()['novas']->count() }}</span>
+            @endif
+          </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-secondary noti-effect-overflow" aria-labelledby="navbarDropdownMenuLink-5">
+            <!-- <h4 class="dropdown-header shadow-sm text-center mb-1">Notificações</h4>-->
+            <h6 class="dropdown-header text-center">{{ __('Notificações') }}</h6>
+            <!-- <h6 class="dropdown-header">Solicitações</h6> -->
+            @if($resources->notificacoes()['novas']->count() < 0 && $resources->notificacoes()['vistas']->count() < 0) <div class="d-flex w-100 justify-content-between">
+                <small class="text-center">{{ __('Você não possui nenhuma notificação 😳') }}</small>
+          </div>
+          @else
+          <ul class="nav nav-tabs w-100 mb-2 justify-content-center" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link text-muted active" id="novas-tab" data-toggle="tab" href="#novas" role="tab" aria-controls="novas" aria-selected="true">Novas</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link text-muted" id="vistas-tab" data-toggle="tab" href="#vistas" role="tab" aria-controls="vistas" aria-selected="false">Vistas</a>
+            </li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane active" id="novas" role="tabpanel" aria-labelledby="novas-tab">
+              @if($resources->notificacoes()['novas']->count() > 0)
+              @foreach($resources->notificacoes()['novas'] as $item)
+              <a class="dropdown-item shadow-sm rounded tooltip-noti" href="{{ route('notificacao.show', $item->id) }}">
+                <p class="my-1 text-center text-truncate font-italic font-weight-light pb-0 border-bottom border-dark" style="max-width: 220px;">{{ $item->solicitacao->projeto->nome }}</p>
+                <p class="mb-1 text-truncate font-weight-light" style="max-width: 150px;">{{ $item->solicitacao->titulo }}</p>
+                <div class="d-flex w-100 justify-content-between">
+                  @switch($item->solicitacao->status)
+                  @case('recusado')
+                  <span class="badge mr-3 badge-danger text-capitalize pt-1" style="max-height: 20px;">{{ $item->solicitacao->status }}</span>
+                  @break
+                  @case('aguardando')
+                  <span class="badge mr-3 badge-warning text-capitalize pt-1" style="max-height: 20px;">{{ $item->solicitacao->status }}</span>
+                  @break
+                  @case('alterado')
+                  <span class="badge mr-3 badge-info text-capitalize pt-1" style="max-height: 20px;">{{ $item->solicitacao->status }}</span>
+                  @break
+                  @case('aprovado')
+                  <span class="badge mr-3 badge-success text-capitalize pt-1" style="max-height: 20px;">{{ $item->solicitacao->status }}</span>
+                  @break
+                  @endswitch
+                  <small class="ml-auto font-italic">{{ $item->updated_at_ago }}</small>
+                </div>
+                <!-- @if(strlen($item->titulo) > 10)
               <small class="tooltiptext">{{ $item->titulo }}</small>
               @endif -->
-            </a>
-            @endforeach
+              </a>
+              @endforeach
 
-          @else
-          <div class="d-flex w-100 justify-content-between">
-            <small class="text-center">{{ __('Você não possui nenhuma notificação 😳') }}</small>
+              @else
+              <div class="d-flex w-100 justify-content-between">
+                <small class="text-center">{{ __('Você não possui nenhuma nova notificação 😳') }}</small>
+              </div>
+              @endif
+            </div>
+            <div class="tab-pane" id="vistas" role="tabpanel" aria-labelledby="vistas-tab">
+              @if($resources->notificacoes()['vistas']->count() > 0)
+              @foreach($resources->notificacoes()['vistas'] as $item)
+              <a class="dropdown-item shadow-sm rounded tooltip-noti" href="{{ route('notificacao.show', $item->id) }}">
+                <p class="my-1 text-center text-truncate font-italic font-weight-light pb-0 border-bottom border-dark" style="max-width: 220px;">{{ $item->solicitacao->projeto->nome }}</p>
+                <p class="mb-1 text-truncate font-weight-light" style="max-width: 150px;">{{ $item->solicitacao->titulo }}</p>
+                <div class="d-flex w-100 justify-content-between">
+                  @switch($item->solicitacao->status)
+                  @case('recusado')
+                  <span class="badge mr-3 badge-danger text-capitalize pt-1" style="max-height: 20px;">{{ $item->solicitacao->status }}</span>
+                  @break
+                  @case('aguardando')
+                  <span class="badge mr-3 badge-warning text-capitalize pt-1" style="max-height: 20px;">{{ $item->solicitacao->status }}</span>
+                  @break
+                  @case('alterado')
+                  <span class="badge mr-3 badge-info text-capitalize pt-1" style="max-height: 20px;">{{ $item->solicitacao->status }}</span>
+                  @break
+                  @case('aprovado')
+                  <span class="badge mr-3 badge-success text-capitalize pt-1" style="max-height: 20px;">{{ $item->solicitacao->status }}</span>
+                  @break
+                  @endswitch
+                  <small class="ml-auto font-italic">{{ $item->updated_at_ago }}</small>
+                </div>
+                <!-- @if(strlen($item->titulo) > 10)
+              <small class="tooltiptext">{{ $item->titulo }}</small>
+              @endif -->
+              </a>
+              @endforeach
+              @else
+              <div class="d-flex w-100 justify-content-between">
+                <small class="text-center">{{ __('Você não possui nenhuma notificação 😳') }}</small>
+              </div>
+              @endif
+            </div>
           </div>
           @endif
-        </div>
-      </li>
-      @endguest
-    </ul>
+
+  </div>
+  </li>
+  @endguest
+  </ul>
   </div>
 </nav>

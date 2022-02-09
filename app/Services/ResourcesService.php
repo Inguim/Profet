@@ -7,10 +7,8 @@ use App\Models\Categoria;
 use App\Models\Curso;
 use App\Models\Menu;
 use App\Models\Noticia;
+use App\Models\Notificacao;
 use App\Models\Serie;
-use App\Models\Solicitacao;
-use App\Models\UsuarioProj;
-use Illuminate\Support\Facades\Auth;
 
 class ResourcesService
 {
@@ -42,26 +40,19 @@ class ResourcesService
     }
 
     public function notificacoes() {
-      $projetos = UsuarioProj::where('user_id', Auth::id())->with(['projeto.solicitacaos'])->get();
+      $notificacoes['novas'] = Notificacao::where('visto', false)->orderBy('created_at', 'DESC')->get();
+      $notificacoes['vistas'] = Notificacao::where('visto', true)->orderBy('updated_at', 'DESC')->get();
 
-      $list = [];
-
-      foreach ($projetos as $item) {
-        $aux = $item->projeto->solicitacaos;
-        $list = [...$list, $aux];
-      }
-      $notificacoes = [];
-
-      foreach ($list as $item) {
-        foreach ($item as $solicitacao) {
-          if(! $solicitacao->visto)
-            $notificacoes = [...$notificacoes, $solicitacao];
+      if($notificacoes['novas']->count() > 0) {
+        foreach ($notificacoes['novas'] as $item) {
+          $item->updated_at_ago = $this->daysAgo($item->created_at);
         }
       }
 
-      $notificacoes = collect($notificacoes)->sortByDesc('updated_at');
-      foreach ($notificacoes as $item) {
-        $item->updated_at_ago = $this->daysAgo($item->updated_at);
+      if($notificacoes['vistas']->count() > 0) {
+        foreach ($notificacoes['vistas'] as $item) {
+          $item->updated_at_ago = $this->daysAgo($item->updated_at);
+        }
       }
       return $notificacoes;
     }

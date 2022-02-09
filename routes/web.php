@@ -6,9 +6,9 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ProjetoController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NotificacaoController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ProjetoSearch;
-use App\Http\Controllers\SolicitacaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +25,6 @@ Route::get('/', [HomeController::class, 'index']);
 
 Auth::routes();
 
-
-
 Route::get('/ajuda', function () {
     return view('ajuda');
 })->name('ajuda');
@@ -38,7 +36,7 @@ Route::get('/message', function () {
 
 Route::group(['middleware' => 'auth:web'], function () {
     Route::resource('usuario', PerfilController::class);
-    Route::resource('solicitacao', SolicitacaoController::class)->only(['show']);
+    Route::resource('notificacao', NotificacaoController::class)->only(['show']);
 
     Route::get('/administrativa/{path?}', [AdminController::class, 'index'])
         ->where('path', '.*')

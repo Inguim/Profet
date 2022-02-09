@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notificacao;
 use App\Models\Projeto;
 use App\Models\Solicitacao;
 use App\Models\UsuarioProj;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ProjetoController extends Controller
@@ -78,7 +80,14 @@ class ProjetoController extends Controller
         $userId = auth()->user()->id;
 
         if (isset($request->alteracao)) {
-          Solicitacao::where('id', $request->alteracao)->where('projeto_id', $projeto->id)->first()->update(['status' => 'alterado']);
+          $solicitacao = Solicitacao::where('id', $request->alteracao)->where('projeto_id', $projeto->id)->first();
+          $solicitacao->status = 'alterado';
+          $solicitacao->save();
+          Notificacao::create([
+            'tipo_id' => 1,
+            'user_id' => Auth::id(),
+            'solicitacao_id' => $solicitacao->id
+          ]);
         }
         DB::commit();
         return redirect("usuario/{$userId}")->with('success', "Projeto: {$projeto->nome} atualizado!");
