@@ -18,7 +18,7 @@ export const Input = styled.input`
     `:not(:placeholder-shown) {
       border: none;
       border-radius: 0;
-      border-bottom: 3px solid var(--green)};
+      border-bottom: 3px solid var(--dark-green)};
     }`
   }
 

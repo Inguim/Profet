@@ -40,14 +40,10 @@ const NovoProjeto = () => {
 
       if (aux) {
         if (participantes.length === 0) {
-          setParticipantes([...participantes, { membro, relacao: aux }]);
-          toast.info(`Membro e sua relaçâo selecionadas para o projeto!`);
+          setParticipantes([...participantes, { membro, relacao: aux, tipo: tipo }]);
         } else {
-          if (
-            !participantes.find((element) => element.membro.id === membro.id)
-          ) {
-            setParticipantes([...participantes, { membro, relacao: aux }]);
-            toast.info(`Membro e sua relaçâo selecionadas para o projeto!`);
+          if (!participantes.find((element) => element.membro.id === membro.id)) {
+            setParticipantes([...participantes, { membro, relacao: aux, tipo: tipo }]);
           } else {
             toast.warning("Você ja selecionou esse membro");
           }
@@ -56,7 +52,7 @@ const NovoProjeto = () => {
         toast.warning("Selecione uma atuação para este membro");
       }
     },
-    [participantes, setParticipantes]
+    [participantes, tipo, setParticipantes]
   );
 
   const deleteParticipante = useCallback(
@@ -71,7 +67,7 @@ const NovoProjeto = () => {
   }, [tipo, setResultados]);
 
   useEffect(() => {
-    if (search.length > 3) {
+    if (search.length > 2) {
       searchMembro(search, tipo);
     }
   }, [search, tipo, searchMembro]);
