@@ -99,14 +99,16 @@ const NovoProjeto = () => {
             <>
               {resultados.map((item) => (
                 <li key={item.id}>
-                  <ButtonSvg
-                    type="button"
-                    bgColor="--green"
-                    onClick={() => saveMembro(item, `${item.name + item.id}`)}
-                  >
-                    <SiVerizon color="#59C15D" />
-                  </ButtonSvg>
-                  {item.name}
+                  <div>
+                    <ButtonSvg
+                      type="button"
+                      bgColor="--green"
+                      onClick={() => saveMembro(item, `${item.name + item.id}`)}
+                    >
+                      <SiVerizon color="#59C15D" />
+                    </ButtonSvg>
+                    {item.name}
+                  </div>
 
                   {tipo === "professor" ? (
                     <Select id={`${item.name + item.id}`}>

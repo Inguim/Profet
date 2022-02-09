@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ButtonSvg } from "../../../styles/Buttons";
 import { Select } from "../../../styles/Inputs";
 import { Label } from "../../../styles/Texts";
 
@@ -46,18 +47,42 @@ export const Results = styled.ul`
     font-size: 1rem;
     border-bottom: 1px solid black;
     margin-bottom: 0.5rem;
-    padding: 0 0 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    div {
+      margin: 0;
+
+      ${ButtonSvg} {
+        height: min-content;
+      }
+    }
 
     ${Select} {
-      float: right;
       border: none;
       width: auto;
+      margin: 0;
     }
   }
 
   @media (max-width: 768px) {
     li {
       font-size: 0.9rem;
+      flex-direction: column;
+      align-items: flex-start;
+
+      div {
+        display: flex;
+        flex-direction: row-reverse;
+        padding: 0 0.5rem;
+        justify-content: space-between;
+        width: 100%;
+
+        ${ButtonSvg} {
+          margin: 0;
+        }
+      }
     }
   }
 `;
