@@ -21,6 +21,7 @@ const App = () => {
                 closeOnClick
                 rtl={false}
                 draggable
+                pauseOnFocusLoss={false}
             />
         </BrowserRouter>
     );

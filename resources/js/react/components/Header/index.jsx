@@ -7,14 +7,13 @@ import { FaBars } from 'react-icons/fa';
 import { toast } from "react-toastify";
 
 const Header = () => {
-    toast.info(
-        "Não recomenda-se a utilização de dispositivos movéis nessa área"
-    );
+    toast.info("Não recomenda-se a utilização de dispositivos movéis nessa área", { position: "top-center" });
 
     const menu = [
         { nome: 'Noticias', link: 'noticias' },
         { nome: 'Membros', link: 'membros'  },
         { nome: 'Projetos', link: 'projetos'  },
+        { nome: 'Solicitações', link: 'solicitacoes' }
     ];
 
     return (

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DataResource;
+use App\Http\Traits\formatDate;
 use App\Models\Projeto;
 use App\Models\Solicitacao;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class SolicitacaoController extends Controller
 {
+  use formatDate;
   /**
    * Display a listing of the resource.
    *
@@ -18,7 +20,18 @@ class SolicitacaoController extends Controller
    */
   public function index()
   {
-    //
+    $data = [
+      'solicitados' => Solicitacao::where('status', 'aguardando')->with(['projeto:id,nome'])->orderBy('updated_at', 'ASC')->get(['id', 'descricao', 'status', 'titulo', 'updated_at', 'projeto_id']),
+      'alterados' => Solicitacao::where('status', 'alterado')->with(['projeto:id,nome'])->orderBy('updated_at', 'ASC')->get(['id', 'descricao', 'status', 'titulo', 'updated_at', 'projeto_id'])
+    ];
+
+    foreach ($data as $tipo) {
+      foreach ($tipo as $solicitacao) {
+        $solicitacao->updated_at_ago = $this->daysAgo($solicitacao->updated_at);
+      }
+    }
+
+    return new DataResource($data);
   }
 
   /**
@@ -77,7 +90,25 @@ class SolicitacaoController extends Controller
    */
   public function update(Request $request, Solicitacao $solicitacao)
   {
-    //
+    $message = [
+      'erro' => false,
+      'message' => ''
+    ];
+
+    try {
+      $solicitacao->descricao = $request->descricao;
+      $solicitacao->titulo = $request->titulo;
+      $solicitacao->save();
+
+      return new DataResource($message);
+    } catch (\Throwable $th) {
+      $message = [
+        'erro' => false,
+        'message' => 'Não foi possivel editar a solicitação!'
+      ];
+
+      return new DataResource($message);
+    }
   }
 
   /**
@@ -88,6 +119,22 @@ class SolicitacaoController extends Controller
    */
   public function destroy(Solicitacao $solicitacao)
   {
-    //
+    $message = [
+      'erro' => false,
+      'message' => ''
+    ];
+
+    try {
+      $solicitacao->delete();
+
+      return new DataResource($message);
+    } catch (\Throwable $th) {
+      $message = [
+        'erro' => false,
+        'message' => 'Não foi possivel deletar a solicitação!'
+      ];
+
+      return new DataResource($message);
+    }
   }
 }

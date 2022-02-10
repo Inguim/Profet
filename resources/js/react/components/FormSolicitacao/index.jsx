@@ -6,7 +6,7 @@ import { Label, Title } from "../../styles/Texts";
 import { ErrorMessage } from "../../styles/Messages";
 import { Button } from "../../styles/Buttons";
 
-const FormSolicitacao = ({ projetoId, onSubmit }) => {
+const FormSolicitacao = ({ projetoId, onSubmit, isEdit = { value: false } }) => {
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
 
   useEffect(() => {
@@ -17,9 +17,23 @@ const FormSolicitacao = ({ projetoId, onSubmit }) => {
     }
   }, [projetoId]);
 
+  useEffect(() => {
+    if (isEdit.value) {
+      setValue('titulo', isEdit.solicitacao.titulo);
+      setValue('descricao', isEdit.solicitacao.descricao);
+      setValue('solicitacao_id', isEdit.solicitacao.id);
+    }
+  }, [isEdit]);
+
   return (
     <Form align="left" method="POST" onSubmit={handleSubmit(onSubmit)}>
-      <Title>Informe a solicitação</Title>
+      <Title>{isEdit.value ? 'Alterar solicitação' : 'Informe a solicitação'}</Title>
+      {isEdit.value && (
+        <Input
+          type="hidden"
+          {...register('solicitacao_id', { required: { value: true, message: '' } })}
+        />
+      )}
       <Input
         type="hidden"
         {...register('projeto_id', { value: projetoId, required: { value: true, message: '' } })}
@@ -53,4 +67,4 @@ const FormSolicitacao = ({ projetoId, onSubmit }) => {
   );
 };
 
-export default FormSolicitacao;
+export default React.memo(FormSolicitacao);
