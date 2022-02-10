@@ -40,7 +40,7 @@ class ResourcesService
     }
 
     public function notificacoes() {
-      $notificacoes['novas'] = Notificacao::where('visto', false)->orderBy('created_at', 'DESC')->get();
+      $notificacoes['novas'] = Notificacao::where('visto', false)->orderBy('updated_at', 'DESC')->get();
       $notificacoes['vistas'] = Notificacao::where('visto', true)->orderBy('updated_at', 'DESC')->get();
 
       if($notificacoes['novas']->count() > 0) {
