@@ -5,10 +5,12 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DataResource;
 use App\Http\Traits\formatDate;
+use App\Models\Notificacao;
 use App\Models\Projeto;
 use App\Models\Solicitacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SolicitacaoController extends Controller
 {
@@ -96,10 +98,22 @@ class SolicitacaoController extends Controller
     ];
 
     try {
-      $solicitacao->descricao = $request->descricao;
-      $solicitacao->titulo = $request->titulo;
+      DB::beginTransaction();
+      if($request->tipo_alteracao == 1) {
+        $solicitacao->descricao = $request->descricao;
+        $solicitacao->titulo = $request->titulo;
+      } else {
+        $solicitacao->status = $request->status;
+        if(Notificacao::where('solicitacao_id', $solicitacao->id)->first()->exists()) {
+          Notificacao::where('solicitacao_id', $solicitacao->id)->orderBy('updated_at', "DESC")->first()->update(['visto' => 0]);
+          $projeto = Projeto::find($solicitacao->projeto->id);
+          $projeto->status = $request->tipo_alteracao == 2 ? 'analise' : 'aprovado';
+          $projeto->save();
+        }
+      }
       $solicitacao->save();
 
+      DB::commit();
       return new DataResource($message);
     } catch (\Throwable $th) {
       $message = [

@@ -53,13 +53,14 @@ const Solicitacoes = () => {
         .update(data.solicitacao_id, {
           titulo: data.titulo,
           descricao: data.descricao,
+          tipo_alteracao: 1,
         })
         .then((response) => {
           if (!response.data.data.error) {
             setOpenSolicitacao(false);
             fetchSolicitacoes();
             toast.success("Solicitação alterada com sucesso!", {
-              toastId: id,
+              toastId: data.id,
             });
           } else {
             toast.error(response.data.data.message, { toastId: id });
@@ -69,11 +70,52 @@ const Solicitacoes = () => {
     [apiSolicitacao]
   );
 
+  const handleRecusarAlteracao = useCallback(
+    async (id) => {
+      apiSolicitacao
+        .update(id, { status: "recusado", tipo_alteracao: 2 })
+        .then((response) => {
+          if (!response.data.data.error) {
+            setOpenSolicitacao(false);
+            setAlterados((prev) =>
+              prev.filter((alterado) => alterado.id !== id)
+            );
+            toast.success("Alteração recusada com sucesso!", {
+              toastId: id,
+            });
+          } else {
+            toast.error(response.data.data.message, { toastId: id });
+          }
+        })
+        .catch(() => toast.error("Algo deu errado ao recusar!"));
+    },
+    [setAlterados, apiSolicitacao]
+  );
+
+  const handleAprovarAlteracao = useCallback(async (id, tipo) => {
+    apiSolicitacao
+      .update(id, { status: "aprovado", tipo_alteracao: tipo })
+      .then((response) => {
+        if (!response.data.data.error) {
+          setOpenSolicitacao(false);
+          setAlterados((prev) => prev.filter((alterado) => alterado.id !== id));
+          toast.success(`${tipo === 2 ? "Alteração efetuada" : "Projeto aprovado"} com sucesso!`, {
+            toastId: id,
+          });
+        } else {
+          toast.error(response.data.data.message, { toastId: id });
+        }
+      })
+      .catch(() => toast.error("Algo deu errado ao aprovar!"));
+  }, []);
+
   const handleDeleteSolicitacao = useCallback(
     async (id) => {
       apiSolicitacao.destroy(id).then((response) => {
         if (!response.data.data.error) {
-          setSolicitados((prev) => prev.filter((solicitacao) => solicitacao.id !== id));
+          setSolicitados((prev) =>
+            prev.filter((solicitacao) => solicitacao.id !== id)
+          );
           toast.success("Solicitação deletada com sucesso!", {
             toastId: id,
           });
@@ -142,7 +184,15 @@ const Solicitacoes = () => {
                       >
                         Visualizar Projeto
                       </ButtonLink>
-                      <ButtonLink onClick={() => confirm("Deseja realmente recusar e excluir esta solicitação?") && handleDeleteSolicitacao(solicitacao.id)}>Excluir</ButtonLink>
+                      <ButtonLink
+                        onClick={() =>
+                          confirm(
+                            "Deseja realmente recusar e excluir esta solicitação?"
+                          ) && handleDeleteSolicitacao(solicitacao.id)
+                        }
+                      >
+                        Excluir
+                      </ButtonLink>
                       <ButtonLink
                         onClick={() =>
                           handleOpenSolicitacao(solicitacao.projeto.id, {
@@ -173,7 +223,52 @@ const Solicitacoes = () => {
           <>
             <Title>Aguardando nova análise</Title>
             {alterados.length > 0 ? (
-              <></>
+              <>
+                {alterados.map((alterado) => (
+                  <Solicitacao
+                    key={
+                      alterado.id + alterado.updated_at + alterado.projeto.id
+                    }
+                  >
+                    <Header>
+                      <h3>
+                        {alterado.titulo[0].toUpperCase()}
+                        {alterado.titulo.substring(1)}
+                      </h3>
+                      <span>{alterado.updated_at_ago}</span>
+                    </Header>
+                    <p>Projeto: {alterado.projeto.nome}</p>
+                    <p>Descrição da solicitação:</p>
+                    <p>{alterado.descricao}</p>
+                    <Actions>
+                      <ButtonLink
+                        onClick={() => handleOpenModal(alterado.projeto.id)}
+                      >
+                        Visualizar Projeto
+                      </ButtonLink>
+                      <ButtonLink
+                        onClick={() => handleRecusarAlteracao(alterado.id)}
+                      >
+                        Recusar
+                      </ButtonLink>
+                      <ButtonLink
+                        onClick={() =>
+                          handleAprovarAlteracao(alterado.id, 2)
+                        }
+                      >
+                        Aprovar solicitacão
+                      </ButtonLink>
+                      <ButtonLink
+                        onClick={() =>
+                          handleAprovarAlteracao(alterado.id, 3)
+                        }
+                      >
+                        Aprovar projeto
+                      </ButtonLink>
+                    </Actions>
+                  </Solicitacao>
+                ))}
+              </>
             ) : (
               <p>Nenhum projeto foi alterado até o momento</p>
             )}

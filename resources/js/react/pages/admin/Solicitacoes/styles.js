@@ -46,6 +46,7 @@ export const Actions = styled.section`
 
   ${ButtonLink} + ${ButtonLink} {
     float: right;
+    margin-left: 5px;
     margin-top: 2px;
   }
 `;
