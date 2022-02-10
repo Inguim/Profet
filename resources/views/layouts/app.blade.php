@@ -29,8 +29,7 @@
 
 <body>
     <div id="app">
-        @component("components.navbar")
-        @endcomponent
+        <x-navbar />
         @auth
             @if(auth()->user()->status === 'analise')
             <div class="alert alert-warning  alert-dismissible fade show" role="alert">
