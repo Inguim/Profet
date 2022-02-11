@@ -17,7 +17,7 @@ const Categoria = () => {
 
   const sliders = [
     { id: "1@recentes", title: "Recentes", type: 1 },
-    { id: "2@andamento", title: "Em Endamento", type: 2 },
+    { id: "2@andamento", title: "Em Andamento", type: 2 },
     { id: "3@concluidos", title: "Concluidos", type: 3 },
   ];
 
