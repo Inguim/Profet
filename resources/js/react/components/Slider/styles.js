@@ -29,11 +29,10 @@ export const ButtonSlide = styled.button`
 
 export const Slide = styled.div`
   display: flex;
-  max-width: 100vw;
-  width: 100%;
-  overflow-x: auto;
-  transition: all ease-in-out 0.4s;
-  padding-left: ${({ step }) => step + "px"};
+  width: ${({ width }) => width + 'px'};
+  margin-left: ${({ marginLeft }) => marginLeft + 'px'};
+  overflow-x: hidden;
+  transition: all ease-in-out 1s;
 
   ::-webkit-scrollbar {
     width: 0;

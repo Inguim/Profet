@@ -1,45 +1,53 @@
-import React, { useEffect, useRef, useState } from "react";;
+import React, { useEffect, useRef, useState } from "react";
 import { ButtonSlide, Slide } from "./styles";
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-const Slider = ({ children, step = 220 }) => {
-  const [ toStep, setToStep ] = useState(0);
+const Slider = ({ children, step = 260, width }) => {
+  const [toStep, setToStep] = useState(0);
 
   const container = useRef(null);
 
   const handleStep = (to, step) => {
+    let x;
     switch (to) {
       case 1:
-        // var x = toStep + Math.round(window.innerWidth / 2);
-        // if(x > 0){
-        //     x = 0;
-        // }
-        // setToStep(x);
+        x = toStep + Math.round(window.innerWidth / 2);
+        if (x > 0) {
+          x = 0;
+        }
+        setToStep(x);
         break;
 
       case 2:
-        // var x = toStep - Math.round(window.innerWidth / 2);
-        // var listW = 8 * 220;
-        // if(window.innerWidth - listW > x)
-        // {
-        //     x = (window.innerWidth - listW) - 60;
-        // }
-        // setToStep(x < 0 ? x * -1 : x);
+        x = toStep - Math.round(window.innerWidth / 2);
+        let listW = width * step;
+        if (window.innerWidth - listW > x) {
+          x = window.innerWidth - listW - 60;
+        }
+        setToStep(x);
         break;
     }
   };
 
   return (
-    <Slide ref={container} step={toStep} >
-      <ButtonSlide first direction={'to right'} onClick={() => handleStep(1, step)}>
-        <IoIosArrowBack  size={30} />
-      </ButtonSlide>
-        {children}
-      <ButtonSlide direction={'to left'} onClick={() => handleStep(2, step)}>
-        <IoIosArrowForward  size={30} />
-      </ButtonSlide>
+    <Slide ref={container} width={width * step} marginLeft={toStep}>
+      {width > 5 && (
+        <ButtonSlide
+          first
+          direction={"to right"}
+          onClick={() => handleStep(1, step)}
+        >
+          <IoIosArrowBack size={30} />
+        </ButtonSlide>
+      )}
+      {children}
+      {width > 5 && (
+        <ButtonSlide direction={"to left"} onClick={() => handleStep(2, step)}>
+          <IoIosArrowForward size={30} />
+        </ButtonSlide>
+      )}
     </Slide>
-  )
-}
+  );
+};
 
 export default Slider;

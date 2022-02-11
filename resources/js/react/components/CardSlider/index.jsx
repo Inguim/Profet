@@ -19,4 +19,4 @@ const CardSlider = ({ projeto }) => {
   )
 }
 
-export default CardSlider;
+export default React.memo(CardSlider);

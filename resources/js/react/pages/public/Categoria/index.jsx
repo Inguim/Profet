@@ -74,7 +74,7 @@ const Categoria = () => {
                           Ainda não existe nenhum projeto nessa divisão 🙈
                         </Message>
                       ) : (
-                        <Slider>
+                        <Slider width={recentes.length}>
                           {recentes.map((projeto) => (
                             <CardSlider
                               key={
@@ -95,7 +95,7 @@ const Categoria = () => {
                           Ainda não existe nenhum projeto nessa divisão 🙈
                         </Message>
                       ) : (
-                        <Slider>
+                        <Slider width={andamento.length}>
                           {andamento.map((projeto) => (
                             <CardSlider
                               key={
@@ -116,7 +116,7 @@ const Categoria = () => {
                           Ainda não existe nenhum projeto nessa divisão 🙈
                         </Message>
                       ) : (
-                        <Slider>
+                        <Slider width={concluidos.length}>
                           {concluidos.map((projeto) => (
                             <CardSlider
                               key={
