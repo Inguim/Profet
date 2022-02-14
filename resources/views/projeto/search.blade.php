@@ -8,7 +8,7 @@
             <div class="card">
                 <h4 class="card-header text-center">{{ $projeto->nome }}</h4>
                 <div class="card-body">
-                    <h6 class="card-subtitle  mb-4" style="text-align: justify" >{{ $projeto->resumo }}</h6>
+                    <h6 class="card-subtitle  mb-2" style="text-align: justify" >{{ $projeto->resumo }}</h6>
                     <p class="card-text font-weight-light text-muted m-0">Categora: {{ $projeto->categoria->nome }}</p>
                     <p class="card-text font-weight-light text-muted mb-2">Estado atual: {{ $projeto->estado->estado }}</p>
                     <a href="{{ route('visualizarProjeto', $projeto->id)}}" class="card-link">Saiba mais</a>
