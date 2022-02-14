@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\CategoriasFIltro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\NoticiaController;
@@ -38,3 +39,6 @@ Route::group(['middleware' => 'auth:api'], function () {
         ->only(['index', 'store'])
         ->middleware(['userStatus']);
 });
+
+Route::get('categoria/filter/{slug}', [CategoriasFIltro::class, 'index']);
+Route::get('categoria/filter/{slug}/{section}/{paginate}', [CategoriasFIltro::class, 'show']);

@@ -12,7 +12,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <GlobalStyle />
-            {!document.getElementById("projeto-area") && (
+            {document.getElementById("admin-area") && (
                 <Header />
             )}
             <Routes />
