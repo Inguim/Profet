@@ -113,7 +113,7 @@ const Categoria = () => {
                           width={recentes.length}
                           slug={slug}
                           type={item.type}
-                          onDragEnd={handleOnDragEnd}
+                          onSlideEnd={handleOnDragEnd}
                         >
                           {recentes.map((projeto) => (
                             <CardSlider
@@ -139,7 +139,7 @@ const Categoria = () => {
                           width={andamento.length}
                           slug={slug}
                           type={item.type}
-                          onDragEnd={handleOnDragEnd}
+                          onSlideEnd={handleOnDragEnd}
                         >
                           {andamento.map((projeto) => (
                             <CardSlider
@@ -165,7 +165,7 @@ const Categoria = () => {
                           width={concluidos.length}
                           slug={slug}
                           type={item.type}
-                          onDragEnd={handleOnDragEnd}
+                          onSlideEnd={handleOnDragEnd}
                         >
                           {concluidos.map((projeto) => (
                             <CardSlider

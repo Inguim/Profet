@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { ButtonSlide, Slide } from "./styles";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-const Slider = ({ children, step = 260, width, onDragEnd, type }) => {
+const Slider = ({ children, step = 260, width, onSlideEnd, type }) => {
   const [toStep, setToStep] = useState(0);
   const [paginate, setPaginate] = useState(1);
 
@@ -24,7 +24,7 @@ const Slider = ({ children, step = 260, width, onDragEnd, type }) => {
         let listW = width * step;
         if (window.innerWidth - listW > x) {
           x = window.innerWidth - listW - 60;
-          onDragEnd(type, paginate);
+          onSlideEnd(type, paginate);
           setPaginate(prev => prev+1);
         }
         setToStep(x);
