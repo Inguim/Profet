@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Box } from "../CardSlider/styled";
+import { Box } from "../CardSlider/styles";
 
 export const ButtonSlide = styled.button`
   height: 355px;

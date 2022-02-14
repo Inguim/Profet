@@ -1,6 +1,6 @@
 import React from "react";
 import { redirectTo } from "../../utils/redirectTo";
-import { Box, Resume, Title, Button } from "./styled";
+import { Box, Resume, Title, Button } from "./styles";
 
 const CardSlider = ({ projeto }) => {
   function formatResume(text) {

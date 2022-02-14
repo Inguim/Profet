@@ -20,7 +20,7 @@ class CategoriasFIltro extends Controller
     $catId = Categoria::where('slug', $slug)->first()->id;
 
     $projetos = [
-      'recentes' => Projeto::where('categoria_id', $catId)->where('status', 'aprovado')->orderBy('created_at', 'DESC')->take(5)->get(['id', 'nome', 'resumo']),
+      'recentes' => Projeto::where('categoria_id', $catId)->where('status', 'aprovado')->orderBy('created_at', 'DESC')->take(10)->get(['id', 'nome', 'resumo']),
       'andamento' => Projeto::where('categoria_id', $catId)->where('status', 'aprovado')->where('estado_id', 2)->orderBy('created_at', 'ASC')->take(5)->get(['id', 'nome', 'resumo']),
       'concluido' => Projeto::where('categoria_id', $catId)->where('status', 'aprovado')->where('estado_id', 1)->orderBy('created_at', 'ASC')->take(5)->get(['id', 'nome', 'resumo'])
     ];
@@ -33,16 +33,16 @@ class CategoriasFIltro extends Controller
     $catId = Categoria::where('slug', $slug)->first()->id;
 
     switch ($section) {
-      case 'recentes':
-        $projetos = Projeto::where('categoria_id', $catId)->where('status', 'aprovado')->orderBy('created_at', 'DESC')->skip($paginate)->take(5)->get(['id', 'nome', 'resumo']);
-        break;
+      // case 'recentes':
+      //   $projetos = Projeto::where('categoria_id', $catId)->where('status', 'aprovado')->orderBy('created_at', 'DESC')->skip($paginate * 5)->take(5)->get(['id', 'nome', 'resumo']);
+      //   break;
 
       case 'andamento':
-        $projetos = Projeto::where('categoria_id', $catId)->where('status', 'aprovado')->where('estado_id', 2)->orderBy('created_at', 'ASC')->skip($paginate)->take(5)->get(['id', 'nome', 'resumo']);
+        $projetos = Projeto::where('categoria_id', $catId)->where('status', 'aprovado')->where('estado_id', 2)->orderBy('created_at', 'ASC')->skip($paginate * 5)->take(5)->get(['id', 'nome', 'resumo']);
         break;
 
       case 'concluido':
-        $projetos = Projeto::where('categoria_id', $catId)->where('status', 'aprovado')->where('estado_id', 1)->orderBy('created_at', 'ASC')->skip($paginate)->take(5)->get(['id', 'nome', 'resumo']);
+        $projetos = Projeto::where('categoria_id', $catId)->where('status', 'aprovado')->where('estado_id', 1)->orderBy('created_at', 'ASC')->skip($paginate * 5)->take(5)->get(['id', 'nome', 'resumo']);
         break;
     }
 

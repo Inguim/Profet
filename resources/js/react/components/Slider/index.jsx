@@ -1,13 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { ButtonSlide, Slide } from "./styles";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-const Slider = ({ children, step = 260, width }) => {
+const Slider = ({ children, step = 260, width, onDragEnd, type }) => {
   const [toStep, setToStep] = useState(0);
+  const [paginate, setPaginate] = useState(1);
 
   const container = useRef(null);
 
-  const handleStep = (to, step) => {
+  const handleStep = async (to, step) => {
     let x;
     switch (to) {
       case 1:
@@ -23,6 +24,8 @@ const Slider = ({ children, step = 260, width }) => {
         let listW = width * step;
         if (window.innerWidth - listW > x) {
           x = window.innerWidth - listW - 60;
+          onDragEnd(type, paginate);
+          setPaginate(prev => prev+1);
         }
         setToStep(x);
         break;
@@ -31,7 +34,7 @@ const Slider = ({ children, step = 260, width }) => {
 
   return (
     <Slide ref={container} width={width * step} marginLeft={toStep}>
-      {width > 5 && (
+      {width > 0 && (
         <ButtonSlide
           first
           direction={"to right"}
@@ -41,7 +44,7 @@ const Slider = ({ children, step = 260, width }) => {
         </ButtonSlide>
       )}
       {children}
-      {width > 5 && (
+      {width > 0 && (
         <ButtonSlide direction={"to left"} onClick={() => handleStep(2, step)}>
           <IoIosArrowForward size={30} />
         </ButtonSlide>

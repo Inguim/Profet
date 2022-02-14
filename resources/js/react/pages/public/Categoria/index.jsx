@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import CardSlider from "../../../components/CardSlider";
@@ -34,6 +34,41 @@ const Categoria = () => {
         toast.error("Algo deu errado ao tentar carregar os projetos")
       );
   }
+
+  const handleOnDragEnd = useCallback(async (type, paginate) => {
+    switch (type) {
+      // case 1:
+      //   await apiCategoriasFiltro.show(slug, paginate, 'recentes').then(response => {
+      //     console.log(response.data.data);
+      //         if(response.data.data.length > 0) {
+      //           setRecentes(prev => [...prev, ...response.data.data]);
+      //         } else {
+      //           toast.info('Não existe mais projetos nessa divisão', { toastId: type });
+      //         }
+      // //   }).catch(() => console.log('Algo deu errado!'));
+      //   break;
+
+      case 2:
+        await apiCategoriasFiltro.show(slug, paginate, 'andamento').then(response => {
+          if(response.data.data.length > 0) {
+            setAndamento(prev => [...prev, ...response.data.data]);
+          } else {
+            toast.info('Não existe mais projetos nessa divisão', { toastId: type });
+          }
+        }).catch(() => console.log('Algo deu errado!'));
+        break;
+
+      case 3:
+        await apiCategoriasFiltro.show(slug, paginate, 'concluido').then(response => {
+          if(response.data.data.length > 0) {
+            setConcluidos(prev => [...prev, ...response.data.data]);
+          } else {
+            toast.info('Não existe mais projetos nessa divisão', { toastId: type });
+          }
+        }).catch(() => console.log('Algo deu errado!'));
+        break;
+    }
+  }, [setRecentes, setAndamento, setConcluidos, slug]);
 
   useEffect(() => {
     fetchData(slug);
@@ -74,7 +109,12 @@ const Categoria = () => {
                           Ainda não existe nenhum projeto nessa divisão 🙈
                         </Message>
                       ) : (
-                        <Slider width={recentes.length}>
+                        <Slider
+                          width={recentes.length}
+                          slug={slug}
+                          type={item.type}
+                          onDragEnd={handleOnDragEnd}
+                        >
                           {recentes.map((projeto) => (
                             <CardSlider
                               key={
@@ -95,7 +135,12 @@ const Categoria = () => {
                           Ainda não existe nenhum projeto nessa divisão 🙈
                         </Message>
                       ) : (
-                        <Slider width={andamento.length}>
+                        <Slider
+                          width={andamento.length}
+                          slug={slug}
+                          type={item.type}
+                          onDragEnd={handleOnDragEnd}
+                        >
                           {andamento.map((projeto) => (
                             <CardSlider
                               key={
@@ -116,7 +161,12 @@ const Categoria = () => {
                           Ainda não existe nenhum projeto nessa divisão 🙈
                         </Message>
                       ) : (
-                        <Slider width={concluidos.length}>
+                        <Slider
+                          width={concluidos.length}
+                          slug={slug}
+                          type={item.type}
+                          onDragEnd={handleOnDragEnd}
+                        >
                           {concluidos.map((projeto) => (
                             <CardSlider
                               key={

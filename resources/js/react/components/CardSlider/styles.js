@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Box = styled.div`
   min-width: 260px;
@@ -8,7 +8,7 @@ export const Box = styled.div`
   border-radius: 5px;
   transition: all ease-in-out 0.2s;
   transform: scale(90%);
-  box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,8 +30,13 @@ export const Title = styled.h1`
 export const Resume = styled.p`
   text-align: justify;
   padding: 15px 15px 0 15px;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
 `;
-
 
 export const Button = styled.button`
   border-radius: 0 0 5px 5px;
