@@ -8,7 +8,7 @@ use App\Models\Categoria;
 use App\Models\Projeto;
 use Illuminate\Http\Request;
 
-class CategoriasFIltro extends Controller
+class CategoriasFiltro extends Controller
 {
   /**
    * Display a listing of the resource.
