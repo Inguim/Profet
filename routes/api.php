@@ -41,4 +41,4 @@ Route::group(['middleware' => 'auth:api'], function () {
 });
 
 Route::get('categoria/filter/{slug}', [CategoriasFiltro::class, 'index']);
-Route::get('categoria/filter/{slug}/{section}/{paginate}', [CategoriasFIltro::class, 'show']);
+Route::get('categoria/filter/{slug}/{section}/{paginate}', [CategoriasFiltro::class, 'show']);
