@@ -5,12 +5,13 @@
 
 ### Features
 - [x] Listagem de projetos
-- [ ] Listagem de projetos por categorias
+- [x] Listagem de projetos por categorias
 - [x] Categorias
 - [x] Noticias
 - [x] Área de ajuda
 - [x] Visualização de participante
 - [x] Visualização de projeto
+- [x] Rotina de notificações
 - Usuário
 - - [x] Cadastro: professor e aluno; comum e administrador
 - - [x] Alteração de dados
@@ -26,6 +27,7 @@
 - - [x] Listagem de solicitações projetos
 - - [x] Aceitar ou recusar participante
 - - [x] Aceitar ou recusar projetos
+- - [x] Controle de solicitações
 - - [x] CRUD de noticias
 ### Status do desenvolvimento
 Se encontra quase pronta e pode ser testada em [Profet](https://profet.cefetvga.pro.br/)
