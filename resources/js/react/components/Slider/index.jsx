@@ -25,7 +25,7 @@ const Slider = ({ children, step = 260, width, onSlideEnd, type }) => {
         if (window.innerWidth - listW > x) {
           x = window.innerWidth - listW - 60;
           onSlideEnd(type, paginate);
-          setPaginate(prev => prev+1);
+          setPaginate((prev) => prev + 1);
         }
         setToStep(x);
         break;
@@ -34,7 +34,7 @@ const Slider = ({ children, step = 260, width, onSlideEnd, type }) => {
 
   return (
     <Slide ref={container} width={width * step} marginLeft={toStep}>
-      {width > 0 && (
+      {Math.floor(screen.width / width) < width * step && (
         <ButtonSlide
           first
           direction={"to right"}
@@ -44,7 +44,7 @@ const Slider = ({ children, step = 260, width, onSlideEnd, type }) => {
         </ButtonSlide>
       )}
       {children}
-      {width > 0 && (
+      {Math.floor(screen.width / width) < width * step && (
         <ButtonSlide direction={"to left"} onClick={() => handleStep(2, step)}>
           <IoIosArrowForward size={30} />
         </ButtonSlide>
