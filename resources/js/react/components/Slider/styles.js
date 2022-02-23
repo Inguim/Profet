@@ -31,7 +31,7 @@ export const Slide = styled.div`
   display: flex;
   width: ${({ width }) => width + 'px'};
   margin-left: ${({ marginLeft }) => marginLeft + 'px'};
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   transition: all ease-in-out 1s;
 
   ::-webkit-scrollbar {

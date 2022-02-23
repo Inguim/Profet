@@ -35,40 +35,53 @@ const Categoria = () => {
       );
   }
 
-  const handleOnDragEnd = useCallback(async (type, paginate) => {
-    switch (type) {
-      // case 1:
-      //   await apiCategoriasFiltro.show(slug, paginate, 'recentes').then(response => {
-      //     console.log(response.data.data);
-      //         if(response.data.data.length > 0) {
-      //           setRecentes(prev => [...prev, ...response.data.data]);
-      //         } else {
-      //           toast.info('Não existe mais projetos nessa divisão', { toastId: type });
-      //         }
-      // //   }).catch(() => console.log('Algo deu errado!'));
-      //   break;
+  const handleOnDragEnd = useCallback(
+    async (type, paginate) => {
+      switch (type) {
+        // case 1:
+        //   await apiCategoriasFiltro.show(slug, paginate, 'recentes').then(response => {
+        //     console.log(response.data.data);
+        //         if(response.data.data.length > 0) {
+        //           setRecentes(prev => [...prev, ...response.data.data]);
+        //         } else {
+        //           toast.info('Não existe mais projetos nessa divisão', { toastId: type });
+        //         }
+        // //   }).catch(() => console.log('Algo deu errado!'));
+        //   break;
 
-      case 2:
-        await apiCategoriasFiltro.show(slug, paginate, 'andamento').then(response => {
-          if(response.data.data.length > 0) {
-            setAndamento(prev => [...prev, ...response.data.data]);
-          } else {
-            toast.info('Não existe mais projetos nessa divisão', { toastId: type });
-          }
-        }).catch(() => console.log('Algo deu errado!'));
-        break;
+        case 2:
+          await apiCategoriasFiltro
+            .show(slug, paginate, "andamento")
+            .then((response) => {
+              if (response.data.data.length > 0) {
+                setAndamento((prev) => [...prev, ...response.data.data]);
+              } else {
+                toast.info("Não existe mais projetos nessa divisão", {
+                  toastId: type,
+                });
+              }
+            })
+            .catch(() => console.log("Algo deu errado!"));
+          break;
 
-      case 3:
-        await apiCategoriasFiltro.show(slug, paginate, 'concluido').then(response => {
-          if(response.data.data.length > 0) {
-            setConcluidos(prev => [...prev, ...response.data.data]);
-          } else {
-            toast.info('Não existe mais projetos nessa divisão', { toastId: type });
-          }
-        }).catch(() => console.log('Algo deu errado!'));
-        break;
-    }
-  }, [setRecentes, setAndamento, setConcluidos, slug]);
+        case 3:
+          await apiCategoriasFiltro
+            .show(slug, paginate, "concluido")
+            .then((response) => {
+              if (response.data.data.length > 0) {
+                setConcluidos((prev) => [...prev, ...response.data.data]);
+              } else {
+                toast.info("Não existe mais projetos nessa divisão", {
+                  toastId: type,
+                });
+              }
+            })
+            .catch(() => console.log("Algo deu errado!"));
+          break;
+      }
+    },
+    [setRecentes, setAndamento, setConcluidos, slug]
+  );
 
   useEffect(() => {
     fetchData(slug);
