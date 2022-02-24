@@ -66,4 +66,8 @@ class User extends Authenticatable
     public function solicitacaos() {
       return $this->hasMany('App\Models\Solicitacao', 'creator_id');
     }
+
+    public function contribuidor() {
+      return $this->belongsTo('App\Nodels\Contribuidor');
+    }
 }
