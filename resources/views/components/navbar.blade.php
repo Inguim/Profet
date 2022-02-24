@@ -20,6 +20,9 @@
       </li>
       @endauth
       <li class="nav-item">
+        <a class="nav-link" href="{{ route('contribuidores') }}">{{ __('Contribuidores') }}</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="{{ url($menu->url) }}">{{ $menu->nome }}</a>
       </li>
       @else

@@ -35,8 +35,8 @@ Route::get('/message', function () {
 
 
 Route::group(['middleware' => 'auth:web'], function () {
-    Route::resource('usuario', PerfilController::class);
-    Route::resource('notificacao', NotificacaoController::class)->only(['show']);
+  Route::resource('notificacao', NotificacaoController::class)->only(['show']);
+  Route::resource('usuario', PerfilController::class);
 
     Route::get('/administrativa/{path?}', [AdminController::class, 'index'])
         ->where('path', '.*')
@@ -57,3 +57,6 @@ Route::resource('categoria', CategoriaController::class)->only(['show']);
 Route::get('/projeto/{id}', [ProjetoController::class, 'show'])->name('visualizarProjeto');
 Route::get('/projeto', [ProjetoSearch::class, 'show'])->name('searchProjeto');
 Route::get('/projeto/pdf/{id}', [PdfController::class, 'file'])->name('projetoPDF');
+Route::get('/contribuidores', function () {
+  return view('contribuidores');
+})->name('contribuidores');

@@ -7,6 +7,7 @@ import Projetos from "./pages/admin/Projetos";
 import NovoProjeto from "./pages/public/NovoProjeto";
 import Solicitacoes from "./pages/admin/Solicitacoes";
 import Categoria from "./pages/public/Categoria";
+import Contribuidores from "./pages/public/Contribuidores";
 
 const Routes = () => {
   const route = process.env.MIX_APP_ROUTE;
@@ -18,6 +19,7 @@ const Routes = () => {
       <Route exact path={`${route}/administrativa/solicitacoes`} component={Solicitacoes} />
       <Route exact path={`${route}/projeto/novo`} component={NovoProjeto} />
       <Route exact path={`${route}/categoria/:slug`} component={Categoria} />
+      <Route exact path={`${route}/contribuidores`} component={Contribuidores} />
     </Switch>
   );
 };

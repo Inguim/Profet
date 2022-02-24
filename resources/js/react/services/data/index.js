@@ -5,3 +5,4 @@ export { default as apiProjetos } from './Projetos';
 export { default as apiMembros } from './Membros';
 export { default as apiSolicitacao } from './Solicitacao';
 export { default as apiCategoriasFiltro } from './CategoriasFiltro';
+export { default as apiContribuidores } from './Contribuidores';
