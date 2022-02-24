@@ -8,4 +8,6 @@ if (document.getElementById("admin-area")) {
   ReactDOM.render(<App />, document.getElementById("projeto-area"));
 } else if (document.getElementById("categoria-react-area")) {
   ReactDOM.render(<App />, document.getElementById("categoria-react-area"));
+} else if (document.getElementById("colaboradores-react-area")) {
+  ReactDOM.render(<App />, document.getElementById("colaboradores-react-area"));
 }

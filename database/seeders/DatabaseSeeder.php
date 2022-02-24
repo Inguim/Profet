@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\TipoContribuicao;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,7 +22,8 @@ class DatabaseSeeder extends Seeder
             SerieSeeder::class,
             CursoSeeder::class,
             UserSeeder::class,
-            TiposNotificacaoSeeder::class
+            TiposNotificacaoSeeder::class,
+            TipoContribuicao::class
         ]);
     }
 }

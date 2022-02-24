@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\CategoriasFiltro;
+use App\Http\Controllers\API\ContribuidorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\NoticiaController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\API\UserSearchController;
 use App\Http\Controllers\API\MembroController;
 use App\Http\Controllers\API\ProjetoController;
 use App\Http\Controllers\API\SolicitacaoController;
+use App\Models\Contribuidor;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +44,4 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 Route::get('categoria/filter/{slug}', [CategoriasFiltro::class, 'index']);
 Route::get('categoria/filter/{slug}/{section}/{paginate}', [CategoriasFiltro::class, 'show']);
+Route::get('contribuidores', [ContribuidorController::class, 'index']);
